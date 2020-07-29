@@ -1,2 +1,0 @@
-# KrishnaSweets
-Online bakery shop
