@@ -42,6 +42,10 @@ export class ListUserComponent implements OnInit, OnChanges {
 
   }
 
+  public addUser() {
+    console.log("Yeahhhh");
+  }
+
   public editUser(singleUser: User) {
     this.userForm = this.formBuilder.group({
       id: new FormControl(singleUser._id, Validators.required),
