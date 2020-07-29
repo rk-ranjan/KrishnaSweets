@@ -1,0 +1,15 @@
+.container-top {
+    width: 100vw;
+    position: fixed;
+    z-index: 1000;
+}
+
+.container-fluid {
+    padding-top: 120px;
+    width: 100%;
+}
+@media screen and (max-width: 760px) {
+    .secondary-offset {
+       padding-top: 55px;
+    }
+}

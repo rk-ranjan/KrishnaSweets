@@ -1,0 +1,10 @@
+.col-sm-3 {
+    padding: 4px;
+}
+@media screen and (max-width: 570px) {
+    .col-sm-3 {
+        width: 50%;
+        float: left;
+        clear: none !important;
+    }
+}

@@ -1,0 +1,43 @@
+.main-header {
+    background-color: #f5f5f5;
+}
+#collapsibleNavbar ul li {
+  color:white;
+}
+.sticky-top {
+  position: fixed;
+}
+.nav-link {
+  color: white;
+  letter-spacing: 1px;
+}
+#nav-bar-desktop-list ul li a {
+  color: black;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#bodyList {
+  list-style-type: none;
+}
+#bodyList > li {
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.sidepanel  {
+  width: 75vw;
+  position: fixed;
+  z-index: 1;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #f5f5f5;
+  overflow-x: hidden;
+  transition: 0.3s;
+  border-radius: 0px;
+}
+.border-redius-none {
+  border-radius: 0px;
+}
+.card-footer {
+  background-color: black;
+}

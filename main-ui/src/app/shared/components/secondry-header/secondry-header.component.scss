@@ -1,0 +1,101 @@
+.bg-logo {
+  background-color: #250f6f;
+  opacity: 1;
+}
+.menu-large {
+    position: static !important;
+  }
+  .menu-large > a{
+      color: white;
+      letter-spacing: 1px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .row-items:hover{
+     background-color: #e91e63;
+  }
+  .dropdown-header {
+    color: black;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;    
+    padding-left: 3px;
+  }
+  .megamenu {
+    padding: 20px 20px;
+    width: 100%;
+    border: none;
+    margin: 0px;
+    background-color: #e91e63;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0 2px #250f6f;
+    color: white;
+  }
+  
+  .megamenu > div > li > ul {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .megamenu > div > li > ul > li {
+    list-style: none;
+  }
+  
+  .megamenu > div > li > ul > li > a {
+    display: block;
+    padding: 3px 10px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    color: white;
+    white-space: normal;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  .megamenu > div > li > ul > li > a:hover,
+  .megamenu > div > li > ul > li > a:focus {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .megamenu.disabled > a,
+  .megamenu.disabled > a:hover,
+  .megamenu.disabled > a:focus {
+    color: white;
+  }
+  
+  .megamenu.disabled > a:hover,
+  .megamenu.disabled > a:focus {
+    text-decoration: none;
+    background-image: none;
+    cursor: not-allowed;
+  }
+  
+  .megamenu.dropdown-header {
+    color: white;
+    font-size: 18px;
+  }
+  
+  @media (max-width: 768px) {
+    .bg-logo {
+      display: none;
+    }
+    .megamenu {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .megamenu > li {
+      margin-bottom: 30px;
+    }
+    .megamenu > li:last-child {
+      margin-bottom: 0;
+    }
+    .megamenu.dropdown-header {
+      padding: 3px 15px !important;
+    }
+    .navbar-nav .open .dropdown-menu .dropdown-header {
+      color: #fff;
+    }
+  }
+  
+  
