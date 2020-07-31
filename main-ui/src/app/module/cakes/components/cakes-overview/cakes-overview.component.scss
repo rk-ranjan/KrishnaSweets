@@ -1,0 +1,16 @@
+.img-fluid-poster > div img {
+    width: 100%;
+    height: 250px;
+}
+.img-fluid-poster {
+    background-color: white;
+}
+.toggle-button button {
+   font-size: 12px;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+@media screen and (max-width: 760px) {
+    .img-fluid-poster >div  img {
+        height: 100px;
+    }
+}

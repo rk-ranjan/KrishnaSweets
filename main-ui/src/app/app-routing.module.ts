@@ -17,7 +17,7 @@ const routes: Routes = [
         loadChildren : () => import('./module/cakes/cakes.module').then(m => m.CakesModule)
       },
       {
-        path: 'sweeets',
+        path: 'sweets',
         loadChildren : () => import('./module/sweets/sweets.module').then(m => m.SweetsModule),
         // canActivate: [RoleGuardService]
       },
@@ -28,6 +28,14 @@ const routes: Routes = [
       {
         path: 'bakery',
         component: HomeComponent
+      },
+      {
+        path: 'search',
+        loadChildren : () => import('./module/search/search.module').then((m) => m.SearchModule)
+      },
+      {
+        path: 'cart',
+        loadChildren: () => import('./module/cart/cart.module').then((m) => m.CartModule)
       }
     ]
   },

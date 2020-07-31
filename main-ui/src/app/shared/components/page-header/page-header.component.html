@@ -1,18 +1,27 @@
 <div class="d-flex-row primary-header">
-    <div class="icon-margin right-items-mobile pl-3 pr-3 pb-0">
-        <img src="../../../../assets/images/unnamed.png" width="27px">
+    <div class="icon-margin right-items-mobile pl-3 pr-3 pb-0" *ngIf="!search">
+        <!-- <img src="../../../../assets/images/unnamed.png" width="27px"> -->
+        <img src="https://cdn3.iconfinder.com/data/icons/outline-style-1/512/hamburger-512.png" width="27px" class="img-fluid"/>
     </div>
-    <div class="p-0">
-        <img src="../../../assets/images/logo.png" class="main-logo" alt="NoImg" />
+    
+    <div class="p-0 mr-auto" *ngIf="!search">
+        <img src="../../../../assets/images/logo.png" routerLink="/" class="main-logo" alt="NoImg" />
     </div>
-    <div class="icon-margin mr-auto right-items" style="border-left: none;">
+    <!-- <div class="icon-margin mr-auto right-items" style="border-left: none;">
             <span class="fa fa-star"> </span>
-    </div>
-    <div class="icon-margin ml-auto right-items">
+    </div> -->
+    <div class="icon-margin ml-auto right-items" *ngIf="!search" (click)="search = !search" style="cursor: pointer;">
             <span class="fa fa-search"> </span>
     </div>
-    <div class="icon-margin right-items">
-        <span class="fa fa-user-circle" aria-hidden="true"> <span id="user-text"> Ravi Kumar</span></span>
+    <div class="global-search-bar flex-fill p-2" *ngIf="search">
+         
+         <!-- <button id="back" (click)="search = !search">&#10005;</button>  -->
+         <input type="text" #searchBox autofocus placeholder="Search here.." class="form-control"/>
+         <button id="clear" (click)="search = !search">&#10005;</button> 
+    </div>
+    <div class="icon-margin right-items" *ngIf="!search">
+        <!-- <span style="font-size: 24px;" class="fa fa-user-circle" aria-hidden="true"> <span id="user-text"> Ravi Kumar</span></span> -->
+        <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="25px"/>
         <!-- <div class="dropdown"> -->
             <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
               Dropdown button
@@ -24,9 +33,12 @@
             </div>
           </div> -->
     </div>
-    <div class="right-items-cart">
-            <span class="fa fa-shopping-cart notification">
-                <span class="badge">3</span>
-            </span>
+    <div class="right-items-cart" *ngIf="!search" routerLink="cart">
+            <div class="notification">
+              <img src="https://static.thenounproject.com/png/62821-200.png" width="34px"/>
+            </div>
+            <div class="badge">
+              3
+            </div>
     </div>
 </div>

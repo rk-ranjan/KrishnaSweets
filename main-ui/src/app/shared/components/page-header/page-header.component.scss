@@ -1,3 +1,24 @@
+// cart css
+.notification {
+  position: relative;
+  padding-right: 6px;
+}  
+.badge {
+  position: absolute;
+  padding: 5px;
+  border-radius: 20%;
+  right: 6px;
+  top: 8px;
+  background: red;
+  color: white;
+  margin-right: 16px;
+}
+
+.global-search-bar {
+  padding: 5px;
+  margin-right: 10px;
+  display: flex;
+}
 .d-flex-row {
     display: flex;
     margin-left: 0px;
@@ -24,16 +45,26 @@ img.main-logo {
   display: none;
 }
 .right-items-cart {
-  font-size: 16px;
-  padding: 12px 32px 2px 12px;
+  padding: 12px 24px 2px 12px;
   border-left: 1px solid #250f6f5e
 }
-@media (max-width: 768px) {
+@media (max-width: 540px) {
+  .global-search-bar {
+    padding: 5px;
+  }
+  .primary-header {
+    padding-bottom: 2px;
+    border-bottom: 2px solid #250f6f;
+  }
   .right-items-cart {
-    font-size: 16px;
-    padding: 16px 16px 2px 12px;
-    // border-left: 1px solid #6664643d;
+    padding: 12px 2px 2px 4px;
     border-left: none;
+  }
+  .notification {
+    margin-right: 6px;
+  }
+  .badge {
+    margin-right: 0;
   }
   .right-items-mobile {
     display: block;
@@ -57,27 +88,16 @@ img.main-logo {
       display: none;
     }
 }
-
-// cart css
-.notification {
-    color: black;
-    text-decoration: none;
-    position: relative;
-    display: inline-block;
-    border-radius: 2px;
-    font-size: 22px;
-  }
-  
-  .notification:hover {
-    background: red;
-  }
-  
-  .notification .badge {
-    position: absolute;
-    top: -11px;
-    right: -11px;
-    padding: 2px;
-    border-radius: 20%;
-    background: red;
-    color: white;
-  }
+#clear {
+        position: absolute; 
+        top: 12px; 
+        right: 28px;
+        border-radius: 5px; 
+        z-index: 2; 
+        border: none; 
+        height: 30px; 
+        cursor: pointer; 
+        color: black; 
+        background-color: #f1f1f1; 
+        transform: translateX(2px); 
+}

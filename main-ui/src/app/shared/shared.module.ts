@@ -7,8 +7,6 @@ import { MainHeaderComponent } from './components/main-header/main-header.compon
 import { MainFooterComponent } from './components/main-footer/main-footer.component';
 import { RkModelComponent } from './components/rk-model/rk-model.component';
 import { CustomSideNavComponent } from './components/custom-side-nav/custom-side-nav.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { SecondryHeaderComponent } from './components/secondry-header/secondry-header.component';
 import { CustomCarouselComponent } from './components/custom-carousel/custom-carousel.component';
@@ -23,6 +21,7 @@ import { GiftShowCaseListComponent } from './components/gift-show-case-list/gift
 import { BestSellListComponent } from './components/best-sell-list/best-sell-list.component';
 import { BestSellItemComponent } from './components/best-sell-item/best-sell-item.component';
 import { FullCeleberationPackComponent } from './components/full-celeberation-pack/full-celeberation-pack.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +43,12 @@ import { FullCeleberationPackComponent } from './components/full-celeberation-pa
       GiftShowCaseListComponent,
       BestSellListComponent,
       BestSellItemComponent,
-      FullCeleberationPackComponent
+      FullCeleberationPackComponent,
+      BreadcrumbComponent
   ],
   imports: [
       CommonModule,
       SharedRoutingModule,
-      BrowserModule,
-      BrowserAnimationsModule
   ],
   exports: [
         TopNotificationBarComponent,
@@ -70,7 +68,8 @@ import { FullCeleberationPackComponent } from './components/full-celeberation-pa
         GiftShowCaseListComponent,
         BestSellListComponent,
         BestSellItemComponent,
-        FullCeleberationPackComponent      
+        FullCeleberationPackComponent,
+        BreadcrumbComponent      
   ]
 
 })

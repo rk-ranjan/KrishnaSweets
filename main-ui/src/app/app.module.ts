@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MatCommonModule, MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { CommonModule } from '@angular/common';
     SharedModule,
     CommonModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCommonModule,
+    MatOptionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
