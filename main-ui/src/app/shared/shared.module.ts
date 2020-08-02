@@ -22,6 +22,9 @@ import { BestSellListComponent } from './components/best-sell-list/best-sell-lis
 import { BestSellItemComponent } from './components/best-sell-item/best-sell-item.component';
 import { FullCeleberationPackComponent } from './components/full-celeberation-pack/full-celeberation-pack.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ProductDescriptionComponent } from './components/product-description/product-description.component';
+import { ProductDetailsSmallComponent } from './components/product-details-small/product-details-small.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
       BestSellListComponent,
       BestSellItemComponent,
       FullCeleberationPackComponent,
-      BreadcrumbComponent
+      BreadcrumbComponent,
+      ProductDetailsComponent,
+      ProductDescriptionComponent,
+      ProductDetailsSmallComponent
   ],
   imports: [
       CommonModule,
@@ -69,7 +75,9 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
         BestSellListComponent,
         BestSellItemComponent,
         FullCeleberationPackComponent,
-        BreadcrumbComponent      
+        BreadcrumbComponent,
+        ProductDetailsComponent,
+        ProductDetailsSmallComponent     
   ]
 
 })
