@@ -19,7 +19,7 @@
 .spacer-out-md {
     margin: 0 10% 0 10%;
 }
-.btn {
+.btn-pro {
     padding: 6px 16px 6px 16px;
     margin: 0 0 0 0;
     font-family: "Metric", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -38,4 +38,10 @@
     // text-transform: uppercase;
     transition: background-color 0.16s ease-out, border-color 0.16s ease-out, box-shadow 0.16s ease-out;
     z-index: 0;
+  }
+  .hr-default {
+      color: #f1f1f1;
+      padding: 0px;
+      margin: 0px;
+      width: 100%;
   }
