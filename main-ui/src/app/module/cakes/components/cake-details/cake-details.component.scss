@@ -1,0 +1,79 @@
+img.carousel-img {
+    width: 100%;
+    height: 400px;
+}
+img.Cart-image{
+    width: 100%;
+    height: 300px;
+    border: 1px solid rgb(113, 118, 129);
+  border-radius: 1px;
+  padding: 3px;
+
+}
+
+img.logoimage{
+height: 50px;
+}
+h1.shopname{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+    color: white;
+    text-shadow: 3px 3px 5px rgb(17, 150, 28);
+    padding: 5px;
+    animation-name: textcolor;
+    animation-duration: 10s;
+    
+}
+@keyframes textcolor {
+  0%   {color: red;}
+  25%  {color: yellow;}
+  50%  {color: green;}
+  100% {color: rgb(223, 31, 175);}
+}
+
+
+.button {
+    display: inline-block;
+    padding: 15px 24px;
+    font-size: 21px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  
+  }
+  
+  .button:hover {background-color: #3e8e41}
+  
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }    
+.msg1{
+    text-align: center;
+    color: green;
+    text-shadow: 2px 2px 4px rgb(63, 17, 150);
+    font-size: x-large;
+}
+.msg2{
+    text-align: center;
+    color: rgb(16, 160, 93);
+    text-shadow: 2px 2px 4px rgb(87, 21, 161);
+    font-size: x-large;
+  animation-name: example;
+  animation-duration: 10s;
+
+}
+@keyframes example {
+  0%   {color: red;}
+  25%  {color: yellow;}
+  50%  {color: blue;}
+  100% {color: rgb(223, 31, 175);}
+}
+
