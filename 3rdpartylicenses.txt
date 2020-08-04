@@ -100,6 +100,8 @@ THE SOFTWARE.
 
 ngx-bootstrap/datepicker
 
+ngx-bootstrap/pagination
+
 ngx-bootstrap/utils
 
 rxjs
