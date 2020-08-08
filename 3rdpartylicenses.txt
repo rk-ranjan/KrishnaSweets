@@ -107,6 +107,8 @@ ngx-bootstrap/utils
 primeng
 MIT
 
+primeng/menu
+
 primeng/sidebar
 
 rxjs
