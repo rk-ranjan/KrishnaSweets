@@ -104,6 +104,11 @@ ngx-bootstrap/pagination
 
 ngx-bootstrap/utils
 
+primeng
+MIT
+
+primeng/sidebar
+
 rxjs
 Apache-2.0
                                Apache License
