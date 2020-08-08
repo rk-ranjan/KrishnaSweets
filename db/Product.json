@@ -1,0 +1,8 @@
+[{
+  "_id": {
+    "$oid": "5f2abf67a416404f54ed8de5"
+  },
+  "product_id": 1,
+  "product_name": "Cakes",
+  "descriptions": "message for product"
+}]

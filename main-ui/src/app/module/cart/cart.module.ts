@@ -6,12 +6,16 @@ import { CartItemListComponent } from './components/cart-item-list/cart-item-lis
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { SubTotalComponent } from './components/sub-total/sub-total.component';
 import { CheckoutFooterComponent } from './components/checkout-footer/checkout-footer.component';
+import { MatCheckboxModule } from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [CartItemListComponent, CartItemComponent, SubTotalComponent, CheckoutFooterComponent],
   imports: [
     CommonModule,
-    CartRoutingModule
+    CartRoutingModule,
+    MatCheckboxModule,
+    MatButtonModule
   ]
 })
 export class CartModule { }

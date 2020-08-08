@@ -25,6 +25,11 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductDescriptionComponent } from './components/product-description/product-description.component';
 import { ProductDetailsSmallComponent } from './components/product-details-small/product-details-small.component';
+import { MatOptionModule, MatCommonModule, MatRippleModule } from '@angular/material/core';
+import { MatRadioModule, MatCheckboxModule } from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
+import { CustomSidePanelComponent } from './components/custom-side-panel/custom-side-panel.component';
+import { CardItemComponent } from './components/card-item/card-item.component';
 
 @NgModule({
   declarations: [
@@ -50,11 +55,19 @@ import { ProductDetailsSmallComponent } from './components/product-details-small
       BreadcrumbComponent,
       ProductDetailsComponent,
       ProductDescriptionComponent,
-      ProductDetailsSmallComponent
+      ProductDetailsSmallComponent,
+      CustomSidePanelComponent,
+      CardItemComponent
   ],
   imports: [
       CommonModule,
       SharedRoutingModule,
+      MatOptionModule,
+      MatCommonModule,
+      MatRadioModule,
+      MatCheckboxModule,
+      MatButtonModule,
+      MatRippleModule
   ],
   exports: [
         TopNotificationBarComponent,
@@ -77,7 +90,8 @@ import { ProductDetailsSmallComponent } from './components/product-details-small
         FullCeleberationPackComponent,
         BreadcrumbComponent,
         ProductDetailsComponent,
-        ProductDetailsSmallComponent     
+        ProductDetailsSmallComponent,
+        CardItemComponent     
   ]
 
 })

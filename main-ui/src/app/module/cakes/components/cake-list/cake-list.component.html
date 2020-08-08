@@ -1,11 +1,8 @@
-<div class="row">
-    <div class="col-sm-12 p-2">
-        <h6 class="text center"><strong>Birthday cakes</strong></h6>
+<div class="row" style="background-color:white;">
+    <div class="col-sm-12 p-2 text-center">
+        <h6><strong>Birthday Cakes</strong></h6>
     </div>
-    <div class="col-sm-12">
-        <app-sweets-show-case-list></app-sweets-show-case-list>
-        <app-sweets-show-case-list></app-sweets-show-case-list>
-        <app-sweets-show-case-list></app-sweets-show-case-list>
-        <app-sweets-show-case-list></app-sweets-show-case-list>
+    <div class="col-sm-3 m-0 p-1" *ngFor="let i of arr">      
+        <app-card-item></app-card-item>
     </div>
 </div>

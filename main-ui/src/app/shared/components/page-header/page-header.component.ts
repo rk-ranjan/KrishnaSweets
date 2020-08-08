@@ -10,6 +10,7 @@ export class PageHeaderComponent implements OnInit {
   @ViewChild('searchBox', { static: false}) public searchBoxRef: ElementRef;
   public search: boolean = false;
   value = 'Clear me';
+  ravi: boolean = false;
   constructor() { }
   ngOnInit() {
   }

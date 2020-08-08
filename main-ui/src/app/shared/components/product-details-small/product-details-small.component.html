@@ -9,20 +9,37 @@
     </div>
 </div>
 <div class="details d-flex flex-column p-3">
-    <div class="title p-2">
+    <div class="title p-0">
         <h5><strong>Butter Scotch Cake</strong></h5>
     </div>
     <div class="raeting p-1">
         Rettings here
     </div>
-    <div class="price p-1">
-        <h4>$ 99.00</h4>
+    <div class="cake-price d-flex">
+        <div class="rs-icon pt-1">
+            <img src="https://i.dlpng.com/static/png/6423446_preview.png" width="35px"/>
+        </div>
+        <div class="price mr-3">
+           <h2> 299.00</h2>
+        </div>
+        <div class="discount d-flex flex-column">
+            <p>Original Price</p>
+            <p>saving amount</p>
+        </div>
+    </div>
+    <div class="flavour">
+        flavour: Vennillah
     </div>
     <div class="eggless p-1">
-        <input type="checkbox" />
+        <mat-checkbox>Eggless</mat-checkbox>
     </div>
     <div class="weights">
-        fejkfef
+        <mat-radio-group>
+            <mat-radio-button value="auto">1 KG &nbsp;</mat-radio-button>
+            <mat-radio-button value="always">2 KG &nbsp; </mat-radio-button>
+            <mat-radio-button value="auto">3 KG &nbsp; </mat-radio-button>
+            <mat-radio-button value="always">4 KG &nbsp; </mat-radio-button>
+        </mat-radio-group>
     </div>
     <div class="message">
         <input type="text" class="form-control" placeholder="Messgae on Cake"/>
@@ -31,7 +48,7 @@
 
 <div class="fixed-bottom bg-warning">
     <div class="btn-group btn-block">
-      <button class="btn btn-warning">ADD TO CART</button>
-      <button class="btn btn-success">BUY NOW</button>
+        <button class="flex-fill p-2" mat-raised-button>ADD TO CART</button>
+        <button class="flex-fill p-2" mat-raised-button color="accent">BUY NOW</button>
     </div>
 </div> 

@@ -1,6 +1,10 @@
 .mobile-only-footer {
     display: none;
 }
+hr.full-hr{
+    padding: 0px;
+    width: 100%;
+}
 @media screen and (max-width: 760px) {
     .mobile-only-footer {
         display: block;

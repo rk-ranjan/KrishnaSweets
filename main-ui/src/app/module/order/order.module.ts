@@ -13,6 +13,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ShippingDetailsComponent } from './components/shipping-details/shipping-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProfileComponent, 
     ProductListComponent, 
     ProductComponent, 
-    OrderAddressComponent
+    OrderAddressComponent, ShippingDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -29,9 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
-    SharedModule,    
-    BrowserModule,
-    BrowserAnimationsModule
+    SharedModule
   ]
 })
 export class OrderModule { }

@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "5f2ac0e1a416404f54ed8de6"
+  },
+  "product_id": 1,
+  "item_id": 1,
+  "item_name": "Butter Scotch Cake",
+  "flavour": "Vanillah",
+  "unit_price": 299,
+  "primary_img": "assets/images/cake_1.jpg",
+  "secondary_img": "assets/img/cake2.jpg",
+  "eggless": true,
+  "description": "Butter scotch cake is best suitable cake in Vannilah cake which is loved one of many customers",
+  "bread": "bread Used",
+  "cake_type": "Vanilllah",
+  "cream_used": "Butter Scotch",
+  "note": "",
+  "desc": ""
+},{
+  "_id": {
+    "$oid": "5f2b0abfa416404f54ed8de7"
+  },
+  "product_id": 1,
+  "item_id": 2,
+  "item_name": "Butter Scotch Cake",
+  "flavour": "Vanillah",
+  "unit_price": 299,
+  "primary_img": "assets/images/cake_1.jpg",
+  "secondary_img": "assets/img/cake2.jpg",
+  "eggless": true,
+  "description": "Butter scotch cake is best suitable cake in Vannilah cake which is loved one of many customers",
+  "bread": "bread Used",
+  "cake_type": "Vanilllah",
+  "cream_used": "Butter Scotch",
+  "note": "",
+  "desc": ""
+},{
+  "_id": {
+    "$oid": "5f2b0ad4a416404f54ed8de8"
+  },
+  "product_id": 1,
+  "item_id": 3,
+  "item_name": "Butter Scotch Cake",
+  "flavour": "Vanillah",
+  "unit_price": 299,
+  "primary_img": "assets/images/cake_1.jpg",
+  "secondary_img": "assets/img/cake2.jpg",
+  "eggless": true,
+  "description": "Butter scotch cake is best suitable cake in Vannilah cake which is loved one of many customers",
+  "bread": "bread Used",
+  "cake_type": "Vanilllah",
+  "cream_used": "Butter Scotch",
+  "note": "",
+  "desc": ""
+}]

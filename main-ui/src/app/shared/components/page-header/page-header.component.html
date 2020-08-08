@@ -20,25 +20,25 @@
          <button id="clear" (click)="search = !search">&#10005;</button> 
     </div>
     <div class="icon-margin right-items" *ngIf="!search">
-        <!-- <span style="font-size: 24px;" class="fa fa-user-circle" aria-hidden="true"> <span id="user-text"> Ravi Kumar</span></span> -->
-        <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="25px"/>
-        <!-- <div class="dropdown"> -->
-            <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              Dropdown button
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Link 1</a>
-              <a class="dropdown-item" href="#">Link 2</a>
-              <a class="dropdown-item" href="#">Link 3</a>
-            </div>
-          </div> -->
+        <!-- <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"> -->
+         <!-- <span style="font-size: 24px;" class="fa fa-user-circle" aria-hidden="true"> <span id="user-text"> Ravi Kumar</span></span> -->
+         <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="25px" (click)="ravi=!ravi"/>
+        <!-- </a> -->
+        <!-- <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div> -->
+        <div class="user-profile" *ngIf="ravi">
+          Ravi Kumar Ranjan
+        </div>
     </div>
     <div class="right-items-cart" *ngIf="!search" routerLink="cart">
             <div class="notification">
-              <img src="https://static.thenounproject.com/png/62821-200.png" width="34px"/>
+              <img src="https://static.thenounproject.com/png/62821-200.png" width="32px"/>
             </div>
             <div class="badge">
-              3
+              0
             </div>
     </div>
 </div>

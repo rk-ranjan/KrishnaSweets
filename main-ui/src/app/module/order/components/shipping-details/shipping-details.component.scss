@@ -1,0 +1,19 @@
+.lh-condensed { line-height: 1.25; }
+.mobile-fixed {
+    display: none;
+}
+.desktop-only {
+    margin-bottom: 10px;
+}
+@media screen and (max-width: 560px) {
+    .desktop-only {
+        display: none;
+    }
+    .mobile-fixed {
+        position: fixed;
+        bottom: 0px;
+        z-index: 1000;
+        width: 100%;
+        display: block;
+    }
+}

@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren : () => import('./module/cakes/cakes.module').then(m => m.CakesModule)
       },
       {
+         path: 'order',
+         loadChildren: () => import('./module/order/order.module').then((m) => m.OrderModule)
+      },
+      {
         path: 'sweets',
         loadChildren : () => import('./module/sweets/sweets.module').then(m => m.SweetsModule),
         // canActivate: [RoleGuardService]
@@ -36,6 +40,10 @@ const routes: Routes = [
       {
         path: 'cart',
         loadChildren: () => import('./module/cart/cart.module').then((m) => m.CartModule)
+      },
+      {
+        path: 'admin',
+        loadChildren: () => import('./module/admin/admin.module').then((m) => m.AdminModule)
       }
     ]
   },

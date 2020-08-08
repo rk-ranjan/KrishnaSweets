@@ -101,3 +101,12 @@ img.main-logo {
         background-color: #f1f1f1; 
         transform: translateX(2px); 
 }
+.user-profile {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  top: 50px;
+  right: 18px;
+  color: black;
+  border: 1px solid #250f6f;
+}

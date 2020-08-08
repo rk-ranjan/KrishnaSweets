@@ -3,40 +3,36 @@
     <hr>
     <div class="d-flex">
         <div class="mr-auto">
-            My cart(3 items in cart)
+            <a href="#">Back to shopping</a>
+        </div>
+        <div class="mr-auto">
+            My Cart(3 items)
         </div>
         <div class="">
             Subtotal: 400
         </div>
     </div>
     <hr>
-    <div class="d-flex">
-        <div class="mr-auto">
-            <a href="#">Back to shopping</a>
-        </div>
-        <div class="">
-            <a href="#">Checkout now</a>
-        </div>
-    </div>
-    <hr>
+    <!-- <hr> -->
   </div>
-  <div class="col-sm-9">
+  <div class="col-sm-9 p-0">
     <app-cart-item></app-cart-item>
-    <hr>
+    <hr class="full-hr">
     <app-cart-item></app-cart-item>
-     <hr>
+     <hr class="full-hr">
      <app-cart-item></app-cart-item>
-     <hr>
+     <hr class="full-hr">
      <app-cart-item></app-cart-item>
-     <hr>
+     <hr class="full-hr">
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-3 pt-0 m-0" style="background-color: #f1f1f1;border: 2px solid #f1f1f1;">
+    <br>
     <app-sub-total></app-sub-total>
   </div>
   <div class="fixed-bottom mobile-only-footer bg-warning">
       <div class="btn-group btn-block" role="group" aria-label="Basic example">
-        <button class="btn btn-primary">Home</button>
-        <button class="btn btn-success">Checkout</button>
+        <button class="flex-fill p-2 btn-warning" mat-raised-button>$ 199.00</button>
+        <button class="flex-fill p-2" mat-raised-button color="accent">CHECKOUT</button>
       </div>
   </div> 
 </div>

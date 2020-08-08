@@ -15,7 +15,16 @@ import { CakeDetailsComponent } from './components/cake-details/cake-details.com
 import { CakeListComponent } from './components/cake-list/cake-list.component';
 
 @NgModule({
-  declarations: [CakesTypeComponent, CakeCategoriesComponent, CakesOverviewComponent, CakesFilterComponent, FilterByPriceComponent, CakeFlavorsComponent, CakeDetailsComponent, CakeListComponent],
+  declarations: [
+    CakesTypeComponent, 
+    CakeCategoriesComponent, 
+    CakesOverviewComponent, 
+    CakesFilterComponent, 
+    FilterByPriceComponent, 
+    CakeFlavorsComponent, 
+    CakeDetailsComponent, 
+    CakeListComponent
+  ],
   imports: [
     CommonModule,
     CakesRoutingModule,
