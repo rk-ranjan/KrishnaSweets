@@ -47,6 +47,11 @@
                     </div>
                 </div>
             </form> -->
+            <form class="card p-2  desktop-only ">
+                <div class="input-group">
+                    <button class="btn btn-lg btn-success btn-block">Place Order</button>
+                </div>
+            </form>
         </div>
         <div class="col-md-8 order-md-1 pl-4">
             <h4 class="mb-3">Shipping address</h4>
@@ -64,19 +69,11 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="username">Username</label>
+                    <label for="username">Mobile Number</label>
                     <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">@</span>
-                        </div>
-                        <input type="text" class="form-control" id="username" placeholder="Username" required="">
+                        <input type="number" class="form-control" id="username" placeholder="Enter contact number here" required="">
                         <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                    <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
                 </div>
                 <div class="mb-3">
                     <label for="address">Address</label>
@@ -84,23 +81,21 @@
                     <div class="invalid-feedback"> Please enter your shipping address. </div>
                 </div>
                 <div class="mb-3">
-                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                    <label for="address2">Address 2 <span class="text-muted">(Locality)</span></label>
                     <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                 </div>
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Country</label>
                         <select class="custom-select d-block w-100" id="country" required="">
-                            <option value="">Choose...</option>
-                            <option>United States</option>
+                            <option selected>India</option>
                         </select>
                         <div class="invalid-feedback"> Please select a valid country. </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="state">State</label>
                         <select class="custom-select d-block w-100" id="state" required="">
-                            <option value="">Choose...</option>
-                            <option>California</option>
+                            <option selected>Bihar</option>
                         </select>
                         <div class="invalid-feedback"> Please provide a valid state. </div>
                     </div>

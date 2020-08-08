@@ -3,7 +3,11 @@
   @import "styles/globals/colors";
   @import "styles/globals/utility";
   @import "styles/patterns/card.scss";
+  @import "styles/patterns/mobile_view.scss";
   @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+  @import '../node_modules/primeicons/primeicons.css';
+  @import '../node_modules/primeng/resources/themes/saga-blue/theme.css';
+  @import '../node_modules/primeng/resources/primeng.min.css';
 html, body { height: 100%; }
 body { margin: 0;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;background-color: #f1f1f1b2; }
 @import "styles/shame";

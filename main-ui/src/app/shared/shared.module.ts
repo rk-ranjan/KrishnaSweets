@@ -30,6 +30,9 @@ import { MatRadioModule, MatCheckboxModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { CustomSidePanelComponent } from './components/custom-side-panel/custom-side-panel.component';
 import { CardItemComponent } from './components/card-item/card-item.component';
+import { MenuComponent } from './components/menu/menu.component';
+import {SidebarModule} from 'primeng/sidebar';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import { CardItemComponent } from './components/card-item/card-item.component';
       ProductDescriptionComponent,
       ProductDetailsSmallComponent,
       CustomSidePanelComponent,
-      CardItemComponent
+      CardItemComponent,
+      MenuComponent
   ],
   imports: [
       CommonModule,
@@ -67,7 +71,9 @@ import { CardItemComponent } from './components/card-item/card-item.component';
       MatRadioModule,
       MatCheckboxModule,
       MatButtonModule,
-      MatRippleModule
+      MatRippleModule,
+      SidebarModule,
+      OverlayPanelModule
   ],
   exports: [
         TopNotificationBarComponent,
@@ -91,7 +97,8 @@ import { CardItemComponent } from './components/card-item/card-item.component';
         BreadcrumbComponent,
         ProductDetailsComponent,
         ProductDetailsSmallComponent,
-        CardItemComponent     
+        CardItemComponent,
+        MenuComponent     
   ]
 
 })

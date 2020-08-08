@@ -82,6 +82,9 @@
 //       transform: rotate(225deg);
 //     }
 //   }
+.card {
+    border: none;
+}
 @media (max-width: 768px) {
     img.slider-img {
         height: 150px;

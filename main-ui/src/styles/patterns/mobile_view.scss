@@ -1,0 +1,12 @@
+.mobile-only-footer {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+}
+@media screen and (max-width: 760px) {
+    .mobile-only-footer {
+        display: block;
+    }
+}
