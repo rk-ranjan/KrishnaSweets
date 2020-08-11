@@ -1,40 +1,19 @@
 <div class="d-flex-row primary-header">
     <div class="icon-margin right-items-mobile pl-3 pr-3 pb-0" *ngIf="!search"  (click)="display = true">
-        <!-- <img src="../../../../assets/images/unnamed.png" width="27px"> -->
         <img src="https://cdn3.iconfinder.com/data/icons/outline-style-1/512/hamburger-512.png" width="27px" class="img-fluid"/>
     </div>
-    
     <div class="p-0 mr-auto" *ngIf="!search">
         <img src="assets/images/logo.png" routerLink="/" class="main-logo" alt="NoImg" />
     </div>
-    <!-- <div class="icon-margin mr-auto right-items" style="border-left: none;">
-            <span class="fa fa-star"> </span>
-    </div> -->
     <div class="icon-margin ml-auto right-items" *ngIf="!search" (click)="search = !search" style="cursor: pointer;">
             <span class="fa fa-search"> </span>
     </div>
     <div class="global-search-bar flex-fill p-2" *ngIf="search">
-         
-         <!-- <button id="back" (click)="search = !search">&#10005;</button>  -->
          <input type="text" #searchBox autofocus placeholder="Search here.." class="form-control"/>
          <button id="clear" (click)="search = !search">&#10005;</button> 
     </div>
-    <div class="icon-margin right-items" *ngIf="!search"  (click)="op.toggle($event)">
-        <!-- <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"> -->
-         <!-- <span style="font-size: 24px;" class="fa fa-user-circle" aria-hidden="true"> <span id="user-text"> Ravi Kumar</span></span> -->
-         <img #mydiv src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="25px"/>
-        <!-- </a> -->
-        <!-- <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div> -->
-        <p-overlayPanel #op [appendTo]="myDiv">
-          <ng-template pTemplate>
-            Ravi<br>
-            Kumar
-          </ng-template>
-        </p-overlayPanel>
+    <div class="icon-margin right-items" *ngIf="!search" (click)="menu.toggle($event)" >
+        <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="25px"/>
     </div>
     <div class="right-items-cart" *ngIf="!search" routerLink="/cart">
             <div class="notification">
@@ -45,9 +24,24 @@
             </div>
     </div>
 </div>
+<p-menu #menu [popup]="true" [model]="items" styleClass="p-width-edit"></p-menu>
 <!-- <app-side-panel></app-side-panel> -->
 <!-- <app-menu [@slideInOut]="menuState"></app-menu>
  -->
- <p-sidebar [(visible)]="display" [autoZIndex]="false" [baseZIndex]="999">
-  Content
+ <p-sidebar [(visible)]="display" [autoZIndex]="false" [baseZIndex]="999" class="side-panel-full" [style]="{background:'#f5f5f5', margin: '0px',padding: '0px',overflow: 'auto'}" [blockScroll]="true">
+    <div class="user-details d-flex pl-3 pt-2">
+      <div class="user-img">
+        <img class="mr-3" src="https://media-exp1.licdn.com/dms/image/C5103AQFnFvaM4oC2Yg/profile-displayphoto-shrink_400_400/0?e=1602115200&v=beta&t=Hs6k3xmeGX7c5TitZ63P4GSbdaeKWaPM-DeMqwATaZg" width="55px"/>
+      </div>
+      <div class="d-flex flex-column">
+        <p class="pb-0 mb-1">Ravi Kumar Ranjan</p>
+        <p class="">LogOut/Login</p>
+      </div>
+    </div>
+    <hr class="hr-default">
+    <div class="d-flex">
+       <div class="items-list flex-fill">
+        <p-menu [model]="items2" [style]="{margin: '0px', width: '100%'}"></p-menu>
+       </div>
+    </div>
 </p-sidebar>

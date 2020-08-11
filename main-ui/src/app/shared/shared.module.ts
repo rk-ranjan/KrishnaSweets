@@ -33,6 +33,11 @@ import { CardItemComponent } from './components/card-item/card-item.component';
 import { MenuComponent } from './components/menu/menu.component';
 import {SidebarModule} from 'primeng/sidebar';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import {ButtonModule} from 'primeng/button';
+import {MenuModule} from 'primeng/menu';
+import {MenuItem} from 'primeng/api';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +78,10 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
       MatButtonModule,
       MatRippleModule,
       SidebarModule,
-      OverlayPanelModule
+      OverlayPanelModule,
+      SplitButtonModule,
+      ButtonModule,
+      MenuModule
   ],
   exports: [
         TopNotificationBarComponent,

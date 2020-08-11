@@ -101,3 +101,23 @@ img.main-logo {
         background-color: #f1f1f1; 
         transform: translateX(2px); 
 }
+.p-button-info {
+   font-size: 12px;
+}
+
+:host ::ng-deep .p-width-edit.p-menu {
+  padding: 0.25rem 0;
+  background: #ffffff;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  width: 9rem;
+}
+// :host ::ng-deep .p-width-full.p-menu {
+//   width: 20rem !important;
+// }
+// :host ::ng-deep .side-panel-full.p-sidebar-left {
+//   padding: 0px !important;
+//   margin: 0px !important;
+//   background-color: black;
+// }

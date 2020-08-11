@@ -5,12 +5,17 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatCommonModule, MatOptionModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material';
 import { AboutComponent } from './components/about/about.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { PrimeCarouselComponent } from './components/prime-carousel/prime-carousel.component';
+import {CarouselModule} from 'primeng/carousel'; 
+import { ButtonModule } from 'primeng/button';
+import { HttpInterceptorService } from './core/services/http-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +23,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     HomeComponent,
     AboutComponent,
     ContactUsComponent,
+    PrimeCarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +34,18 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     HttpClientModule,
     MatCommonModule,
     MatOptionModule,
-    MatRadioModule
+    MatRadioModule,
+    CarouselModule,
+    ButtonModule
   ],
-  providers: [],
+  exports: [
+    PrimeCarouselComponent
+  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
