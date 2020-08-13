@@ -107,9 +107,19 @@ ngx-bootstrap/utils
 primeng
 MIT
 
+primeng/button
+
+primeng/fileupload
+
 primeng/menu
 
+primeng/messages
+
+primeng/progressbar
+
 primeng/sidebar
+
+primeng/toast
 
 rxjs
 Apache-2.0
