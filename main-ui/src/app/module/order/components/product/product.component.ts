@@ -35,7 +35,6 @@ export class ProductComponent implements OnInit {
     this.saveOrder.order = new Order();
     this.saveOrder.detail = new OrderDetail();
     this.currUser = JSON.parse(localStorage.getItem("User")); 
-    console.log(this.currUser);
     this.saveOrder.order.EmployeeId = this.currUser.UserId.toString();
     this.saveOrder.order.CustomerID = this.currUser.UserId.toString();
     this.saveOrder.detail.ProductId = prod.ProductId;
@@ -44,7 +43,6 @@ export class ProductComponent implements OnInit {
     this.saveOrder.detail.Discount = prod.Discontinued;
     this.saveOrder.order.OrderDate = new Date().toDateString();
     this.orderAddress = true;
-    console.log(this.saveOrder);
   }
 
   public submitOrder() {
@@ -53,7 +51,6 @@ export class ProductComponent implements OnInit {
     this.saveOrder.order.ShipCountry = this.country.nativeElement.value;
     this.saveOrder.order.ShipCity = this.state.nativeElement.value;
     this.saveOrder.order.ShipPostalCode = this.zipCode.nativeElement.value;
-    console.log(this.saveOrder);
     this.orderService.saveOrder(this.saveOrder).subscribe(
       (res: any) => {
         this.router.navigate(["/orders"]);

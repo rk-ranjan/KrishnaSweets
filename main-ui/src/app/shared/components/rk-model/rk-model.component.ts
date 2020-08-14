@@ -31,13 +31,10 @@ export class RkModelComponent implements OnInit {
                    tempCount = tempCount + 1;
                }
              }
-             console.log(arr[i]+" "+tempCount);
              checkedArray = [...checkedArray, arr[i]];
              mainCount = mainCount  + Math.floor(tempCount / 2);
           }
       }
-      console.log(mainCount);
-      console.log(checkedArray);
   }
 
 }

@@ -70,7 +70,6 @@ closeDialog() {
   }
 
   public filterOderData = (filterText: string) => {
-    console.log(filterText);
     // const filterData: any = this.returnedArray;
     this.finalList = [...filterText ? this.filterSingleItem(filterText) : this.returnedArray];
   }

@@ -11,9 +11,8 @@ import { ProductComponent } from './components/product/product.component';
 import { OrderAddressComponent } from './components/order-address/order-address.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShippingDetailsComponent } from './components/shipping-details/shipping-details.component';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,8 @@ import { ShippingDetailsComponent } from './components/shipping-details/shipping
     FormsModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
-    SharedModule
+    SharedModule,
+    CalendarModule
   ]
 })
 export class OrderModule { }

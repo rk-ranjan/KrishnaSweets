@@ -16,7 +16,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     private route: ActivatedRoute) { }
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const headersConfig = {};
-    // headersConfig['Content-Type'] = 'application/json';
+    headersConfig['Content-Type'] = 'application/json';
     const request = req.clone({ setHeaders: headersConfig });
     return next.handle(request)
     .pipe(

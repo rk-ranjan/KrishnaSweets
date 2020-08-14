@@ -16,11 +16,10 @@ export class ManageCakesComponent implements OnInit {
   public uploadedFiles: any[] = [];
   public cake: AddCake = new AddCake();
   public firstStep: boolean = true;
-  public productItemId: string = "5f31dabd2238b107659104b4";
   public data: any
   constructor(
     public router: Router,
-    formBuilder: FormBuilder,
+    public formBuilder: FormBuilder,
     private cakeService: CakesService,
     private messageService: MessageService
   ) {
@@ -47,7 +46,7 @@ export class ManageCakesComponent implements OnInit {
       for(var i =0; i< this.uploadedFiles.length; i++) {       
          formData.append("image", this.uploadedFiles[i], this.uploadedFiles[i]['name']);
       }
-      formData.append("productItemId", this.productItemId);
+      formData.append("productItemId", this.data);
       this.cakeService.addProductImage(formData).subscribe(
         (response: any) => {
           if(response) {
@@ -69,10 +68,8 @@ export class ManageCakesComponent implements OnInit {
       this.cake.bread = this.productForm.controls.breadUsed.value;
       this.cake.creamUsed = this.productForm.controls.breadCreame.value;
       this.cake.descriptions = this.productForm.controls.desc.value;
-      console.log(this.cake);
       this.cakeService.addCakeItemDetails(this.cake).subscribe(
         (data: any) => {
-          console.log(data);
           if(data) {
             this.data = data;
             this.messageService.add({severity:'success', summary: 'Success', detail: 'Item Added'});

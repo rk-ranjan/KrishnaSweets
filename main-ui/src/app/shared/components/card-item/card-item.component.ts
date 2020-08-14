@@ -6,17 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./card-item.component.scss']
 })
 export class CardItemComponent implements OnInit {
-  @Input() public cardData: any;
-  public card: any = {
-    name: "Butter Scotch Cake",
-    cost: 123.00,
-    flavour: "Butter Scotch",
-    eggless: true
-  }
+  @Input() public cake: any;
   constructor() { }
 
   ngOnInit() {
-    this.cardData = this.card;
   }
 
 }

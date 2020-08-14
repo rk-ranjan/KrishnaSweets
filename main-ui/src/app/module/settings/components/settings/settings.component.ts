@@ -36,7 +36,6 @@ export class SettingsComponent implements OnInit {
      this.settingsService.getUsers().subscribe(
        (response: User[]) => {
            this.userList = response;
-           console.log(this.userList);
      });
   }
 
@@ -46,7 +45,6 @@ export class SettingsComponent implements OnInit {
     this.user.Email = this.userForm.controls.Email.value;
     this.user.Password = this.userForm.controls.Password.value;
     this.user.IsAdmin = this.userForm.controls.IsAdmin.value;
-    console.log(this.user);
     this.settingsService.AddUser(this.user).subscribe((res: any) => {
         this.showModel = true;
         window.location.reload();

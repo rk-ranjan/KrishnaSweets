@@ -2,7 +2,7 @@
     <div class="col-sm-12 p-2 text-center">
         <h6><strong>Birthday Cakes</strong></h6>
     </div>
-    <div class="col-sm-3 m-0 p-1" *ngFor="let i of arr">      
-        <app-card-item></app-card-item>
+    <div class="col-sm-3 m-0 p-1" *ngFor="let cake of cakeList">      
+        <app-card-item [cake]="cake"></app-card-item>
     </div>
 </div>

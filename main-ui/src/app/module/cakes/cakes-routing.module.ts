@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'details',
     component: CakeDetailsComponent
+  },
+  {
+    path: 'details/:id',
+    component: CakeDetailsComponent
   }
 ];
 

@@ -6,15 +6,15 @@
         <div class="card-body" style="padding: 0%;">
             <div class="d-flex flex-column">
                  <div class="item-title d-flex">
-                    <div class="price mr-auto">Creamy Pokeman Cake</div>
+                    <div class="price mr-auto">{{cart.itemName}}</div>
                     <div class="quantity pr-1"><span class="fa fa-trash" style="color:red;font-size: 18px;"></span></div>
                  </div>
                  <div class="item-detail d-flex pt-2 p-1">
-                      <div class="price mr-auto">Price: $ 199.00</div>
+                      <div class="price mr-auto">Price: {{cart.price}}</div>
                  </div>
                  <div class="item-edit d-flex pt-1 p-1">
                        <div class="weight mr-auto">
-                           Weight: 1.5 KG
+                           Weight: {{cart.weight}} Pond
                        </div>
                        <div class="mobile-eggless mobile-only">
                         <mat-checkbox class="example-margin">Eggless</mat-checkbox>

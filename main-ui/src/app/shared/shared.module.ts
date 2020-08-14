@@ -37,6 +37,7 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import {ButtonModule} from 'primeng/button';
 import {MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import {MenuItem} from 'primeng/api';
       OverlayPanelModule,
       SplitButtonModule,
       ButtonModule,
-      MenuModule
+      MenuModule,
+      ToastModule
   ],
   exports: [
         TopNotificationBarComponent,

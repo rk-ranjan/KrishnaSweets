@@ -1,18 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { CakeDetails } from 'src/app/module/cakes/services/cake-details';
+import { CartBehavourService } from 'src/app/core/services/cart-behavour.service';
+import { Router } from '@angular/router';
+import { Cart } from 'src/app/module/cart/components/models/cart';
+import { CartService } from 'src/app/module/cart/services/cart.service';
 
 @Component({
   selector: 'app-product-details-small',
   templateUrl: './product-details-small.component.html',
   styleUrls: ['./product-details-small.component.scss']
 })
-export class ProductDetailsSmallComponent implements OnInit {
-  public slides = [
-    { src: "https://assets.winni.in/c_limit,dpr_1,fl_progressive,q_80,w_300/27536_butter-scotch-cake.webp" },
-    { src: "https://assets.winni.in/c_limit,dpr_1,fl_progressive,q_80,w_300/35932_red-velvet-birthday-cake.webp" },
-  ];
+export class ProductDetailsSmallComponent implements OnInit, OnChanges {
+  @Input() public detail: CakeDetails;
+  public detailData: CakeDetails;
   public currentSlide = 0;
-  constructor() { }
+  constructor(
+    private cartBehaviorService: CartBehavourService,
+    private cartService: CartService,
+    private router: Router
+  ) { }
+  public ngOnChanges(changes: SimpleChanges): void {
+    if(changes['detail']) {
+       const variableChange = changes['detail'];
+       this.detailData = variableChange.currentValue;
+    }
+  }
 
-  ngOnInit() {
+  public ngOnInit() {    
+  }
+
+  public buyProduct = () => {
+    console.log(event);    
+    var cart: Cart = new Cart();
+    cart.itemName = "Black forest cake";
+    cart.weight = 2;
+    cart.price = 299;
+    cart.eggless = true;
+    cart.itemId = "fjerkf"
+    this.cartService.addItemToCart(cart).subscribe(
+      (res) => {
+        this.cartBehaviorService.addToCart(cart);
+        this.router.navigate(["/order"]);          
+      }
+    );   
+  }
+
+  public addToCart = () => {
+      var cart: Cart = new Cart();
+      cart.itemName = "Black forest cake";
+      cart.weight = 2;
+      cart.price = 299;
+      cart.eggless = true;
+      cart.itemId = "fjerkf"
+      this.cartService.addItemToCart(cart).subscribe(
+        (res) => {
+          this.cartBehaviorService.addToCart(cart);
+          this.router.navigate(["/cart"]);          
+        }
+      );
   }
 }

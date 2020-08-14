@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'app-sub-total',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sub-total.component.scss']
 })
 export class SubTotalComponent implements OnInit {
-
+  // @Output() public checkout =  new EventEmitter;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public checkOutOrder = () => {
+    //  this.checkout.emit("event");
+    console.log("########");    
   }
 
 }

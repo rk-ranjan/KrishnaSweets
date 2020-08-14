@@ -1,17 +1,17 @@
 <div class="card m-0 product-grid6" style="border-radius: 0%;">
     <div class="product-image6">
-        <img id="overImg" src="https://assets.winni.in/c_limit,dpr_1,fl_progressive,q_80,w_300/36399_delicious-butterscotch-cake.webp" class="card-img-top pic-1" alt="...">
+        <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUlr" alt="..." class="card-img">
     </div>
     <div class="card-body overley p-2">
         <div class="product-content">
-            <p class="title"><a href="#">{{card.name}}</a></p>
-            <div class="price">{{cardData.cost}}
-                <span>$14.00</span>
+            <p class="title"><a href="#">{{cake['item_name']}}</a></p>
+            <div class="price">{{cake['unit_price']}}
+                <span>{{cake.discount}}</span>
             </div>
         </div>
         <ul class="social">
             <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-            <li  routerLink="/cakes/details"><a data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+            <li  routerLink="/cakes/details" [queryParams]="{ cakeId: cake.id }"><a data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
             <li routerLink="/cart"><a data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
         </ul>
     </div>

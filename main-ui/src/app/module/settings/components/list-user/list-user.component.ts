@@ -34,7 +34,6 @@ export class ListUserComponent implements OnInit, OnChanges {
     if (changes['userList']) {
       const variableChange = changes['userList'];
       this.listUser = variableChange.currentValue;
-      console.log(this.userList);
     }
   }
    
@@ -43,7 +42,6 @@ export class ListUserComponent implements OnInit, OnChanges {
   }
 
   public addUser() {
-    console.log("Yeahhhh");
   }
 
   public editUser(singleUser: User) {
@@ -64,7 +62,6 @@ export class ListUserComponent implements OnInit, OnChanges {
     this.user.Email = this.userForm.controls.Email.value;
     this.user.Password = this.userForm.controls.Password.value;
     this.user.IsAdmin = this.userForm.controls.IsAdmin.value;
-    console.log(this.user);
     this.settingsService.updateUser(this.user).subscribe((res: any) => {
         window.location.reload();
     });
