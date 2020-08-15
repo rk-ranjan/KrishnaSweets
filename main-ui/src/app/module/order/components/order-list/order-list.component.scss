@@ -66,3 +66,22 @@ input[type=text], input[type=password] {
     clear: both;
     display: table;
   }
+  
+hr.full-hr{
+  padding: 0px;
+  width: 100%;
+}
+.mobile-only {
+  display: none;
+}
+.desktop-only {
+  display: block;
+}
+@media screen and (max-width: 760px) {
+  .mobile-only {
+      display: block;
+  }
+  .desktop-only {
+      display: none;
+  }
+}

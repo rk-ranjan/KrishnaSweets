@@ -51,7 +51,6 @@ export class ManageCakesComponent implements OnInit {
         (response: any) => {
           if(response) {
             this.messageService.add({severity:'success', summary: 'Success', detail: 'Uploaded'});
-
             this.firstStep = true;
           }
       })   

@@ -41,8 +41,10 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     this.cartService.addItemToCart(cart).subscribe(
       (res) => {
         this.messageService.add({severity:'success', summary:'Cart', detail:'Added Successfully'});
-        this.cartBehaviorService.addToCart(cart);
-        this.router.navigate(["/cart"]);          
+        setTimeout (() => {
+          this.cartBehaviorService.addToCart(cart);
+          this.router.navigate(["/cart"]);  
+        }, 1000);        
       }
     );
   }

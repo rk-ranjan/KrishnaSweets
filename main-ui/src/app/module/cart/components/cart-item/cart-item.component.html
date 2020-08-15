@@ -7,7 +7,7 @@
             <div class="d-flex flex-column">
                  <div class="item-title d-flex">
                     <div class="price mr-auto">{{cart.itemName}}</div>
-                    <div class="quantity pr-1"><span class="fa fa-trash" style="color:red;font-size: 18px;"></span></div>
+                    <div class="quantity pr-1" (click)="deleteCartItem('Ravi')"><span class="fa fa-trash" style="color:red;font-size: 18px;"></span></div>
                  </div>
                  <div class="item-detail d-flex pt-2 p-1">
                       <div class="price mr-auto">Price: {{cart.price}}</div>
@@ -17,11 +17,11 @@
                            Weight: {{cart.weight}} Pond
                        </div>
                        <div class="mobile-eggless mobile-only">
-                        <mat-checkbox class="example-margin">Eggless</mat-checkbox>
+                          <mat-checkbox [checked]= "cart.eggless" [disabled] = "true">Eggless</mat-checkbox>
                        </div>
                  </div>
                  <div class="actions desktop-only">
-                    <mat-checkbox>Eggless</mat-checkbox>
+                    <mat-checkbox [checked]= "cart.eggless" [disabled] = "true">Eggless</mat-checkbox>
                  </div>
             </div>
         </div>

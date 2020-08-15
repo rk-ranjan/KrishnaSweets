@@ -4,6 +4,7 @@ import { Cart } from 'src/app/module/cart/components/models/cart';
 import { OrderForm } from '../../models/order-form';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Order } from 'src/app/core/model/order';
+import { OrdersService } from '../../services/orders.service';
 
 @Component({
   selector: 'app-shipping-details',
@@ -12,18 +13,23 @@ import { Order } from 'src/app/core/model/order';
 })
 export class ShippingDetailsComponent implements OnInit {
   public cartList: Cart[];
+  public totalCost: number = 0;
   public order: Order = new Order();
   public orderForm: FormGroup;
   public date7: Date;
   constructor(
     private cartService: CartService,
     public formBuilder: FormBuilder,
+    private orderService: OrdersService
   ) { }
 
   ngOnInit() {
     this.cartService.getCartItems().subscribe(
       (res: Cart[]) => {
-        this.cartList = res;      
+        this.cartList = res;
+        res.forEach((cart: Cart) => {
+          this.totalCost = this.totalCost + cart.price;
+        })      
     });  
     this.orderForm = this.formBuilder.group({
        fname: new FormControl('', Validators.required),
@@ -32,19 +38,32 @@ export class ShippingDetailsComponent implements OnInit {
        mobile: new FormControl('', Validators.required),
        addressMain: new FormControl('', Validators.required),
        addressOptional: new FormControl('', Validators.required),
-       country: new FormControl('', Validators.required),
-       state: new FormControl('', Validators.required),
+       country: new FormControl('INDIA', Validators.required),
+       city: new FormControl('SITAMARHI', Validators.required),
        zip: new FormControl('', Validators.required)
     });
   }
 
   public submitOrder = () => {
-    this.order.CustomerID = "kjnwekd",
-    this.order.EmployeeId ="jdnwekd",
-    this.order.ShipName =  this.orderForm.controls.fname.value + this.orderForm.controls.lname.value;
-    this.order.ShipCountry = this.orderForm.controls.country.value;
-    this.order.ShipCity = this.orderForm.controls.state.value;
-    console.log(this.order);
+    this.order.customerId = "kjnwekd",
+    this.order.shipName =  this.orderForm.controls.fname.value + this.orderForm.controls.lname.value;
+    this.order.shipCountry = this.orderForm.controls.country.value;
+    this.order.shipCity = this.orderForm.controls.city.value;
+    this.order.mobile = this.orderForm.controls.mobile.value;
+    this.order.shipAddressMain = this.orderForm.controls.addressMain.value;
+    this.order.shipCountry = this.orderForm.controls.country.value;
+    this.order.shipCity = this.orderForm.controls.city.value;
+    this.order.shipPostalCode = this.orderForm.controls.zip.value;
+    this.order.shipAddressOptional = this.orderForm.controls.addressOptional.value;
+    this.order.deleverOn = this.orderForm.controls.date.value;
+    const orderDate = new Date();
+    this.order.orderDate = orderDate.getDate().toString();
+
+    this.orderService.saveOrder(this.order).subscribe(
+      (response: any) => {
+        console.log(response);       
+      }
+    )
   }
 
 }

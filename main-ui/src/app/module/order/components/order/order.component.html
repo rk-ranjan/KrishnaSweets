@@ -1,47 +1,29 @@
-<div class="card">
-    <div class="header-view">
-        <div class="d-flex bg-secondary">
-            <div class="p-2 flex-fill bg-info">
-                <p class="text-normal">ORDER DATE: {{ order.OrderDate | date:'shortDate' }}</p>
-            </div>
-            <div class="p-2 flex-fill bg-primary">
-                <p class="text-normal">SHIPPED DATE: {{ order.ShippedDate | date:'shortDate'}}</p>
-            </div>
-            <div class="p-2 flex-fill bg-warning">
-                <p class="text-normal">SHIP ADDRESS: {{ order.ShipAddress }}</p>
-            </div>
-        </div>
+<div class="row d-flex m-0">
+    <div class="col-sm-3">
+        <img src="https://assets.winni.in/c_limit,dpr_2,fl_progressive,q_80,w_400/30861_amazing-black-forest-cake.webp" class="card-img img-thumbnail" alt="...">
     </div>
-    <div class="card-body">
-        <div class="d-flex">
-            <div class="p-2 flex-fill">
-                <img src="../../../../../assets/images/product.png" alt="NoImgFound" width="25%">
-                <br><br>
-                <p class="text-bold">OrderID: {{ order.OrderID }} </p>
-            </div>
-            <div class="p-2 mr-auto flex-fill">
-                <p class="text-bold">ShipName: {{ order.ShipName }} </p>
-                <p class="text-bold">CustomerID: {{ order.CustomerID }}</p>
-                <!-- <p class="text-bold">EmployeeID: {{ order.EmployeeID }}</p> -->
-                <p class="text-bold">ShipPostalCode: {{ order.ShipPostalCode }}</p>
-            </div>
-            <div class="p-2 ml-auto">
-                <p class="text-bold">CustomerID: {{ order.CustomerID }}</p>
-                <p class="text-bold">ShipVia: {{ order.ShipVia }}</p>
-                <p class="text-bold">Freight: {{ order.Freight }}</p>
-                <button class="btn btn-warning" (click)="cancelOrder(order)">Cancel Order</button>
-            </div>
-        </div>
-    </div>
-    <div class="footer-view">
-        <div class="d-flex bg-secondary">
-            <div class="p-2">
-                <p class="text-normal">SHIP CITY: {{ order.ShipCity }}</p>
-            </div>
-            <div class="p-2 ml-auto">
-                <p class="text-normal">SHIP COUNTRY: {{ order.ShipCountry }}</p>
+    <div class="col-sm-9">
+        <div class="card-body" style="padding: 0%;">
+            <div class="d-flex flex-column">
+                 <div class="item-title d-flex">
+                    <div class="price mr-auto">{{cart.itemName}}</div>
+                    <div class="quantity pr-1" (click)="deleteCartItem('Ravi')"><span class="fa fa-trash" style="color:red;font-size: 18px;"></span></div>
+                 </div>
+                 <div class="item-detail d-flex pt-2 p-1">
+                      <div class="price mr-auto">Price: {{cart.price}}</div>
+                 </div>
+                 <div class="item-edit d-flex pt-1 p-1">
+                       <div class="weight mr-auto">
+                           Weight: {{cart.weight}} Pond
+                       </div>
+                       <div class="mobile-eggless mobile-only">
+                          <mat-checkbox [checked]= "cart.eggless" [disabled] = "true">Eggless</mat-checkbox>
+                       </div>
+                 </div>
+                 <div class="actions desktop-only">
+                    <mat-checkbox [checked]= "cart.eggless" [disabled] = "true">Eggless</mat-checkbox>
+                 </div>
             </div>
         </div>
     </div>
 </div>
-<hr>

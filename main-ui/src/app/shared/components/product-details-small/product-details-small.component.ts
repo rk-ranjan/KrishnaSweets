@@ -4,11 +4,13 @@ import { CartBehavourService } from 'src/app/core/services/cart-behavour.service
 import { Router } from '@angular/router';
 import { Cart } from 'src/app/module/cart/components/models/cart';
 import { CartService } from 'src/app/module/cart/services/cart.service';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-product-details-small',
   templateUrl: './product-details-small.component.html',
-  styleUrls: ['./product-details-small.component.scss']
+  styleUrls: ['./product-details-small.component.scss'],
+  providers: [MessageService]
 })
 export class ProductDetailsSmallComponent implements OnInit, OnChanges {
   @Input() public detail: CakeDetails;
@@ -17,7 +19,8 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
   constructor(
     private cartBehaviorService: CartBehavourService,
     private cartService: CartService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) { }
   public ngOnChanges(changes: SimpleChanges): void {
     if(changes['detail']) {
@@ -54,8 +57,11 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
       cart.itemId = "fjerkf"
       this.cartService.addItemToCart(cart).subscribe(
         (res) => {
-          this.cartBehaviorService.addToCart(cart);
-          this.router.navigate(["/cart"]);          
+          this.messageService.add({severity:'success', summary:'Cart', detail:'Added Successfully'});
+          setTimeout (() => {
+            this.cartBehaviorService.addToCart(cart);
+            this.router.navigate(["/cart"]);  
+          }, 1000);          
         }
       );
   }

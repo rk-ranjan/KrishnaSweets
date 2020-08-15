@@ -1,3 +1,9 @@
+<div class="desktop-only">
+  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+</div>
+<div class="mobile-only">
+  <p-confirmDialog [style]="{width: '100vw'}" [baseZIndex]="10000"></p-confirmDialog>
+</div>
 <div class="row"  style="background-color: white;">
   <div class="col-sm-12">
     <hr>
@@ -5,11 +11,11 @@
         <div class="mr-auto">
             <a href="#">Back to shopping</a>
         </div>
-        <div class="mr-auto">
-            My Cart(3 items)
+        <div class="mr-auto" *ngIf="cartItems">
+            My Cart({{cartItems.length}} items)
         </div>
         <div class="">
-            Subtotal: 400
+            Subtotal: {{totalCost}}
         </div>
     </div>
     <hr>
@@ -17,13 +23,12 @@
   </div>
   <div class="col-sm-9 p-0">
     <div class="cart-items"  *ngFor="let cart of cartItems">
-      <app-cart-item [cart]="cart"></app-cart-item>
+      <app-cart-item [cart]="cart" (deleteItem)="deleteItem($event)"></app-cart-item>
       <hr class="full-hr">
     </div>
   </div>
   <div class="col-sm-3 m-0" style="background-color: #f1f1f1;">
-    <app-sub-total class="m-2"></app-sub-total>
-    <!-- (checkout)="checkOutOrderDesktop($event)" -->
+    <app-sub-total [cartList]="cartItems"  [totalCost]="totalCost" class="m-2" (checkout)="checkOutOrderDesktop($event)"></app-sub-total>
   </div>
   <div class="mobile-only-footer bg-warning">
       <div class="btn-group btn-block" role="group" aria-label="Basic example">

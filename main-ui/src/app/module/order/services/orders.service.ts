@@ -14,7 +14,7 @@ export class OrdersService {
   public deleteOderUrl: string;
   public headers: HttpHeaders;
   constructor(
-    private http: HttpClient
+    private http: HttpService
   ) { 
     this.listOrderUrl = '/rest-api/orders',
     this.deleteOderUrl = '/rest-api/orders',
@@ -25,15 +25,15 @@ export class OrdersService {
    * To get the List of all Orders.
    * @memberof OrdersService
   */
-  public getAllOrders = (): Observable<any> => {
-    return this.http.get<any>(this.listOrderUrl).pipe(
-      map((response: Order) => {
+  public getAllOrders = (): Observable<Order[]> => {
+    return this.http.get<Order[]>(this.listOrderUrl).pipe(
+      map((response: Order[]) => {
         return response;
       }));
   }
 
-  public saveOrder = (order: PlaceOrder): Observable<any> => {
-    return this.http.post<PlaceOrder>(this.listOrderUrl,order).pipe(
+  public saveOrder = (order: Order): Observable<any> => {
+    return this.http.post<Order>(this.listOrderUrl,order, this.headers, 'text' as 'json').pipe(
       map((res: any) => {
         return res;
       })

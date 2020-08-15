@@ -1,33 +1,29 @@
 export class Order {
     public _id: string;
   
-    public OrderID: string;
+    public orderId: string;
     
-    public CustomerID: string;
+    public customerId: string;
     
-    public EmployeeId: string;
+    public orderDate: string;
+
+    public mobile: number;
     
-    public OrderDate: string;
+    public deleverOn: string;
     
-    public RequiredDate: string;
+    public shippedDate: string;
     
-    public ShippedDate: string;
+    public shipName: string;
     
-    public ShipVia: string;
+    public shipCity: string;
     
-    public Freight: string;
-    
-    public ShipName: string;
-    
-    public ShipCity: string;
-    
-    public ShipRegion: string;
+    public shipAddressOptional: string;
     
     public field14: string;
     
-    public ShipCountry: string;
+    public shipCountry: string;
     
-    public ShipPostalCode: string;
+    public shipPostalCode: number;
     
-    public ShipAddress: string;
+    public shipAddressMain: string;
 }

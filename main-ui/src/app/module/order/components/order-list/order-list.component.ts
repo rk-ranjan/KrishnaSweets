@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersService } from '../../services/orders.service';
 import { Order } from 'src/app/core/model/order';
 import { User } from 'src/app/core/model/user';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { OrdersService } from 'src/app/module/order/services/orders.service';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.scss']
+  styleUrls: ['./order-list.component.scss'],
+  providers: [ConfirmationService]
 })
 export class OrderListComponent implements OnInit {
 
@@ -47,6 +48,7 @@ closeDialog() {
 
   ngOnInit() {
      this.orderService.getAllOrders().subscribe((res: Order[]) => {
+       console.log(res);       
        this.orderList = res;
        this.totalOrder = res.length;
        this.returnedArray = this.orderList.slice(0, 10);

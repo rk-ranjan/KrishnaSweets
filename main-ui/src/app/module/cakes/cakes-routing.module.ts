@@ -8,7 +8,8 @@ import { CakeListComponent } from './components/cake-list/cake-list.component';
 const routes: Routes = [
   {
     path: '',
-    component: CakesOverviewComponent
+    redirectTo: 'list'
+    // component: CakesOverviewComponent
   },
   {
     path: 'list',

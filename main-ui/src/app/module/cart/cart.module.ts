@@ -8,6 +8,7 @@ import { SubTotalComponent } from './components/sub-total/sub-total.component';
 import { CheckoutFooterComponent } from './components/checkout-footer/checkout-footer.component';
 import { MatCheckboxModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [CartItemListComponent, CartItemComponent, SubTotalComponent, CheckoutFooterComponent],
@@ -15,7 +16,8 @@ import {MatButtonModule} from '@angular/material/button';
     CommonModule,
     CartRoutingModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    ConfirmDialogModule
   ]
 })
 export class CartModule { }
