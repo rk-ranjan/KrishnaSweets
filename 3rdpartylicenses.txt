@@ -109,6 +109,10 @@ MIT
 
 primeng/button
 
+primeng/calendar
+
+primeng/confirmdialog
+
 primeng/fileupload
 
 primeng/menu
