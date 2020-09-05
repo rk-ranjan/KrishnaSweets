@@ -4,6 +4,8 @@ import { LoginUser } from '../model/login-user';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { map } from 'rxjs/operators';
+import { HttpService } from './http.service';
+import { RegUser } from 'src/app/module/login/models/reg-user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,21 +19,28 @@ export class LoginService {
   public isLogin: boolean;
 
   constructor(
-    private http: HttpClient
+    private http: HttpService
   ) { 
-    this.checkUserUrl = '/rest-api/user/login',
+    this.checkUserUrl = '/rest-api/login',
     this.headers = new HttpHeaders();
     this.headers.set('Content-Type', 'application/json');
   }
 
   public checkLogin = (user: LoginUser) : Observable<any> => {
-    return this.http.post<any>(this.checkUserUrl, user).pipe(
+    return this.http.post<any>(this.checkUserUrl, user, this.headers).pipe(
       map((response:User) =>{
         this.userName = response.UserName;
         this.userRole = response.IsAdmin;
         return response;
       })
     )
+  }
+
+  public registerUser = (body: RegUser) => {
+     return this.http.post<any>('/api/auth/signup', body, this.headers).pipe(
+       map((res: any) => {
+          console.log(res);
+     }));
   }
 
   public getUserName() {

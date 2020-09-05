@@ -11,10 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-
-
   @Input() public order: Order;
-
   constructor(
     private orderService: OrdersService,
     private router: Router
@@ -22,7 +19,6 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
   }
-  
   public cancelOrder = (order: Order) => {
      this.orderService.deleteOrder(order).subscribe(
        (response: any) => {

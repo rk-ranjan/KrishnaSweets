@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GlobalMobileSearchComponent } from './components/global-mobile-search/global-mobile-search.component';
+import { GlobalSearchComponent } from './components/global-search/global-search.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: GlobalMobileSearchComponent
+    component: GlobalSearchComponent
   }
 ];
 

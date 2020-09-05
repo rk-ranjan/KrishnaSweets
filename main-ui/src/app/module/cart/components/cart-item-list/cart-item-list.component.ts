@@ -40,7 +40,7 @@ export class CartItemListComponent implements OnInit {
      this.router.navigate(["/order"]);
   }
 
-  public deleteItem = (event: any) => {
+  public deleteItem = (event: any) => {  
     this.confirmationService.confirm({
       message: 'Are you sure that you want to proceed?',
       header: 'Confirmation',
@@ -48,17 +48,17 @@ export class CartItemListComponent implements OnInit {
       accept: () => {
           this.cartService.removeItemFromCart(event).subscribe(
             (res: any) => {
-
+              //need to do something              
           });
       },
       reject: () => {
-          this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+          this.router.navigate(["/cart"]);
       }
     });    
   }
 
   public confirm1 = () => {
 
-}
+  }
 
 }

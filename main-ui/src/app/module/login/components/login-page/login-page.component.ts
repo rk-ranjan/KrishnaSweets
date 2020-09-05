@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { LoginUser } from 'src/app/core/model/login-user';
 import { LoginService } from 'src/app/core/services/login.service';
 import { User } from 'src/app/core/model/user';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private localStorageService: LocalStorageService
   ) {
     this.loginForm = formBuilder.group({
       password: new FormControl('', Validators.required),
@@ -37,10 +39,12 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     // unsubscribe to avoid memory leakage.
   }
 
-  
+  public gotoRegister = () => {
+    this.router.navigate(['/signup']);
+  }
   public isLogin() {
     let flag = false;
-    if (localStorage.getItem('_temp_9898jdjk_y783h') && localStorage.getItem('_temp_9898jdjk_y783h') === '787_uwdj_646'){
+    if (this.localStorageService.getItem('_temp_9898jdjk_y783h') && this.localStorageService.getItem('_temp_9898jdjk_y783h') === '787_uwdj_646'){
       flag = true;
     }
   }
@@ -52,7 +56,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     cred.password = this.loginForm.controls.password.value;
     this.loginService.checkLogin(cred).subscribe(
       (res:User) => {
-          localStorage.setItem("User", JSON.stringify(res));
+        this.localStorageService.setItem("User", res);
           this.router.navigate(["/orders"]);
           this.loginService.setLoggedInStatus();
       },
@@ -64,7 +68,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   stayOnLoginPage() {
-    localStorage.removeItem("User");
+    this.localStorageService.removeItem("User");
     this.loginForm.controls.userName.setValue('');
     this.loginForm.controls.password.setValue('');
   }

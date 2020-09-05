@@ -10,7 +10,7 @@
     </div>
     <div class="global-search-bar flex-fill p-2" *ngIf="search">
          <input type="text" #searchBox autofocus placeholder="Search here.." class="form-control"/>
-         <button id="clear" (click)="search = !search">&#10005;</button> 
+         <button id="clear" (click)="search = !search">&#10005;</button>
     </div>
     <div class="icon-margin right-items" *ngIf="!search" (click)="menu.toggle($event)" >
         <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="25px"/>

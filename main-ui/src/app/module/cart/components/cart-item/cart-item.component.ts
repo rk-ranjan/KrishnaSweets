@@ -12,7 +12,8 @@ export class CartItemComponent implements OnInit {
   checked: boolean = true;
   constructor() { }
 
-  ngOnInit() {   
+  ngOnInit() {  
+     
   }
 
   public deleteCartItem = (data: any) => {

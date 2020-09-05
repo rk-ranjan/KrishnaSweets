@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { RoleGuardService } from './shared/services/role-guard.service';
+import { RegistrationComponent } from './module/login/components/registration/registration.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren : () => import('./module/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'signup',
+    component: RegistrationComponent
   }
 ];
 

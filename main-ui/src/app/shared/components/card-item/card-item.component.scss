@@ -1,0 +1,20 @@
+.overlay-img{
+    position: absolute;
+    right: -4px;
+    top: -2px;
+    text-align: right;
+    width: 50%;
+}
+.overlay-img > p {
+    background-color: #ffc002;
+    padding: 0px;
+    padding-right: 8px;
+    padding-left: 5px;
+    -ms-transform: rotate(20deg); /* IE 9 */
+    transform: rotate(20deg);
+}
+@media screen and (max-width: 760px) {
+    .discount-text {
+        font-size: 10px;
+    }
+}

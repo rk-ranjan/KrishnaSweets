@@ -1,0 +1,57 @@
+<div class="row p-4" *ngIf="firstStep">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8 card p-4">
+            <h4>Registrations Form</h4>
+            <form [formGroup]="regForm" (ngSubmit)="onSubmitRegistration(regForm.value)" class="form-flat" autocomplete="off">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" #fullname required id="full-name" formControlName="fullname"
+                        placeholder="Enter Full Name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email ID</label>
+                    <input type="text" #email required id="email" formControlName="email"
+                        placeholder="Enter Email ID" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="text" #mobile required id="mobile" formControlName="mobile"
+                        placeholder="Enter Mobile Number" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" #dob required id="dob" formControlName="dob"
+                        placeholder="Date Of Birth" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" #password required id="password" formControlName="password"
+                                placeholder="Enter Password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="text" #confirmPassword required id="confirmPassword" formControlName="confirmPassword"
+                                placeholder="Enter Confirm Password" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="btn-group btn-block btn-group-lg">
+                            <button type="button" class="btn btn-warning" (click)="gotoLogin()">Sign In</button>
+                            <button type="submit" class="btn btn-success" [disabled]="regForm.invalid">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+</div>

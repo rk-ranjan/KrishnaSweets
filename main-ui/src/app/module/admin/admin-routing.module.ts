@@ -7,13 +7,13 @@ import { ManageCakesComponent } from './components/manage-cakes/manage-cakes.com
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: AdminComponent,
     data: { title: 'Admin'},
     children: [
       {
-        path: 'dashboard',
-        component: DashboardComponent
+       path: '',
+       component: DashboardComponent
       },
       {
         path: 'cakes',

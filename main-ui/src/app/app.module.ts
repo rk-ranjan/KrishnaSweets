@@ -15,6 +15,7 @@ import { PrimeCarouselComponent } from './components/prime-carousel/prime-carous
 import {CarouselModule} from 'primeng/carousel'; 
 import { ButtonModule } from 'primeng/button';
 import { HttpInterceptorService } from './core/services/http-interceptor.service';
+import { LoginModule } from './module/login/login.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { HttpInterceptorService } from './core/services/http-interceptor.service
     MatOptionModule,
     MatRadioModule,
     CarouselModule,
-    ButtonModule
+    ButtonModule,
+    LoginModule
   ],
   exports: [
     PrimeCarouselComponent

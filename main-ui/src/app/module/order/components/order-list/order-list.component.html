@@ -9,13 +9,13 @@
         <h4><strong>Your Orders</strong></h4>
     </div>
     <div class="col-sm-12">
-            <div class="input-group example">
-                <input type="text" #inputstring placeholder="Search by productId or shipName..." name="search"
-                    (keyup)="filterOderData(inputstring.value)">
-                <button type="submit" (click)="filterOderData(inputstring.value)"><i class="fa fa-search"></i></button>
-            </div>
+        <div class="input-group example">
+            <input type="text" #inputstring placeholder="Search by productId or shipName..." name="search"
+                (keyup)="filterOderData(inputstring.value)">
+            <button type="submit" (click)="filterOderData(inputstring.value)"><i class="fa fa-search"></i></button>
+        </div>
     </div>
-    <hr class="full-hr"/>
+    <hr class="full-hr" />
     <div class="col-sm-12 p-0">
         <div class="cart-items" *ngFor="let order of finalList">
             <app-order [order]="order"></app-order>

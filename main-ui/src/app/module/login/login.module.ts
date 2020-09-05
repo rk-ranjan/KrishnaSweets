@@ -5,6 +5,9 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material';
+import { FileUploadModule } from 'primeng/fileupload';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     LoginRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    FileUploadModule,
+    CalendarModule
   ]
 })
 export class LoginModule { }

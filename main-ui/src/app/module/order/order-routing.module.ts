@@ -9,7 +9,7 @@ const routes: Routes = [
     redirectTo: 'shipingDetails'
   },
   {
-    path: 'list',
+    path: 'history',
     component: OrderListComponent
   },
   {

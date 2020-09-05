@@ -1,4 +1,5 @@
 <p-toast position="bottom-center"></p-toast>
+<p-confirmDialog [style]="{width: '95vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" *ngIf="detailData">
     <ol class="carousel-indicators" >
         <li data-slide-to="0" class="active" *ngFor="let slide of detailData.image; let i = index" (click)="currentSlide = i"></li>
@@ -18,30 +19,32 @@
             <img src="../../../../assets/images/img-rs.png" width="35px"/>
         </div>
         <div class="price mr-3">
-           <h2> {{detailData.items.unitPrice}}.00</h2>
+           <h2> {{FinalPrice | number}}</h2>
         </div>
         <div class="discount d-flex flex-column">
-            <p class="mb-0">Original: {{detailData.items.unitPrice}}.00</p>
+            <p class="mb-0">Original: {{fixedPrice | number}}</p>
             <p class="pt-0">Discount:  {{detailData.items.discountPercent}} %</p>
         </div>
     </div>
     <div class="flavour">
         flavour: {{detailData.items.flavour}}
     </div>
-    <div class="eggless p-1">
-        <mat-checkbox>Eggless</mat-checkbox>
-    </div>
-    <div class="weights">
-        <mat-radio-group>
-            <mat-radio-button value="auto">1 KG &nbsp;</mat-radio-button>
-            <mat-radio-button value="always">2 KG &nbsp; </mat-radio-button>
-            <mat-radio-button value="auto">3 KG &nbsp; </mat-radio-button>
-            <mat-radio-button value="always">4 KG &nbsp; </mat-radio-button>
-        </mat-radio-group>
-    </div>
-    <div class="message">
-        <input type="text" class="form-control" placeholder="Messgae on Cake"/>
-    </div>
+    <form [formGroup]="detailForm" (ngSubmit)="addToCart()">
+        <div class="eggless p-1">
+            <mat-checkbox [checked]="detailData.items.eggless" [disabled]="true">Eggless</mat-checkbox>
+        </div>
+        <div class="weights">
+            <mat-radio-group formControlName="weight" (change)="priceCalculator($event)">
+                <mat-radio-button value="1">1 KG &nbsp;</mat-radio-button>
+                <mat-radio-button value="2">2 KG &nbsp; </mat-radio-button>
+                <mat-radio-button value="3">3 KG &nbsp; </mat-radio-button>
+                <mat-radio-button value="4">4 KG &nbsp; </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="message">
+            <input type="text" formControlName="message" class="form-control" placeholder="Messgae on Cake"/>
+        </div>
+    </form>
 </div>
 
 <div class="mobile-only-footer bg-warning">

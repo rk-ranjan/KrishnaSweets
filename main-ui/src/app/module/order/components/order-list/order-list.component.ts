@@ -14,7 +14,8 @@ import { ConfirmationService } from 'primeng/api';
   providers: [ConfirmationService]
 })
 export class OrderListComponent implements OnInit {
-
+  public currentPage = 1;
+  public page: number;
   public orderList: Order[];
   public user: User;
   public orderForm: FormGroup;
@@ -26,27 +27,9 @@ export class OrderListComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) { 
-    this.orderForm = formBuilder.group({
-      UserId: new FormControl('', Validators.required),
-      UserName: new FormControl('', Validators.required),
-      Email: new FormControl('', Validators.required),
-      Password: new FormControl('', Validators.required),
-      IsAdmin: new FormControl('', Validators.required)
-    });
+
   }
-
-  showDialog(){
-    let modal_t  = document.getElementById('modal_1');
-    modal_t.classList.remove('hhidden');
-    modal_t.classList.add('sshow');
-}
-closeDialog() {
-    let modal_t  = document.getElementById('modal_1');
-    modal_t.classList.remove('sshow');
-    modal_t.classList.add('hhidden');
-}
-
-  ngOnInit() {
+  public ngOnInit() {
      this.orderService.getAllOrders().subscribe((res: Order[]) => {
        console.log(res);       
        this.orderList = res;
@@ -57,13 +40,6 @@ closeDialog() {
      this.user = JSON.parse(localStorage.getItem("User"));
   }
 
-  public newOrder() {
-     this.router.navigate(["/orders/new"]);
-  }
-
-  public currentPage = 1;
-  public page: number;
- 
   public pageChanged (event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
@@ -81,7 +57,6 @@ closeDialog() {
     filterAgentsOrPolicy = this.returnedArray.filter((singleItem) => singleItem['ShipName'].toLowerCase().indexOf(text.toLowerCase())  > -1);
     // filterAgentsOrPolicy = this.returnedArray.filter((singleItem) => singleItem['OrderID'].toString().indexOf(text) > -1);
     // filterAgentsOrPolicy = this.returnedArray.filter((singleItem) => singleItem.ShipPostalCode.toString().indexOf(text) > -1);
-    
      return filterAgentsOrPolicy;
   }
 

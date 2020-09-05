@@ -38,7 +38,9 @@ import {ButtonModule} from 'primeng/button';
 import {MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {RatingModule} from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -83,7 +85,11 @@ import { ToastModule } from 'primeng/toast';
       SplitButtonModule,
       ButtonModule,
       MenuModule,
-      ToastModule
+      ToastModule,
+      ReactiveFormsModule,
+      FormsModule,
+      ConfirmDialogModule,
+      RatingModule
   ],
   exports: [
         TopNotificationBarComponent,

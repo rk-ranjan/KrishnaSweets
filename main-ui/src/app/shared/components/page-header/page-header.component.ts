@@ -43,7 +43,6 @@ export class PageHeaderComponent implements OnInit {
     this.shoppingCartItems$.subscribe((_) => {
       this.shoppingCartItems = _;
       this.cartCount = this.shoppingCartItems.length;
-      console.log(this.cartCount);
     });
   }
 
