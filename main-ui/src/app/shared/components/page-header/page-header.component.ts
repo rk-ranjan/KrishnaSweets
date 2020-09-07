@@ -56,8 +56,8 @@ export class PageHeaderComponent implements OnInit {
           }
       });
       this.items = [
-        {label: 'New', icon: 'pi pi-fw pi-plus',},
-        {label: 'Open', icon: 'pi pi-fw pi-download'},
+        {label: 'settings', icon: 'pi pi-fw pi-plus',},
+        {label: 'profile', icon: 'pi pi-fw pi-download'},
         {label: 'Logout', icon: 'pi pi-fw pi-refresh',routerLink: '/logout'}
     ];
     this.items2 = [{

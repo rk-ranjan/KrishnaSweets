@@ -40,18 +40,7 @@ export class SettingsComponent implements OnInit {
   }
 
   public addUser = () => {
-    this.user.UserId = this.userForm.controls.UserId.value;
-    this.user.UserName = this.userForm.controls.username.value;
-    this.user.Email = this.userForm.controls.Email.value;
-    this.user.Password = this.userForm.controls.Password.value;
-    this.user.IsAdmin = this.userForm.controls.IsAdmin.value;
-    this.settingsService.AddUser(this.user).subscribe((res: any) => {
-        this.showModel = true;
-        window.location.reload();
-        this.router.routeReuseStrategy.shouldReuseRoute = ()  => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(["/settings"]);
-    });
+
   }
 
   public showModelPopup() {

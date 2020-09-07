@@ -45,23 +45,10 @@ export class ListUserComponent implements OnInit, OnChanges {
   }
 
   public editUser(singleUser: User) {
-    this.userForm = this.formBuilder.group({
-      id: new FormControl(singleUser._id, Validators.required),
-      UserId: new FormControl(singleUser.UserId, Validators.required),
-      UserName: new FormControl(singleUser.userName, Validators.required),
-      Email: new FormControl(singleUser.Email, Validators.required),
-      Password: new FormControl(singleUser.Password, Validators.required),
-      IsAdmin: new FormControl(singleUser.IsAdmin, Validators.required)
-    });
+
   }
 
   public updateUser = (id: any) => {
-    this.user._id = id;
-    this.user.UserId = this.userForm.controls.UserId.value;
-    this.user.UserName = this.userForm.controls.UserName.value;
-    this.user.Email = this.userForm.controls.Email.value;
-    this.user.Password = this.userForm.controls.Password.value;
-    this.user.IsAdmin = this.userForm.controls.IsAdmin.value;
     this.settingsService.updateUser(this.user).subscribe((res: any) => {
         window.location.reload();
     });

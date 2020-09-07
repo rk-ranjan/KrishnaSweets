@@ -6,12 +6,14 @@ import { LoginUser } from 'src/app/core/model/login-user';
 import { LoginService } from 'src/app/core/services/login.service';
 import { User } from 'src/app/core/model/user';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'app-login-page',
   styleUrls: ['./login-page.component.scss'],
   templateUrl: './login-page.component.html',
+  providers: [MessageService]
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
   public authenticating = false;
@@ -23,11 +25,12 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     public router: Router,
     formBuilder: FormBuilder,
     private loginService: LoginService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private messageService: MessageService
   ) {
     this.loginForm = formBuilder.group({
       password: new FormControl('', Validators.required),
-      userName: new FormControl('', Validators.required)
+      email: new FormControl('', Validators.required)
   });
 
   }
@@ -52,24 +55,32 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   public login() {
     this.authenticating = true;
     let cred: LoginUser = new LoginUser();
-    cred.username = this.loginForm.controls.userName.value;
+    cred.email = this.loginForm.controls.email.value;
     cred.password = this.loginForm.controls.password.value;
     this.loginService.checkLogin(cred).subscribe(
       (res:User) => {
-        this.localStorageService.setItem("User", res);
-          this.router.navigate(["/orders"]);
-          this.loginService.setLoggedInStatus();
+        this.messageService.add({severity:'success', summary:'Login', detail:'Login Successfull'});
+        setTimeout (() => {
+          this.localStorageService.setItem("userAccessToken", res.accessToken);
+          this.localStorageService.setItem('userName', res.name);
+          this.localStorageService.setItem('email', res.email);
+          this.localStorageService.setItem('userRole', res.roles);
+          this.router.navigate(["/"]);  
+        }, 1000); 
       },
       (error: any) => {
+        console.log(error);
+        this.messageService.add({severity:'error', summary:'Login Failed', detail:error});
         this.stayOnLoginPage();
         this.invalidLoginMessage = true;
       }
     )
-  }
+  } 
 
   stayOnLoginPage() {
     this.localStorageService.removeItem("User");
-    this.loginForm.controls.userName.setValue('');
+    this.loginForm.controls.email.setValue('');
     this.loginForm.controls.password.setValue('');
+    document.getElementById("email").focus();
   }
 }

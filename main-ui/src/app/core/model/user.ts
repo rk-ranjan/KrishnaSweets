@@ -1,10 +1,8 @@
 export class User {
-    public _id: string;
-    public UserId: string;
-    public userId: string;
-    public UserName: string;
-    public userName: string;
-    public Email: string;
-    public Password: string;
-    public IsAdmin: string;
+    public id: string;
+    public email: string;
+    public accessToken: string;
+    public name: string;
+    public tokenType: string;
+    public roles: string[];
 }

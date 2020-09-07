@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { User } from 'src/app/core/model/user';
 import { LoginService } from 'src/app/core/services/login.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,15 @@ export class RoleGuardService implements CanActivate {
   public user: User;
   public role: boolean;
   constructor(
-    private loginService: LoginService
+    private loginService: LoginService,
+    private localStorageService: LocalStorageService
   ) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | import("@angular/router").UrlTree | import("rxjs").Observable<boolean | import("@angular/router").UrlTree> | Promise<boolean | import("@angular/router").UrlTree> {
-      this.user = JSON.parse(localStorage.getItem("User"));
-      this.role = JSON.parse(localStorage.getItem("Role"));
-      if(this.user.IsAdmin === 'true') {
+      const role = this.localStorageService.getItem('userRole');
+      if (role === 'ROLE_ADMIN') {
         return true;
-      } else {
+      }
+      if (role === 'ROLE_USER') {
         return false;
       }
   }

@@ -1,5 +1,5 @@
 export class LoginUser {
-    public username: string;
+    public email: string;
     public password: string;
 }
 

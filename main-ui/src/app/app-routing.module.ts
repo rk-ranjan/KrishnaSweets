@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
-import { RoleGuardService } from './shared/services/role-guard.service';
 import { RegistrationComponent } from './module/login/components/registration/registration.component';
+import { RoleGuardService } from './shared/services/role-guard.service';
 
 const routes: Routes = [
   {
@@ -19,7 +19,8 @@ const routes: Routes = [
       },
       {
          path: 'order',
-         loadChildren: () => import('./module/order/order.module').then((m) => m.OrderModule)
+         loadChildren: () => import('./module/order/order.module').then((m) => m.OrderModule),
+         canActivate: [AuthGuardService]
       },
       {
         path: 'sweets',
@@ -44,7 +45,12 @@ const routes: Routes = [
       },
       {
         path: 'admin',
-        loadChildren: () => import('./module/admin/admin.module').then((m) => m.AdminModule)
+        loadChildren: () => import('./module/admin/admin.module').then((m) => m.AdminModule),
+        canActivate: [RoleGuardService]
+      },
+      {
+        path: 'user',
+        loadChildren: () => import('./module/users/users.module').then((m) => m.UsersModule)
       }
     ]
   },

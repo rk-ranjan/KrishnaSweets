@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { LoginUser } from '../model/login-user';
 import { Observable } from 'rxjs';
-import { User } from '../model/user';
 import { map } from 'rxjs/operators';
 import { HttpService } from './http.service';
 import { RegUser } from 'src/app/module/login/models/reg-user';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ import { RegUser } from 'src/app/module/login/models/reg-user';
 export class LoginService {
 
   public checkUserUrl: string;
+  public signupUrl: string;
   public headers: HttpHeaders;
   public userName: string;
   public userRole: string;
@@ -21,23 +22,22 @@ export class LoginService {
   constructor(
     private http: HttpService
   ) { 
-    this.checkUserUrl = '/rest-api/login',
+    this.checkUserUrl = '/rest-api/auth/signin',
+    this.signupUrl = '/rest-api/auth/signup',
     this.headers = new HttpHeaders();
     this.headers.set('Content-Type', 'application/json');
   }
 
-  public checkLogin = (user: LoginUser) : Observable<any> => {
-    return this.http.post<any>(this.checkUserUrl, user, this.headers).pipe(
+  public checkLogin = (user: LoginUser) : Observable<User> => {
+    return this.http.post<LoginUser>(this.checkUserUrl, user, this.headers).pipe(
       map((response:User) =>{
-        this.userName = response.UserName;
-        this.userRole = response.IsAdmin;
         return response;
       })
     )
   }
 
   public registerUser = (body: RegUser) => {
-     return this.http.post<any>('/api/auth/signup', body, this.headers).pipe(
+     return this.http.post<any>(this.signupUrl, body, this.headers).pipe(
        map((res: any) => {
           console.log(res);
      }));

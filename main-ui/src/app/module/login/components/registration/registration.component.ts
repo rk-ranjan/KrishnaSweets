@@ -5,11 +5,13 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { LoginService } from 'src/app/core/services/login.service';
 import { RegUser } from '../../models/reg-user';
 import { trim } from 'jquery';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
+  providers: [MessageService]
 })
 export class RegistrationComponent implements OnInit {
 
@@ -17,15 +19,18 @@ export class RegistrationComponent implements OnInit {
   public uploadedFiles: any[] = [];
   public firstStep: boolean = true;
   public register: RegUser = new RegUser();
-  public data: any
+  public data: any;
+  private loader: boolean = false;
   constructor(
     public router: Router,
     public formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private messageService: MessageService
   ) {
     this.regForm = formBuilder.group({
       fullname: new FormControl('', Validators.required),
       mobile: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required,),
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required),
       dob: new FormControl('', Validators.required),
@@ -41,6 +46,7 @@ export class RegistrationComponent implements OnInit {
 
   public onSubmitRegistration = (event) => {
     if (event.password === event.confirmPassword) {
+        this.loader = true;
         this.register.roles = [];
         this.register.fullname = this.regForm.controls.fullname.value;
         this.register.email = this.regForm.controls.email.value;
@@ -48,9 +54,28 @@ export class RegistrationComponent implements OnInit {
         this.register.dob = this.regForm.controls.dob.value;
         this.register.roles .push('ROLE_USER');
         this.register.password = trim(this.regForm.controls.password.value);
-        console.log(this.register);
+        this.loginService.registerUser(this.register).subscribe(
+          (response: any) => {
+            this.messageService.add({severity:'success', summary:'Registrations', detail:'Registered Successfully'});
+            setTimeout (() => {
+              this.loader = false;
+              this.router.navigate(["/"]);  
+            }, 1000); 
+        }, (error:any) => {
+           this.messageService.add({severity:'error', summary:'Registrations Failed', detail:error});
+        });
     } else {
-       console.log("two password's are not same");
+        this.messageService.add({severity:'error', summary:'Registrations Failed', detail:'Two password are not same'});
+        this.stayOnLoginPage();
     }
+  }
+
+  public stayOnLoginPage = () => {
+     this.regForm.controls.fullname.setValue('');
+     this.regForm.controls.email.setValue('');
+     this.regForm.controls.mobile.setValue('');
+     this.regForm.controls.password.setValue('');
+     this.regForm.controls.dob.setValue('');
+     this.regForm.controls.confirmPassword.setValue('');
   }
 }

@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
+import { ToastModule } from 'primeng/toast';
+import {ProgressSpinnerModule} from 'primeng/progressspinner'
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CalendarModule } from 'primeng/calendar';
     ReactiveFormsModule,
     MatCheckboxModule,
     FileUploadModule,
-    CalendarModule
+    CalendarModule,
+    ToastModule,
+    ProgressSpinnerModule
   ]
 })
 export class LoginModule { }
