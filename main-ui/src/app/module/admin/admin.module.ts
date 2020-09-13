@@ -14,9 +14,12 @@ import { ButtonModule } from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
 import {ToastModule} from 'primeng/toast';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AdminOrdersViewComponent } from './components/admin-orders-view/admin-orders-view.component';
+import {TableModule} from 'primeng/table';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
-  declarations: [DashboardComponent, ManageComponent, AdminHeaderComponent, AdminComponent, ManageCakesComponent],
+  declarations: [DashboardComponent, ManageComponent, AdminHeaderComponent, AdminComponent, ManageCakesComponent, AdminOrdersViewComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -30,6 +33,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     ButtonModule,
     TabViewModule,
     HttpClientModule,
+    TableModule,
+    DropdownModule
   ]
 })
 export class AdminModule { }

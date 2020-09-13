@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { CakeDetails } from 'src/app/module/cakes/services/cake-details';
 import { CartBehavourService } from 'src/app/core/services/cart-behavour.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Cart } from 'src/app/module/cart/components/models/cart';
 import { CartService } from 'src/app/module/cart/services/cart.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-product-details',
@@ -24,14 +25,20 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
   public fixedPrice: number = 0;
   public detailForm: FormGroup;
   public currentSlide = 0;
+  public userName: string;
+  public productId: string;
   constructor(
     private cartBehaviorService: CartBehavourService,
     private cartService: CartService,
     private router: Router,
     private messageService: MessageService,
     public formBuilder: FormBuilder,
-    private confirmationService: ConfirmationService
-  ) { }
+    private confirmationService: ConfirmationService,
+    private localStorageService: LocalStorageService,
+    private route: ActivatedRoute
+  ) { 
+   this.productId = route.snapshot.queryParamMap.get('cakeId');
+  }
   public ngOnChanges(changes: SimpleChanges): void {
     if(changes['detail']) {
        const variableChange = changes['detail'];
@@ -62,6 +69,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
 
   public addToCart = () => {
       var cart: Cart = new Cart();
+      cart.username = this.localStorageService.getItem('email');
       cart.itemId = this.detailData.items._id;
       cart.itemName = this.detailData.items.itemName;
       cart.price = this.FinalPrice;
@@ -70,6 +78,8 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
       cart.eggless = this.detailData.items.eggless;
       cart.discount = this.detailData.items.discountPercent;
       cart.desc = this.detailData.items.descriptions;
+      cart.img = this.detailData.image[0].image.data;
+      cart.wishMsg = this.detailForm.controls.message.value;
       if (this.detailForm.controls.message.value === '') {
           this.confirmationService.confirm({
               message: 'Are you sure that you want to proceed?',
@@ -88,13 +98,17 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
   }
 
   public sendToCart = (cart: Cart) => {
-    this.cartService.addItemToCart(cart).subscribe(
-      (res) => {
-        this.messageService.add({severity:'success', summary:'Cart', detail:'Added Successfully'});
-        setTimeout (() => {
-          this.cartBehaviorService.addToCart(cart);
-          this.router.navigate(["/cart"]);  
-        }, 1000);          
-    });
+    if (cart.username !== null) {
+      this.cartService.addItemToCart(cart).subscribe(
+        (res) => {
+          this.messageService.add({severity:'success', summary:'Cart', detail:'Added Successfully'});
+          setTimeout (() => {
+            this.cartBehaviorService.addToCart(cart);
+            this.router.navigate(["/cart"]);  
+          }, 1000);          
+      });
+    } else {
+       this.router.navigate(['/login']);
+    }
   }
 }

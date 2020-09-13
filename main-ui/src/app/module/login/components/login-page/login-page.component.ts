@@ -1,12 +1,15 @@
 
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { LoginUser } from 'src/app/core/model/login-user';
 import { LoginService } from 'src/app/core/services/login.service';
 import { User } from 'src/app/core/model/user';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { MessageService } from 'primeng/api';
+import { CartService } from 'src/app/module/cart/services/cart.service';
+import { Cart } from 'src/app/module/cart/components/models/cart';
+import { CartBehavourService } from 'src/app/core/services/cart-behavour.service';
 
 
 @Component({
@@ -21,18 +24,22 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
   public loading = true;
   public invalidLoginMessage: boolean = false;
+  public redirectTo: string;
   constructor(
     public router: Router,
     formBuilder: FormBuilder,
     private loginService: LoginService,
     private localStorageService: LocalStorageService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private route: ActivatedRoute,
+    private cartItemService: CartService,
+    private cartService: CartBehavourService
   ) {
     this.loginForm = formBuilder.group({
       password: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required)
-  });
-
+    });
+    this.redirectTo = this.route.snapshot.paramMap.get('redirectUrl');
   }
   public ngOnInit() {
     this.isLogin();
@@ -64,8 +71,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
           this.localStorageService.setItem("userAccessToken", res.accessToken);
           this.localStorageService.setItem('userName', res.name);
           this.localStorageService.setItem('email', res.email);
-          this.localStorageService.setItem('userRole', res.roles);
-          this.router.navigate(["/"]);  
+          this.localStorageService.setItem('userRole', res.roles[0]);
+          this.updateCart(res.email);
+          if (this.redirectTo !== undefined) {
+            this.router.navigate([this.redirectTo]);
+          } else {
+            this.router.navigate(['/cart']);
+          }
         }, 1000); 
       },
       (error: any) => {
@@ -76,7 +88,16 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       }
     )
   } 
-
+  public updateCart = (userName: string) => {
+    this.cartItemService.getCartItems(userName).subscribe(
+      (res: Cart[]) => {
+        if(res) {
+          res.forEach((cart) => {
+            this.cartService.addToCart(cart);
+          })          
+        }
+    });
+  }
   stayOnLoginPage() {
     this.localStorageService.removeItem("User");
     this.loginForm.controls.email.setValue('');

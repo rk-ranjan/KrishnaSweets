@@ -49,7 +49,7 @@ const routes: Routes = [
         canActivate: [RoleGuardService]
       },
       {
-        path: 'user',
+        path: 'profiles',
         loadChildren: () => import('./module/users/users.module').then((m) => m.UsersModule)
       }
     ]

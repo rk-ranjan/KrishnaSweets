@@ -4,11 +4,15 @@ import { Cart } from 'src/app/module/cart/components/models/cart';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Order } from 'src/app/core/model/order';
 import { OrdersService } from '../../services/orders.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipping-details',
   templateUrl: './shipping-details.component.html',
-  styleUrls: ['./shipping-details.component.scss']
+  styleUrls: ['./shipping-details.component.scss'],
+  providers: [MessageService]
 })
 export class ShippingDetailsComponent implements OnInit {
   public cartList: Cart[];
@@ -16,14 +20,19 @@ export class ShippingDetailsComponent implements OnInit {
   public order: Order = new Order();
   public orderForm: FormGroup;
   public date7: Date;
+  public userName: string;
   constructor(
     private cartService: CartService,
     public formBuilder: FormBuilder,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private localStorageService: LocalStorageService,
+    private messageService: MessageService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.cartService.getCartItems().subscribe(
+    this.userName = localStorage.getItem('email');
+    this.cartService.getCartItems(this.userName).subscribe(
       (res: Cart[]) => {
         this.cartList = res;
         res.forEach((cart: Cart) => {
@@ -44,7 +53,23 @@ export class ShippingDetailsComponent implements OnInit {
   }
 
   public submitOrder = () => {
-    this.order.customerId = "kjnwekd",
+    this.getShipDetails();
+    this.cartService.getCartItems(this.order.customerId).subscribe(
+      (res: Cart[]) => {
+        res.forEach(element => {
+           this.order.itemId = element.itemId;
+           this.order.price = element.price
+           this.createNewOrder();
+           this.deleteFromCart(element.cartId);
+        });
+        window.location.reload();
+        this.router.navigate(['profiles/orders']);
+     });
+  }
+
+  public getShipDetails = () => {
+    const username = this.localStorageService.getItem('email');
+    this.order.customerId = username,
     this.order.shipName =  this.orderForm.controls.fname.value + this.orderForm.controls.lname.value;
     this.order.shipCountry = this.orderForm.controls.country.value;
     this.order.shipCity = this.orderForm.controls.city.value;
@@ -55,14 +80,24 @@ export class ShippingDetailsComponent implements OnInit {
     this.order.shipPostalCode = this.orderForm.controls.zip.value;
     this.order.shipAddressOptional = this.orderForm.controls.addressOptional.value;
     this.order.deleverOn = this.orderForm.controls.date.value;
-    const orderDate = new Date();
-    this.order.orderDate = orderDate.getDate().toString();
+    const orderDate = new Date().toLocaleDateString();
+    this.order.orderDate = orderDate;
+  }
 
+  public createNewOrder = () => {
     this.orderService.saveOrder(this.order).subscribe(
       (response: any) => {
-        console.log(response);       
-      }
-    )
+        this.messageService.add({severity:'success', summary:'Order', detail: response});
+          setTimeout (() => { 
+          }, 1000);      
+    });
   }
+ 
+  public deleteFromCart = (id) => {
+     this.cartService.removeItemFromCart(id).subscribe(
+       (response: any) => {
+     });
+  }
+  
 
 }

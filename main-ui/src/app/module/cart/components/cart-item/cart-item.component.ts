@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { Cart } from '../models/cart';
 
 @Component({
   selector: 'app-cart-item',
@@ -7,7 +8,7 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./cart-item.component.scss']
 })
 export class CartItemComponent implements OnInit {
-  @Input() public cart;
+  @Input() public cart: Cart;
   @Output() public deleteItem: EventEmitter<any> = new EventEmitter<any>(); 
   checked: boolean = true;
   constructor() { }

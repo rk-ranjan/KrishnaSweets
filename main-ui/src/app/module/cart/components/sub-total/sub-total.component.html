@@ -18,6 +18,6 @@
             <span>Total (USD)</span>
             <strong>{{totalCost | number}}</strong>
         </li>
-        <li class="list-group-item"><button class="btn btn-success m-1 btn-block" (click)="checkOutOrder()">CheckOut Now</button></li>
+        <li class="list-group-item"><button class="btn btn-success m-1 btn-block" (click)="checkOutOrder()" [disabled]="cartList.length === 0">CheckOut Now</button></li>
     </ul>
 </div>

@@ -14,8 +14,8 @@ export class CartItemListComponent implements OnInit {
   public cartItems: Cart[];
   public totalCost: number = 0;
   public msgs: Message[] = [];
-
-  position: string;
+  public userName: string;
+  public position: string;
   constructor(
     private cartService: CartService,
     private router: Router,
@@ -23,7 +23,8 @@ export class CartItemListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cartService.getCartItems().subscribe(
+    this.userName = localStorage.getItem('email');
+    this.cartService.getCartItems(this.userName).subscribe(
       (res: Cart[]) => {
         this.cartItems = res;
         res.forEach((cart: Cart) => {
@@ -41,6 +42,7 @@ export class CartItemListComponent implements OnInit {
   }
 
   public deleteItem = (event: any) => {  
+    console.log(event);
     this.confirmationService.confirm({
       message: 'Are you sure that you want to proceed?',
       header: 'Confirmation',
@@ -48,7 +50,7 @@ export class CartItemListComponent implements OnInit {
       accept: () => {
           this.cartService.removeItemFromCart(event).subscribe(
             (res: any) => {
-              //need to do something              
+              window.location.reload();             
           });
       },
       reject: () => {

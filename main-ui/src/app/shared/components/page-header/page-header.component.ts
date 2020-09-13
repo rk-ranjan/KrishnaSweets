@@ -5,6 +5,8 @@ import { CartBehavourService } from 'src/app/core/services/cart-behavour.service
 import { of, Observable } from 'rxjs';
 import { CartService } from 'src/app/module/cart/services/cart.service';
 import { Cart } from 'src/app/module/cart/components/models/cart';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-header',
@@ -34,10 +36,12 @@ export class PageHeaderComponent implements OnInit {
   cartCount: number;
   public shoppingCartItems$: Observable<any[]> = of([]);
   public shoppingCartItems: any[] = [];
-
+  public userName: string;
   constructor(
     private cartService: CartBehavourService,
-    private cartItemService: CartService
+    private cartItemService: CartService,
+    private localStorageService: LocalStorageService,
+    private router: Router
     ) {
     this.shoppingCartItems$ = this.cartService.getItems();
     this.shoppingCartItems$.subscribe((_) => {
@@ -47,7 +51,8 @@ export class PageHeaderComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-      this.cartItemService.getCartItems().subscribe(
+      this.userName = localStorage.getItem('email');
+      this.cartItemService.getCartItems(this.userName).subscribe(
         (res: Cart[]) => {
           if(res) {
             res.forEach((cart) => {
@@ -56,9 +61,20 @@ export class PageHeaderComponent implements OnInit {
           }
       });
       this.items = [
-        {label: 'settings', icon: 'pi pi-fw pi-plus',},
-        {label: 'profile', icon: 'pi pi-fw pi-download'},
-        {label: 'Logout', icon: 'pi pi-fw pi-refresh',routerLink: '/logout'}
+        {label: 'Profile', icon: 'pi pi-fw pi-plus', command : (event) => {
+            this.router.navigate(['/profiles'])
+        }},
+        {label: 'Orders', icon: 'pi pi-fw pi-download', command: (event) => {
+            this.router.navigate(['/profiles/orders']);
+        }},
+        {label: 'Logout', icon: 'pi pi-fw pi-refresh',command: (event) => {
+            this.localStorageService.removeItem("userAccessToken");
+            this.localStorageService.removeItem('userName');
+            this.localStorageService.removeItem('email');
+            this.localStorageService.removeItem('userRole');
+            window.location.reload();
+            this.router.navigate(['/']);
+        }}
     ];
     this.items2 = [{
       label: 'Cakes Corner',

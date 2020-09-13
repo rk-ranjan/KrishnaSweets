@@ -52,7 +52,8 @@ export class RegistrationComponent implements OnInit {
         this.register.email = this.regForm.controls.email.value;
         this.register.mobile = this.regForm.controls.mobile.value;
         this.register.dob = this.regForm.controls.dob.value;
-        this.register.roles .push('ROLE_USER');
+        // this.register.roles.push('ROLE_USER');
+        this.register.roles.push('ROLE_ADMIN');
         this.register.password = trim(this.regForm.controls.password.value);
         this.loginService.registerUser(this.register).subscribe(
           (response: any) => {

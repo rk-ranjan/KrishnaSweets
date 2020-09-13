@@ -20,8 +20,8 @@ export class CartService {
     this.header.append('responseType', 'json');
    }
   
-  public getCartItems = (): Observable<any> => {
-    return this.http.get<any>(this.cartUrl).pipe(
+  public getCartItems = (userName: string): Observable<any> => {
+    return this.http.get<any>(this.cartUrl+'?id='+userName).pipe(
       map((res: any) => {
         return res;
       })
@@ -37,7 +37,7 @@ export class CartService {
   }
 
   public removeItemFromCart = (id: string): Observable<any> => {
-    return this.http.delete<Cart>(this.cartUrl+"?cartId="+id).pipe(
+    return this.http.delete<Cart>(this.cartUrl+"?_id="+id).pipe(
       map((res: any) => {
         return res;       
       })

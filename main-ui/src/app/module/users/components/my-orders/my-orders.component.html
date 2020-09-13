@@ -1,0 +1,139 @@
+<p-toast></p-toast>
+<br>
+<div class="card">
+    <h5 class="m-3">Orders</h5>
+        <p-table [value]="products2" dataKey="id" editMode="row" styleClass="p-datatable-responsive-demo">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>CustomerID</th>
+                    <th>Mobile</th>
+                    <th>Order Date</th>
+                    <th>Price</th>
+                    <th>Delever ON</th>
+                    <th>Delevered On</th>
+                    <th>Delever to</th>
+                    <th>Address 1</th>
+                    <th>Address 2</th>
+                    <th>Zip code</th>
+                    <th>Status</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="product">
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.customerId">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.customerId}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.mobile">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.mobile}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.orderDate" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.orderDate}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.price">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.price}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.deleverOn">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.deleverOn}}
+                                <!-- {{product.price | currency: 'USD'}} -->
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.deleveredOn">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.deleveredOn}}
+                                <!-- {{product.price | currency: 'USD'}} -->
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.shipName">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.shipName}}
+                                <!-- {{product.price | currency: 'USD'}} -->
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.shipAddressMain">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.shipAddressMain}}
+                                <!-- {{product.price | currency: 'USD'}} -->
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.shipAddressOptional">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.shipAddressOptional}}
+                                <!-- {{product.price | currency: 'USD'}} -->
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" disabled [(ngModel)]="product.shipPostalCode">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.shipPostalCode}}
+                                <!-- {{product.price | currency: 'USD'}} -->
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td style="text-align:center">
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+</div>
+<br>
+    

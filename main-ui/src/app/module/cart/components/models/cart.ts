@@ -7,8 +7,11 @@ export class Cart {
     public discount: number;
     public quantity: number;
     public weight: number;
+    public img: string;
     public creationDate: string;
     public lastUpdate: string;
     public active: boolean;
     public desc: string;
+    public username: string;
+    public wishMsg: string;
 }
