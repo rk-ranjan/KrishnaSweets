@@ -16,8 +16,8 @@ export class ProductService {
   constructor(
     private http: HttpClient
   ) { 
-    this.listOrderUrl = '/rest-api/product',
-    this.orderUrl = '/rest-api/saveOrder';
+    this.listOrderUrl = 'http://predecode.com:8080/rest-api/product',
+    this.orderUrl = 'http://predecode.com:8080/rest-api/saveOrder';
     this.headers = new HttpHeaders();
     this.headers.set('Content-Type', 'application/json');
   }

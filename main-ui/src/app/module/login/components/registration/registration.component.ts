@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { LoginService } from 'src/app/core/services/login.service';
@@ -20,13 +20,16 @@ export class RegistrationComponent implements OnInit {
   public firstStep: boolean = true;
   public register: RegUser = new RegUser();
   public data: any;
-  private loader: boolean = false;
+  public loader: boolean = false;
+  public redirectTo: string;
   constructor(
     public router: Router,
     public formBuilder: FormBuilder,
     private loginService: LoginService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private route: ActivatedRoute
   ) {
+    this.redirectTo = this.route.snapshot.paramMap.get('redirectUrl');
     this.regForm = formBuilder.group({
       fullname: new FormControl('', Validators.required),
       mobile: new FormControl('', Validators.required),
@@ -60,7 +63,11 @@ export class RegistrationComponent implements OnInit {
             this.messageService.add({severity:'success', summary:'Registrations', detail:'Registered Successfully'});
             setTimeout (() => {
               this.loader = false;
-              this.router.navigate(["/"]);  
+              if (this.redirectTo !== undefined) {
+                this.router.navigateByUrl(this.redirectTo);
+              } else {
+                this.router.navigate(["/"]);
+              }
             }, 1000); 
         }, (error:any) => {
            this.messageService.add({severity:'error', summary:'Registrations Failed', detail:error});

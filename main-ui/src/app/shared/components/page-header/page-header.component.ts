@@ -32,11 +32,13 @@ export class PageHeaderComponent implements OnInit {
   value = 'Clear me';
   display: boolean = false;
   items: MenuItem[];
-  items2: MenuItem[];
+  menuLink: any[] = [];
+  items3: MenuItem[];
   cartCount: number;
   public shoppingCartItems$: Observable<any[]> = of([]);
   public shoppingCartItems: any[] = [];
   public userName: string;
+  public name: string;
   constructor(
     private cartService: CartBehavourService,
     private cartItemService: CartService,
@@ -52,6 +54,7 @@ export class PageHeaderComponent implements OnInit {
 
   public ngOnInit(): void {
       this.userName = localStorage.getItem('email');
+      this.name = localStorage.getItem('userName');
       this.cartItemService.getCartItems(this.userName).subscribe(
         (res: Cart[]) => {
           if(res) {
@@ -61,206 +64,91 @@ export class PageHeaderComponent implements OnInit {
           }
       });
       this.items = [
-        {label: 'Profile', icon: 'pi pi-fw pi-plus', command : (event) => {
+        {label: 'Profile', command : (event) => {
             this.router.navigate(['/profiles'])
         }},
-        {label: 'Orders', icon: 'pi pi-fw pi-download', command: (event) => {
+        {label: 'Orders', command: (event) => {
             this.router.navigate(['/profiles/orders']);
         }},
-        {label: 'Logout', icon: 'pi pi-fw pi-refresh',command: (event) => {
+        {label: 'Logout',command: (event) => {
             this.localStorageService.removeItem("userAccessToken");
             this.localStorageService.removeItem('userName');
             this.localStorageService.removeItem('email');
             this.localStorageService.removeItem('userRole');
-            window.location.reload();
-            this.router.navigate(['/']);
+            this.router.navigate(['login']);
         }}
     ];
-    this.items2 = [{
-      label: 'Cakes Corner',
-      items: [{
-          label: 'Butter Scotch Cake',
-          icon: 'pi pi-refresh',
-          command: () => {
-              this.update();
-          }
-      },
-      {
-          label: 'White Forest Cake',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      },
-      {
-          label: 'Black Forest Cake',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      },
-      {
-          label: 'Vanilla Cake',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      }
-      ]},
-      {
-      label: 'Sweets Corner',
-      items: [{
-          label: 'Rasgulla',
-          icon: 'pi pi-refresh',
-          command: () => {
-              this.update();
-          }
-      },
-      {
-          label: 'Gulab Jamun',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      },
-      {
-          label: 'Gulab Jamun',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      },
-      {
-          label: 'Ras Malai',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      },
-      {
-          label: 'Laddu',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      },
-      {
-          label: 'Jalebi',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      }
-      ]},
-      {
-      label: 'Snaks Corner',
-      items: [{
-          label: 'Bhujiya Spaceial',
-          icon: 'pi pi-refresh',
-          command: () => {
-              this.update();
-          }
-      },
-      {
-          label: 'Delete',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      }
-      ]},
-      {
-      label: 'Options',
-      items: [{
-          label: 'Update',
-          icon: 'pi pi-refresh',
-          command: () => {
-              this.update();
-          }
-      },
-      {
-          label: 'Delete',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      }
-      ]},
-      {
-      label: 'Options',
-      items: [{
-          label: 'Update',
-          icon: 'pi pi-refresh',
-          command: () => {
-              this.update();
-          }
-      },
-      {
-          label: 'Delete',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      }
-      ]},
-      {
-      label: 'Options',
-      items: [{
-          label: 'Update',
-          icon: 'pi pi-refresh',
-          command: () => {
-              this.update();
-          }
-      },
-      {
-          label: 'Delete',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      }
-      ]},
-      {
-      label: 'Options',
-      items: [{
-          label: 'Update',
-          icon: 'pi pi-refresh',
-          command: () => {
-              this.update();
-          }
-      },
-      {
-          label: 'Delete',
-          icon: 'pi pi-times',
-          command: () => {
-              this.delete();
-          }
-      }
-      ]},
-      {
-          label: 'Navigate',
-          items: [{
-              label: 'Angular Website',
-              icon: 'pi pi-external-link',
-              url: 'http://angular.io'
-          },
-          {
-              label: 'Router',
-              icon: 'pi pi-upload',
-              routerLink: '/fileupload'
-          }
-      ]}
-  ];
+    this.items3 = [
+        {label: 'Login', command : (event) => {
+            this.router.navigate(['login'])
+        }},
+    ];
+    this.menuLink = [
+        {
+           name: 'Vanillah Cakes',
+           path: '/cakes?type=vanillah',
+           icon: 'glyphicons' 
+        },
+        {
+            name: 'Butter Scotch Cakes',
+            path: '/cakes?type=black',
+            icon: 'glyphicons' 
+         },
+         {
+            name: 'Black Forest Cakes',
+            path: '/cakes?type=butter',
+            icon: 'glyphicons' 
+         },
+         {
+            name: 'White Forest Cakes',
+            path: 'cakes?type=vanillah',
+            icon: 'glyphicons' 
+         },
+         {
+            name: 'Vanillah Cakes',
+            path: 'cakes?type=vanillah',
+            icon: 'glyphicons' 
+         },
+         {
+            name: 'Vanillah Cakes',
+            path: 'cakes?type=vanillah',
+            icon: 'glyphicons' 
+         },
+         {
+            name: 'Vanillah Cakes',
+            path: 'cakes?type=vanillah',
+            icon: 'glyphicons' 
+         },
+    ]
     
   }
-  
+  public navigateToLink = (path: string) => {
+      this.display = false;
+      this.router.navigateByUrl(path);
+  }
   update() {
     throw new Error("Method not implemented.");
   }
   delete() {
   }
+  public logout = () => {
+    this.display = false;
+    this.localStorageService.removeItem("userAccessToken");
+    this.localStorageService.removeItem('userName');
+    this.localStorageService.removeItem('email');
+    this.localStorageService.removeItem('userRole');
+    window.location.reload();
+    this.router.navigate(['login']);
+  }
+  public navigateTo = (path: string) => {
+      this.router.navigate([path]);
+      this.display = false;
+  }
   menuState:string = 'out';
- 
+  public login = () => {
+      this.display = false;
+      this.router.navigate(["login"]);
+  }
   toggleMenu() {
     // 1-line if statement that toggles the value:
     this.menuState = this.menuState === 'out' ? 'in' : 'out';

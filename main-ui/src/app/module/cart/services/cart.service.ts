@@ -15,7 +15,7 @@ export class CartService {
   constructor(
     private http: HttpService
   ) {
-    this.cartUrl = "http://localhost:8080/rest-api/cart";
+    this.cartUrl = "http://predecode.com:8080/rest-api/cart";
     this.header =  new HttpHeaders();
     this.header.append('responseType', 'json');
    }
@@ -37,7 +37,7 @@ export class CartService {
   }
 
   public removeItemFromCart = (id: string): Observable<any> => {
-    return this.http.delete<Cart>(this.cartUrl+"?_id="+id).pipe(
+    return this.http.delete<any>(this.cartUrl+"?_id="+id).pipe(
       map((res: any) => {
         return res;       
       })

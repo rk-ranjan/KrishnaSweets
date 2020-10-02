@@ -10,7 +10,7 @@ import { HttpService } from 'src/app/core/services/http.service';
   providedIn: 'root'
 })
 export class CakesService {
-  public baseUrl: string = 'http://localhost:8080';
+  public baseUrl: string = 'http://predecode.com:8080';
   public addCakeDetailsUrl: string = '/rest-api/cakes';
   public headers: HttpHeaders;
   constructor(

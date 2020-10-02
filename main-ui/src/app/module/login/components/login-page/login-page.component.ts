@@ -24,6 +24,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
   public loading = true;
   public invalidLoginMessage: boolean = false;
+  public loginDetails: LoginUser =  new LoginUser();
   public redirectTo: string;
   constructor(
     public router: Router,
@@ -50,22 +51,26 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   public gotoRegister = () => {
-    this.router.navigate(['/signup']);
+    if (this.redirectTo !== undefined) {
+      this.router.navigate(['/signup', {returnUrl: this.redirectTo}]);
+    } else {
+      this.router.navigate(['/signup']);
+    }
   }
   public isLogin() {
     let flag = false;
     if (this.localStorageService.getItem('_temp_9898jdjk_y783h') && this.localStorageService.getItem('_temp_9898jdjk_y783h') === '787_uwdj_646'){
-      flag = true;
+       flag = true;
     }
   }
 
   public login() {
     this.authenticating = true;
-    let cred: LoginUser = new LoginUser();
-    cred.email = this.loginForm.controls.email.value;
-    cred.password = this.loginForm.controls.password.value;
-    this.loginService.checkLogin(cred).subscribe(
+    this.loginDetails.email = this.loginForm.controls.email.value;
+    this.loginDetails.password = this.loginForm.controls.password.value;
+    this.loginService.checkLogin(this.loginDetails).subscribe(
       (res:User) => {
+        console.log(res);
         this.messageService.add({severity:'success', summary:'Login', detail:'Login Successfull'});
         setTimeout (() => {
           this.localStorageService.setItem("userAccessToken", res.accessToken);
@@ -73,16 +78,15 @@ export class LoginPageComponent implements OnInit, OnDestroy {
           this.localStorageService.setItem('email', res.email);
           this.localStorageService.setItem('userRole', res.roles[0]);
           this.updateCart(res.email);
-          if (this.redirectTo !== undefined) {
-            this.router.navigate([this.redirectTo]);
+          if (this.redirectTo) {
+            this.router.navigateByUrl(this.redirectTo);
           } else {
-            this.router.navigate(['/cart']);
+            window.location.reload();
           }
         }, 1000); 
       },
       (error: any) => {
-        console.log(error);
-        this.messageService.add({severity:'error', summary:'Login Failed', detail:error});
+        this.messageService.add({severity:'error', summary:'Login Failed', detail:error.message});
         this.stayOnLoginPage();
         this.invalidLoginMessage = true;
       }
@@ -99,9 +103,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     });
   }
   stayOnLoginPage() {
-    this.localStorageService.removeItem("User");
-    this.loginForm.controls.email.setValue('');
-    this.loginForm.controls.password.setValue('');
     document.getElementById("email").focus();
   }
 }

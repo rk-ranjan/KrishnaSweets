@@ -18,6 +18,7 @@ export class CakeDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.cakesId = this.route.snapshot.queryParams["cakeId"];
+    console.log(this.cakesId);
     this.cakeService.getCakesById(this.cakesId).subscribe(
       (res:CakeDetails) => {
          this.cakeDetail = res;                

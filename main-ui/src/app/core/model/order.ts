@@ -32,4 +32,6 @@ export class Order {
     public shipPostalCode: number;
     
     public shipAddressMain: string;
+
+    public status: string;
 }

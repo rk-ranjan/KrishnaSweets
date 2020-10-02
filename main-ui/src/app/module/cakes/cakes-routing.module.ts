@@ -9,13 +9,13 @@ import { AuthGuardService } from 'src/app/shared/services/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list'
+    component: CakeListComponent
     // component: CakesOverviewComponent
   },
-  {
-    path: 'list',
-    component: CakeListComponent
-  },
+  // {
+  //   path: 'list',
+  //   component: CakeListComponent
+  // },
   {
     path: 'details',
     component: CakeDetailsComponent

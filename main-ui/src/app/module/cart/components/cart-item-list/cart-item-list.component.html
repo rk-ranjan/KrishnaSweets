@@ -4,7 +4,12 @@
 <div class="mobile-only">
   <p-confirmDialog [style]="{width: '95vw'}" [baseZIndex]="10000"></p-confirmDialog>
 </div>
-<div class="row"  style="background-color: white;">
+<div class="row" *ngIf="loading">
+  <div class="col-sm-12 text-center m-4 p-4">
+      <p-progressSpinner></p-progressSpinner>
+  </div>
+</div>
+<div class="row"  style="background-color: white;" *ngIf="!loading">
   <div class="col-sm-12">
     <hr>
     <div class="d-flex">

@@ -13,7 +13,7 @@ import { CakeDetails } from './cake-details';
 export class ShowCakesService {
  
   public headers: HttpHeaders;
-  public getAllCakesUrl: string = "http://localhost:8080/rest-api/cakes"
+  public getAllCakesUrl: string = "http://predecode.com:8080/rest-api/cakes"
   constructor(
     private https: HttpService
   ) { 

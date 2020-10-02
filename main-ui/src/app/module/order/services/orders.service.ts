@@ -16,8 +16,8 @@ export class OrdersService {
   constructor(
     private http: HttpService
   ) { 
-    this.listOrderUrl = '/rest-api/orders',
-    this.deleteOderUrl = '/rest-api/orders',
+    this.listOrderUrl = 'http://predecode.com:8080/rest-api/orders',
+    this.deleteOderUrl = 'http://predecode.com:8080/rest-api/orders',
     this.headers = new HttpHeaders();
     this.headers.set('Content-Type', 'application/json');
   }
@@ -46,5 +46,13 @@ export class OrdersService {
         return res;
       })
     );
+  }
+
+  public updateOrder = (order: Order): Observable<any> => {
+    return this.http.put<Order>(this.listOrderUrl, order, this.headers).pipe(
+      map((res: any) => {
+         return res;
+      })
+    )
   }
 }
