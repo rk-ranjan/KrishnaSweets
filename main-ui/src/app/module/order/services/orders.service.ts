@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/services/http.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http'; 
+import { HttpHeaders } from '@angular/common/http'; 
 import { Order } from 'src/app/core/model/order';
-import { PlaceOrder } from 'src/app/core/model/place-order';
+import * as global from 'src/app/global';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class OrdersService {
   constructor(
     private http: HttpService
   ) { 
-    this.listOrderUrl = '/rest-api/orders',
-    this.deleteOderUrl = '/rest-api/orders',
+    this.listOrderUrl = global.url + 'rest-api/orders',
+    this.deleteOderUrl = global.url + 'rest-api/orders',
     this.headers = new HttpHeaders();
     this.headers.set('Content-Type', 'application/json');
   }

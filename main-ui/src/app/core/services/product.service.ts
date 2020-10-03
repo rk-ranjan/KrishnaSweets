@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Product } from '../model/product';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { PlaceOrder } from '../model/place-order';
+import * as global from 'src/app/global';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class ProductService {
   constructor(
     private http: HttpClient
   ) { 
-    this.listOrderUrl = '/rest-api/product',
-    this.orderUrl = '/rest-api/saveOrder';
+    this.listOrderUrl = global.url + 'rest-api/product',
+    this.orderUrl = global.url + 'rest-api/saveOrder';
     this.headers = new HttpHeaders();
     this.headers.set('Content-Type', 'application/json');
   }

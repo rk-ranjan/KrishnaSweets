@@ -5,13 +5,14 @@ import { AddCake } from '../models/add-cake';
 import { map } from 'rxjs/operators';
 import { AddImages } from '../models/add-images';
 import { HttpService } from 'src/app/core/services/http.service';
+import * as global from 'src/app/global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CakesService {
-  public baseUrl: string = 'http://localhost:8080';
-  public addCakeDetailsUrl: string = '/rest-api/cakes';
+  public baseUrl: string = global.url;
+  public addCakeDetailsUrl: string = 'rest-api/cakes';
   public headers: HttpHeaders;
   constructor(
     private http: HttpService
