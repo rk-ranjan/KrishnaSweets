@@ -13,11 +13,12 @@
          <button id="clear" (click)="search = !search">&#10005;</button>
     </div>
     <div class="icon-margin right-items" *ngIf="!search" (click)="menu.toggle($event)" >
-        <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="25px"/>
+        <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="23px"/>
+        <!-- <span>{{name}}</span> -->
     </div>
     <div class="right-items-cart" *ngIf="!search" routerLink="/cart">
             <div class="notification">
-              <img src="https://static.thenounproject.com/png/62821-200.png" width="32px"/>
+              <img src="https://static.thenounproject.com/png/62821-200.png" width="28px"/>
             </div>
             <div class="badge">
               {{cartCount}}
@@ -31,17 +32,22 @@
  <p-sidebar [(visible)]="display" [autoZIndex]="false" [baseZIndex]="999" class="side-panel-full" [style]="{background:'#f5f5f5', margin: '0px',padding: '0px',overflow: 'auto'}" [blockScroll]="true">
     <div class="user-details d-flex pl-3 pt-2">
       <div class="user-img">
-        <img class="mr-3" src="https://media-exp1.licdn.com/dms/image/C5103AQFnFvaM4oC2Yg/profile-displayphoto-shrink_400_400/0?e=1602115200&v=beta&t=Hs6k3xmeGX7c5TitZ63P4GSbdaeKWaPM-DeMqwATaZg" width="55px"/>
+        <img class="mr-3" src="../../../../assets/images/user-icon.png" width="55px"/>
       </div>
       <div class="d-flex flex-column">
-        <p class="pb-0 mb-1">Ravi Kumar Ranjan</p>
-        <p class="">LogOut/Login</p>
+        <p class="pb-0 mb-1" *ngIf="userName">Welcome {{name}}</p>
+        <p class="" *ngIf="userName" (click)="logout()">logout</p>
+        <p class="pb-0 mb-1" *ngIf="!userName">Guest User</p>
+        <p class="" (click)="login()" *ngIf="!userName">login</p>
       </div>
     </div>
     <hr class="hr-default">
-    <div class="d-flex">
-       <div class="items-list flex-fill">
-        <p-menu [model]="items2" [style]="{margin: '0px', width: '100%'}"></p-menu>
+    <div class="m-0 p-0">
+      <h5 class="p-2" routerLink="/cakes" (click)="display = false">Cakes</h5>
+      <hr>
+       <div *ngFor="let link of menuLink">
+         <a (click)="navigateToLink(link.path)" class="pl-4"><span class="icon"></span> {{link.name}}</a>
+         <hr>
        </div>
     </div>
 </p-sidebar>

@@ -15,8 +15,8 @@ export class SettingsService {
   constructor(
     private http: HttpClient
   ) { 
-    this.listUserUrl = '/rest-api/user',
-    this.updateUserUrl = '/rest-api/user/update',
+    this.listUserUrl = 'http://predecode.com:8080/rest-api/user',
+    this.updateUserUrl = 'http://predecode.com:8080/rest-api/user/update',
     this.headers = new HttpHeaders();
     this.headers.set('Content-Type', 'application/json');
   }

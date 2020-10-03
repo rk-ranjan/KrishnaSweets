@@ -9,6 +9,7 @@ import { CheckoutFooterComponent } from './components/checkout-footer/checkout-f
 import { MatCheckboxModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [CartItemListComponent, CartItemComponent, SubTotalComponent, CheckoutFooterComponent],
@@ -17,7 +18,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CartRoutingModule,
     MatCheckboxModule,
     MatButtonModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ProgressSpinnerModule
   ]
 })
 export class CartModule { }

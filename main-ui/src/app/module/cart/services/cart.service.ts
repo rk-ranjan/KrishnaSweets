@@ -38,7 +38,7 @@ export class CartService {
   }
 
   public removeItemFromCart = (id: string): Observable<any> => {
-    return this.http.delete<Cart>(this.cartUrl+"?_id="+id).pipe(
+    return this.http.delete<any>(this.cartUrl+"?_id="+id).pipe(
       map((res: any) => {
         return res;       
       })

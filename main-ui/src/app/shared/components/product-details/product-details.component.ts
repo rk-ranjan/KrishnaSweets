@@ -63,6 +63,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     Math.round(this.FinalPrice);
     Math.round(this.fixedPrice);   
   }
+  
   public buyProduct = () => {   
       this.addToCart();  
   }
@@ -108,7 +109,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
           }, 1000);          
       });
     } else {
-       this.router.navigate(['/login']);
+       this.router.navigate(['/login', {redirectUrl: this.router.url}]);
     }
   }
 }

@@ -13,6 +13,7 @@ import { FilterByPriceComponent } from './components/filter-by-price/filter-by-p
 import { CakeFlavorsComponent } from './components/cake-flavors/cake-flavors.component';
 import { CakeDetailsComponent } from './components/cake-details/cake-details.component';
 import { CakeListComponent } from './components/cake-list/cake-list.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CakeListComponent } from './components/cake-list/cake-list.component';
     CakesRoutingModule,
     SharedModule,
     MatCommonModule,
-    MatButtonModule
+    MatButtonModule,
+    ProgressSpinnerModule
   ]
 })
 export class CakesModule { }

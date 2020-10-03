@@ -1,6 +1,6 @@
 <div class="row d-flex m-0">
     <div class="col-sm-3">
-        <img src="https://assets.winni.in/c_limit,dpr_2,fl_progressive,q_80,w_400/30861_amazing-black-forest-cake.webp" class="card-img img-thumbnail" alt="...">
+       <img [src]="'data:image/jpg;base64,'+cart.img" class="card-img img-thumbnail" alt="...">
     </div>
     <div class="col-sm-9">
         <div class="card-body" style="padding: 0%;">
@@ -10,7 +10,7 @@
                     <div class="quantity pr-1" (click)="deleteCartItem(cart.cartId)"><span class="fa fa-trash" style="color:red;font-size: 18px;"></span></div>
                  </div>
                  <div class="item-detail d-flex pt-2 p-1">
-                      <div class="price mr-auto">Price: {{cart.price}}</div>
+                      <div class="price mr-auto">Price: {{cart.price | number}}</div>
                  </div>
                  <div class="item-edit d-flex pt-1 p-1">
                        <div class="weight mr-auto">

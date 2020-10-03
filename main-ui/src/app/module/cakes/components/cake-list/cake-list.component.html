@@ -1,8 +1,13 @@
-<div class="row" style="background-color:white;">
+<div class="row" *ngIf="!loading">
     <div class="col-sm-12 p-2 text-center">
-        <h6><strong>Birthday Cakes</strong></h6>
+        <h6><strong>Cakes</strong></h6>
     </div>
     <div class="col-sm-3 m-0 p-1" *ngFor="let cake of cakeList">      
         <app-card-item [cake]="cake"></app-card-item>
+    </div>
+</div>
+<div class="row" style="background-color:white;" *ngIf="loading">
+    <div class="col-sm-12 text-center m-4 p-4">
+        <p-progressSpinner></p-progressSpinner>
     </div>
 </div>

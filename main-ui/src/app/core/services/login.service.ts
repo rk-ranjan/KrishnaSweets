@@ -19,28 +19,31 @@ export class LoginService {
   public userName: string;
   public userRole: string;
   public isLogin: boolean;
-
+  
   constructor(
-    private http: HttpService
+    private http: HttpClient
   ) { 
     this.checkUserUrl = global.url + 'rest-api/auth/signin',
     this.signupUrl = global.url + 'rest-api/auth/signup',
     this.headers = new HttpHeaders();
-    this.headers.set('Content-Type', 'application/json');
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('Access-Control-Allow-Origin', 'http://predecode.com:4200');
+    this.headers.append('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    this.headers.append('Access-Control-Allow-Headers',  'Origin, Content-Type, X-Auth-Token');
   }
 
-  public checkLogin = (user: LoginUser) : Observable<User> => {
-    return this.http.post<LoginUser>(this.checkUserUrl, user, this.headers).pipe(
-      map((response:User) =>{
+  public checkLogin = (body: LoginUser) : Observable<User> => {
+    return this.http.post<any>(this.checkUserUrl, body, { headers: this.headers }).pipe(
+      map((response:any) =>{
         return response;
       })
     )
   }
 
   public registerUser = (body: RegUser) => {
-     return this.http.post<any>(this.signupUrl, body, this.headers).pipe(
+     return this.http.post<any>(this.signupUrl, body).pipe(
        map((res: any) => {
-          console.log(res);
+          return res;
      }));
   }
 

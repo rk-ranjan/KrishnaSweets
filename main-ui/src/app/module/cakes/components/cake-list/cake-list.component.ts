@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShowCakesService } from '../../services/show-cakes.service';
+import { ListCake } from '../../models/list-cake';
 
 @Component({
   selector: 'app-cake-list',
@@ -9,20 +10,35 @@ import { ShowCakesService } from '../../services/show-cakes.service';
   styleUrls: ['./cake-list.component.scss']
 })
 export class CakeListComponent implements OnInit {
-  public cakeList: any[] = [] ;
-  constructor(
-    private route: ActivatedRoute,
-    private cakeService: ShowCakesService
-  ) { }
+  public cakeList: ListCake[] = [] ;
+  public filterCakiList: ListCake[] = [];
+  public loading: boolean = true;
   public filterBy: string;
+  constructor(
+    private activatedRout: ActivatedRoute,
+    private cakeService: ShowCakesService
+  ) {
+    this.activatedRout.queryParams.forEach(params => {
+      this.filterBy = params['type'];
+      this.filterCakes();
+  });
+   }
   ngOnInit() {
-    this.filterBy = this.route.snapshot.queryParamMap.get('name');
-    this.cakeService.getAllCakes().subscribe(
-      (response: any) => {
-        this.cakeList = response;       
-      }
-    )
-
+    this.initCakeData();
   }
-
+  public initCakeData = () => {
+    this.cakeService.getAllCakes().subscribe(
+      (response: ListCake[]) => {
+        this.loading = false;
+        this.filterCakiList = response;
+        this.filterCakes(); 
+    });
+  }
+  public filterCakes = () => {
+    if (this.filterBy !== undefined) {
+      this.cakeList = this.filterCakiList.filter((cake) => cake.flavour.toLocaleLowerCase().indexOf(this.filterBy.toLocaleLowerCase())  > -1);
+    } else {
+      this.cakeList = this.filterCakiList;
+    }  
+  }
 }

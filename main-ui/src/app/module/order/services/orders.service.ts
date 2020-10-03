@@ -47,4 +47,12 @@ export class OrdersService {
       })
     );
   }
+
+  public updateOrder = (order: Order): Observable<any> => {
+    return this.http.put<Order>(this.listOrderUrl, order, this.headers).pipe(
+      map((res: any) => {
+         return res;
+      })
+    )
+  }
 }

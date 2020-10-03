@@ -27,8 +27,17 @@ export class AdminOrdersViewComponent implements OnInit {
       (response: Order[]) => {
         this.products1 = response;
         this.products2 = response;
+        console.log(response);
     })
     this.statuses = [{label: 'In Stock', value: 'INSTOCK'},{label: 'Low Stock', value: 'LOWSTOCK'},{label: 'Out of Stock', value: 'OUTOFSTOCK'}]
+  }
+
+  public onChangeStatus = (event: any, order: Order) => {
+    order.status = event;
+    this.orderService.updateOrder(order).subscribe(
+      (res: any) => {
+       console.log(res);
+    });
   }
 
 }

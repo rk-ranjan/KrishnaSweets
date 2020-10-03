@@ -3,6 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { Cart } from '../models/cart';
 import { Router } from '@angular/router';
 import { ConfirmationService, Message } from 'primeng/api';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-cart-item-list',
@@ -16,6 +17,7 @@ export class CartItemListComponent implements OnInit {
   public msgs: Message[] = [];
   public userName: string;
   public position: string;
+  public loading: boolean = true;
   constructor(
     private cartService: CartService,
     private router: Router,
@@ -24,15 +26,19 @@ export class CartItemListComponent implements OnInit {
 
   ngOnInit() {
     this.userName = localStorage.getItem('email');
+    this.updateCartItems();
+  }
+
+  public updateCartItems = () => {
     this.cartService.getCartItems(this.userName).subscribe(
       (res: Cart[]) => {
+        this.loading = false;
         this.cartItems = res;
         res.forEach((cart: Cart) => {
           this.totalCost = this.totalCost + cart.price;
         })
       })
   }
-
   public checkOutOrder = () => {
      this.router.navigate(["/order"]);
   }
@@ -41,20 +47,21 @@ export class CartItemListComponent implements OnInit {
      this.router.navigate(["/order"]);
   }
 
-  public deleteItem = (event: any) => {  
-    console.log(event);
+  public deleteItem = (event: any) => { 
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
+      message: 'Are you sure that you want to delete?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
           this.cartService.removeItemFromCart(event).subscribe(
             (res: any) => {
-              window.location.reload();             
+              console.log(res);
+              if (res) {
+                 window.location.reload();
+              }             
+          }, (err:Error) => {
+            console.log(err);
           });
-      },
-      reject: () => {
-          this.router.navigate(["/cart"]);
       }
     });    
   }

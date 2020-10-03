@@ -4,4 +4,5 @@ export class ListCake {
     public imageUlr: string;
     public discount: number;
     public 'unit_price': string;
+    public flavour: string;
 }
