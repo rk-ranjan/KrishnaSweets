@@ -1,0 +1,100 @@
+<p-toast></p-toast>
+<div class="row p-4" *ngIf="firstStep">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8 card p-4">
+            <h4>Step: 1(Enter product items details)</h4>
+            <form [formGroup]="productForm" (ngSubmit)="submitProduct()" class="form-flat" autocomplete="off">
+                <div class="form-group">
+                    <label for="productId">Product Type</label>
+                    <select name="productId" id="productId" class="form-control" formControlName="productId">
+                        <option selected value="">Choose Product Type</option>
+                        <option value="1">Cake type</option>
+                        <option value="2">Sweets Type</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cake-name">Product Item Name</label>
+                    <input type="text" #cakeName required id="cake-name" formControlName="cakeName"
+                        placeholder="Full cake name" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="unit_price">Unit Price(Indian)</label>
+                            <input type="number" #cakePrice required id="unit_price" formControlName="unitPrice"
+                                placeholder="Cake unit price" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="egglessStatus">Eggless ?</label>
+                            <mat-checkbox class="form-control" id="egglessStatus" formControlName="eggless">Eggless</mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="cake-flavour">Cakes Flavour</label>
+                            <input type="text" #cakeFlavour required id="cake-flavour" formControlName="flavour"
+                                placeholder="Cake Flavour" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="discount">Percentage Discounts</label>
+                            <input type="number" #cakeName required id="discount" formControlName="discount"
+                                placeholder="Discount on Cake" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="cake-bread">Bread Used</label>
+                            <input type="text" #cakeName required id="cake-bread" formControlName="breadUsed"
+                                placeholder="Bread used for cake" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="cake-creame">Creame Used</label>
+                            <input type="text" #cakeName required id="cake-creame" formControlName="breadCreame"
+                                placeholder="Creame used for cake" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cake-desc">Cake Descriptions</label>
+                     <textarea row="2" class="form-control" id="cake-desc" formControlName="desc">
+
+                     </textarea>
+                </div>
+                <div class="d-flex">
+                    <button type="reset" class="btn btn-warning mr-auto">&nbsp;Cancel&nbsp;</button>
+                    <button type="submit" class="btn btn-success" [disabled]="productForm.invalid">&nbsp; Next &nbsp;</button>
+                </div>
+            </form>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+</div>
+<div class="row p-4">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8 card p-4">
+        <h5>Step: 2(Upload Images for this productItem)</h5>
+        <p-fileUpload  customUpload="true" (uploadHandler)="onUpload($event)"
+            multiple="multiple" accept="image/*" maxFileSize="1000000" *ngIf="!firstStep">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+    </div>
+</div>

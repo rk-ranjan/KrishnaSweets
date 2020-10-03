@@ -1,4 +1,4 @@
-<div class="card m-0 product-grid6" style="border-radius: 0%;">
+<div class="card m-0 product-grid6" style="border-radius: 0%;" routerLink="/cakes/details" [queryParams]="{ cakeId: cake.id }">
     <div class="product-image6">
         <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUlr" alt="..." class="card-img">
         <div class="overlay-img">
@@ -15,7 +15,7 @@
                 <img src="../../../../assets/images/img-rs.png" width="22px" />
                 <span class="card-title">{{cake['unit_price']}} </span>
              </div>
-             <div class="price cart-icon flex-fill" routerLink="/cakes/details" [queryParams]="{ cakeId: cake.id }">
+             <div class="price cart-icon flex-fill">
                <p>View</p>
              </div>
              <div class="cart-icon flex-fill">

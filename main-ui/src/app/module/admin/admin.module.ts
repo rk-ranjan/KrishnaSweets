@@ -17,9 +17,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AdminOrdersViewComponent } from './components/admin-orders-view/admin-orders-view.component';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ManageComponent, AdminHeaderComponent, AdminComponent, ManageCakesComponent, AdminOrdersViewComponent],
+  declarations: [DashboardComponent, ManageComponent, AdminHeaderComponent, AdminComponent, ManageCakesComponent, AdminOrdersViewComponent, AddProductComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
