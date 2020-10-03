@@ -16,7 +16,7 @@ export class OrdersService {
   constructor(
     private http: HttpService
   ) { 
-    this.listOrderUrl = 'http://predecode.com:8080/rest-api/orders',
+    this.listOrderUrl = 'http://localhost:8080/rest-api/orders',
     this.deleteOderUrl = 'http://predecode.com:8080/rest-api/orders',
     this.headers = new HttpHeaders();
     this.headers.set('Content-Type', 'application/json');
@@ -27,6 +27,17 @@ export class OrdersService {
   */
   public getAllOrders = (): Observable<Order[]> => {
     return this.http.get<Order[]>(this.listOrderUrl).pipe(
+      map((response: Order[]) => {
+        return response;
+      }));
+  }
+
+  /**
+   * To get the List of all Orders.
+   * @memberof OrdersService
+  */
+  public getCustomerOrder = (body: string): Observable<Order[]> => {
+    return this.http.get<Order[]>(this.listOrderUrl+'/users?email='+body).pipe(
       map((response: Order[]) => {
         return response;
       }));

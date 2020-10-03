@@ -1,8 +1,13 @@
 <div class="row">
     <div class="desktop-view-only">
-        <app-product-details [detail]="cakeDetail"></app-product-details>
+        <app-product-details [detail]="cakeDetail" *ngIf="cakeDetail"></app-product-details>
     </div>
     <div class="mobile-view-only" style="background-color: white;">
-        <app-product-details-small [detail]="cakeDetail"></app-product-details-small>
+        <app-product-details-small [detail]="cakeDetail" *ngIf="cakeDetail"></app-product-details-small>
+    </div>
+</div>
+<div class="row" style="background-color:white;" *ngIf="!cakeDetail">
+    <div class="col-sm-12 text-center m-4 p-4">
+        <p-progressSpinner></p-progressSpinner>
     </div>
 </div>
