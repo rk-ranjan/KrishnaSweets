@@ -3,9 +3,9 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { param } from 'jquery';
 import { ListCake } from '../models/list-cake';
 import { CakeDetails } from './cake-details';
+import * as global from 'src/app/global';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ import { CakeDetails } from './cake-details';
 export class ShowCakesService {
  
   public headers: HttpHeaders;
-  public getAllCakesUrl: string = "http://predecode.com:8080/rest-api/cakes"
+  public getAllCakesUrl: string = global.url + "rest-api/cakes"
   constructor(
     private https: HttpService
   ) { 

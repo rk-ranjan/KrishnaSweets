@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { HttpService } from './http.service';
 import { RegUser } from 'src/app/module/login/models/reg-user';
 import { User } from '../model/user';
+import * as global from 'src/app/global';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class LoginService {
   constructor(
     private http: HttpClient
   ) { 
-    this.checkUserUrl = 'http://predecode.com:8080/rest-api/auth/signin',
-    this.signupUrl = 'http://predecode.com:8080/rest-api/auth/signup',
+    this.checkUserUrl = global.url + 'rest-api/auth/signin',
+    this.signupUrl = global.url + 'rest-api/auth/signup',
     this.headers = new HttpHeaders();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Access-Control-Allow-Origin', 'http://predecode.com:4200');

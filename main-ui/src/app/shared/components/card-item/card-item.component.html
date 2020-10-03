@@ -1,4 +1,4 @@
-<div class="card m-0 product-grid6" style="border-radius: 0%;">
+<div class="card m-0 product-grid6" style="border-radius: 0%;" routerLink="/cakes/details" [queryParams]="{ cakeId: cake.id }">
     <div class="product-image6">
         <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUlr" alt="..." class="card-img">
         <div class="overlay-img">

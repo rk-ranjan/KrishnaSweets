@@ -4,6 +4,7 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { Cart } from '../components/models/cart';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import * as global from 'src/app/global';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CartService {
   constructor(
     private http: HttpService
   ) {
-    this.cartUrl = "http://predecode.com:8080/rest-api/cart";
+    this.cartUrl = global.url + "rest-api/cart";
     this.header =  new HttpHeaders();
     this.header.append('responseType', 'json');
    }
