@@ -83,10 +83,9 @@ i {
 /* Social Icons */
 
 .social-icons{
-    
     margin: 0;
     padding: 0;
-    font-size : 10px;
+    font-size : 20px;
 }
 
 .social {
@@ -114,4 +113,12 @@ i {
  
  .footer-four > img {
      width:100%;
+ }
+.footer-center li {
+   list-style-type: none;
+   text-align: left;
+   padding: 10px;
+}
+.footer-center li a{
+    padding: 15px;
  }

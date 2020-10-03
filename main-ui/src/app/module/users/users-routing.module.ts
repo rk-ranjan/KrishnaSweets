@@ -12,8 +12,16 @@ const routes: Routes = [
     data: { title: 'User'},
     children: [
       {
+        path: 'profiles',
+        redirectTo: ''
+      },
+      {
        path: '',
-       component: MyOrdersComponent
+       component: UserProfileComponent
+      },
+      {
+        path: 'orders',
+        component: MyOrdersComponent
       }
     ]
   }
