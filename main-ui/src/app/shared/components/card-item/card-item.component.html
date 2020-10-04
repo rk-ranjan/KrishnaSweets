@@ -1,19 +1,19 @@
-<div class="card m-0 product-grid6" style="border-radius: 0%;" routerLink="/cakes/details" [queryParams]="{ cakeId: cake.id }">
+<div class="card m-0 product-grid6" style="border-radius: 0%;" routerLink="/cakes/details" [queryParams]="{ cakeId: cake._id }">
     <div class="product-image6">
-        <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUlr" alt="..." class="card-img">
+        <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUrl" alt="..." class="card-img">
         <div class="overlay-img">
-            <p class="discount-text">10 % Off</p>
+            <p class="discount-text">{{cake.discountPercentage}} % Off</p>
         </div>
     </div>
     <div class="card-body p-2">
         <div class="product-content">
-            <div class="card-title">{{cake['item_name'] | lowercase}}</div>
+            <div class="card-title">{{cake.itemName | lowercase}}</div>
             <p-rating [ngModel]="val3" [cancel]="false"></p-rating>
         </div>
         <div class="action-links d-flex">
              <div class="price flex-fill" style="padding: 5px;">
                 <img src="../../../../assets/images/img-rs.png" width="22px" />
-                <span class="card-title">{{cake['unit_price']}} </span>
+                <span class="card-title">{{cake.unitPrice}} </span>
              </div>
              <div class="price cart-icon flex-fill">
                <p>View</p>

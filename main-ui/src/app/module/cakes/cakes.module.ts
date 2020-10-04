@@ -33,6 +33,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     MatCommonModule,
     MatButtonModule,
     ProgressSpinnerModule
+  ],
+  exports : [
+    
   ]
 })
 export class CakesModule { }

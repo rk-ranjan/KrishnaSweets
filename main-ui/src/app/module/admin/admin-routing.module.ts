@@ -30,7 +30,7 @@ const routes: Routes = [
         component: AdminOrdersViewComponent
       },
       {
-        path: 'add-product',
+        path: 'cakes/add-product',
         component: AddProductComponent
       }
     ]

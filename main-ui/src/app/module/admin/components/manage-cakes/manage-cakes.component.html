@@ -1,2 +1,106 @@
-<add-product></add-product>
+<div>
+    <button routerLink="add-product">Add New Product</button>
+</div>
+<div class="row" *ngIf="!loading">
+    <div class="col-sm-12 p-2 text-center">
+        <h6><strong>Products</strong></h6>
+    </div>
+    
+</div>
+<div class="row" style="background-color:white;" *ngIf="loading">
+    <div class="col-sm-12 text-center m-4 p-4">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
 
+
+<p-toast></p-toast>
+
+<div class="card">
+    <p-table [value]="product2" dataKey="_id" editMode="row">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Product Image</th>
+                <th>Item Name</th>
+                <th>Flavour</th>
+                <th>Unit Price</th>
+                <th>Discount</th>
+                <th style="width:8rem"></th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="product">
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <button (click)="deleteImage(product)">Delete</button>
+                            <button (click)="addImage(product)">Add</button>
+                            <p-fileUpload *ngIf="imageUpload" customUpload="true" (uploadHandler)="onUpload($event,product)"
+                                multiple="multiple" accept="image/*" maxFileSize="1000000">
+                                <ng-template pTemplate="content">
+                                    <ul *ngIf="uploadedFiles.length">
+                                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                    </ul>
+                                </ng-template>
+                            </p-fileUpload>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <img [src]="'data:image/jpg;base64,'+product.imageUrl" [alt]="product.itemName" width="100" class="p-shadow-4" />
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.itemName" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.itemName}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.flavour">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.flavour}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" [(ngModel)]="product.unitPrice">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.unitPrice}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" [(ngModel)]="product.discountPercentage">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.discountPercentage}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align:center">
+                    <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

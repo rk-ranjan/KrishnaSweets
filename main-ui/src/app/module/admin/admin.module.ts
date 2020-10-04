@@ -18,6 +18,7 @@ import { AdminOrdersViewComponent } from './components/admin-orders-view/admin-o
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [DashboardComponent, ManageComponent, AdminHeaderComponent, AdminComponent, ManageCakesComponent, AdminOrdersViewComponent, AddProductComponent],
@@ -35,7 +36,8 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     TabViewModule,
     HttpClientModule,
     TableModule,
-    DropdownModule
+    DropdownModule,
+    ProgressSpinnerModule
   ]
 })
 export class AdminModule { }

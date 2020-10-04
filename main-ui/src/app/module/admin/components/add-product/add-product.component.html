@@ -82,14 +82,14 @@
 
     </div>
 </div>
-<div class="row p-4">
+<div class="row p-4" *ngIf="!firstStep">
     <div class="col-sm-2">
 
     </div>
     <div class="col-sm-8 card p-4">
         <h5>Step: 2(Upload Images for this productItem)</h5>
         <p-fileUpload  customUpload="true" (uploadHandler)="onUpload($event)"
-            multiple="multiple" accept="image/*" maxFileSize="1000000" *ngIf="!firstStep">
+            multiple="multiple" accept="image/*" maxFileSize="1000000">
             <ng-template pTemplate="content">
                 <ul *ngIf="uploadedFiles.length">
                     <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>

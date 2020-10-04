@@ -34,4 +34,26 @@ export class ShowCakesService {
         return res;
     }))
   }
+
+  public deleteImageById = (id: string): Observable<ListCake> => {
+    return this.https.delete<ListCake>(this.getAllCakesUrl+"/deleteImageById?id="+id).pipe(
+      map((res: ListCake) => {
+        return res;
+    }))
+  }
+
+  public updateProduct = (product: ListCake): Observable<ListCake> => {
+    return this.https.put<ListCake>(this.getAllCakesUrl+"/updateProduct",product).pipe(
+      map((res: ListCake) => {
+        return res;
+    }))
+  }
+
+  public deleteProductById = (id: string): Observable<ListCake> => {
+    return this.https.delete<ListCake>(this.getAllCakesUrl+"/deleteProductById?id="+id).pipe(
+      map((res: ListCake) => {
+        return res;
+    }))
+  }
+
 }

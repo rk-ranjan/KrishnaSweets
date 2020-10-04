@@ -38,6 +38,7 @@ export class AddProductComponent implements OnInit {
   }
   public ngOnInit() {
   }
+  
   public onUpload = (event: any) => {
       this.messageService.add({severity:'info', summary: 'Start', detail: 'Upload started'});
       for(let file of event.files) {
