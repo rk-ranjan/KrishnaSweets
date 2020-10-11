@@ -5,8 +5,20 @@
     bottom: 0;
     width: 100%;
 }
+.mobile-view-only {
+    display: none;
+ }
+.desktop-view-only {
+   display: block;
+}
 @media screen and (max-width: 760px) {
     .mobile-only-footer {
         display: block;
+    }
+    .mobile-view-only {
+        display: block;
+     }
+    .desktop-view-only {
+       display: none;
     }
 }

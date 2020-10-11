@@ -23,10 +23,11 @@ export class ManageCakesComponent implements OnInit {
     public filterCakeList: ListCake[] = [];
     public loading: boolean = true;
     public filterBy: string;
+    public cols: any[];
     clonedProducts: { [s: string]: ListCake; } = {};
     public uploadedFiles: any[] = [];
     imageUpload = false;
-
+    public addProduct: string = 'ADD PRODUCT';
     constructor(
         private activatedRout: ActivatedRoute,
         private showCakesService: ShowCakesService,
@@ -40,6 +41,13 @@ export class ManageCakesComponent implements OnInit {
     }
     ngOnInit() {
         this.initCakeData();
+        this.cols = [
+            { field: 'imageUrl', header: 'Product' },
+            { field: 'itemName', header: 'Name' },
+            { field: 'flavour', header: 'Flavour' },
+            { field: 'unitPrice', header: 'Unit Price' },
+            { field: 'discountPercentage', header: 'Discount'}
+        ];
     }
     public initCakeData = () => {
         this.showCakesService.getAllCakes().subscribe(
@@ -55,7 +63,6 @@ export class ManageCakesComponent implements OnInit {
         } else {
         this.product2 = this.filterCakeList;
         }  
-        console.log(this.product2);
     }
 
     onRowEditInit(product: ListCake) {

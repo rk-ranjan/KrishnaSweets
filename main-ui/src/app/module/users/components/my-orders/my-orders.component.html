@@ -1,1 +1,78 @@
-Order works
+<div class="row mobile-view-only" style="background-color: white;">
+      <div class="col-sm-12 p-0">
+        <hr class="full-hr pt-0 mt-0">
+        <div class="cart-items" *ngFor="let cart of products" >
+            <div class="row d-flex m-0">
+                <div class="col-sm-3">
+                   <img [src]="'data:image/jpg;base64,'+cart.itemImage" class="card-img img-thumbnail" alt="...">
+                </div>
+                <div class="col-sm-8 mobile-view-only">
+                    <div class="card-body" style="padding: 0%;">
+                        <div class="d-flex flex-column">
+                             <div class="item-title d-flex">
+                                <div class="price mr-auto">Black scotch cake({{cart.order.price}})</div>
+                             </div>
+                             <div class="item-detail d-flex pt-2 p-1">
+                                    <div class="price mr-auto">Order date</div>
+                                    <div class="price mr-auto">{{cart.order.orderDate}}</div>
+                             </div>
+                             <div class="item-edit d-flex pt-1 p-1">
+                                   <div class="weight mr-auto">
+                                       Weight: {{cart.order.weight}}
+                                   </div>
+                                   <div class="mobile-eggless mobile-only">
+                                      <mat-checkbox [checked]= "true" [disabled] = "true">Eggless</mat-checkbox>
+                                   </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1 mt-4 pt-2 text-center">
+                    <span class="fa fa-chevron-right"></span>
+                </div>
+            </div>
+            <hr class="full-hr">
+        </div>
+      </div>
+</div>
+<hr class="full-hr pt-0 mt-0 pb-0 mb-0">
+<div class="row desktop-view-only pt-0 mt-0" style="background-color: white;">
+    <h4 class="desktop-view-only p-2 text-center"><strong>Your orders</strong></h4>
+    <div class="col-sm-8 offset-sm-2"  *ngFor="let cart of products">
+        <div class="card mb-2">
+            <div class="header-view">
+                <div class="d-flex bg-secondary">
+                    <div class="p-2 flex-fill bg-info">
+                        <p class="text-normal">ORDER DATE: {{cart.order.orderDate | date:'shortDate'}}</p>
+                    </div>
+                    <div class="p-2 flex-fill bg-primary">
+                        <p class="text-normal">SHIPPED DATE: {{ cart.order.shipName}}</p>
+                    </div>
+                    <div class="p-2 flex-fill bg-warning">
+                        <p class="text-normal">SHIP ADDRESS: </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="p-0 flex-fill">
+                        <img [src]="'data:image/jpg;base64,'+cart.itemImage" width="200px" class="img-thumbnail" alt="...">
+                    </div>
+                    <div class="p-2 ml-auto flex-fill">
+                        <p class="text-bold">Price: {{cart.order.price}} </p>
+                        <p class="text-bold"><mat-checkbox [checked]= "true" [disabled] = "true">Eggless</mat-checkbox></p>
+                        <p class="text-bold">Price: {{cart.order.price}} </p>
+                        <p class="text-bold">Weight: {{cart.order.weight}}</p>
+                    </div>
+                    <div class="p-2 ml-auto flex-fill">
+                        <p class="text-bold">CustomerID: </p>
+                        <p class="text-bold">ShipVia: </p>
+                        <p class="text-bold">Freight: </p>
+                        <button class="btn btn-warning" (click)="cancelOrder(order)">Cancel Order</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="mb-0 pb-0">
+        </div>
+    </div>
+</div>

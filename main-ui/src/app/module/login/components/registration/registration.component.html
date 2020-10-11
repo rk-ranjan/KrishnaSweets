@@ -5,7 +5,8 @@
 
     </div>
     <div class="col-sm-8 card p-4">
-            <h4>Registrations Form</h4>
+            <h4>Registrations</h4>
+            <hr>
             <form [formGroup]="regForm" (ngSubmit)="onSubmitRegistration(regForm.value)" class="form-flat" autocomplete="off">
                 <div class="form-group">
                     <label for="full-name">Full Name</label>
@@ -45,9 +46,9 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="btn-group btn-block btn-group-lg">
-                            <button type="button" class="btn btn-warning" (click)="gotoLogin()">Sign In</button>
-                            <button type="submit" class="btn btn-success" [disabled]="regForm.invalid">Sign Up</button>
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-warning btn-pro flex-fill" (click)="gotoLogin()">Sign In</button>
+                            <button type="submit" class="btn btn-success btn-pro flex-fill" [disabled]="regForm.invalid">Sign Up</button>
                         </div>
                     </div>
                 </div>

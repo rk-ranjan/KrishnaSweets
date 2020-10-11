@@ -3,6 +3,7 @@ import { Order } from 'src/app/core/model/order';
 import { SelectItem, MessageService } from 'primeng/api';
 import { OrdersService } from 'src/app/module/order/services/orders.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-orders',
@@ -11,9 +12,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
   providers: [MessageService]
 })
 export class MyOrdersComponent implements OnInit {
-  products1: Order[];
-
-  products2: Order[];
+  products: Order[];
 
   statuses: SelectItem[];
   public email: string;
@@ -22,19 +21,17 @@ export class MyOrdersComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private orderService: OrdersService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private _sanitizer: DomSanitizer
   ) {
     this.email = localStorage.getItem("email");
   }
 
   ngOnInit() {
     this.orderService.getCustomerOrder(this.email).subscribe(
-      (response: Order[]) => {
-        console.log(response);
-        this.products1 = response;
-        this.products2 = response;
+      (response: any[]) => {
+        this.products = response;
     })
-    this.statuses = [{label: 'In Stock', value: 'INSTOCK'},{label: 'Low Stock', value: 'LOWSTOCK'},{label: 'Out of Stock', value: 'OUTOFSTOCK'}]
   }
 
 }

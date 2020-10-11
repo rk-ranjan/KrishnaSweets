@@ -58,7 +58,8 @@ export class ShippingDetailsComponent implements OnInit {
       (res: Cart[]) => {
         res.forEach(element => {
            this.order.itemId = element.itemId;
-           this.order.price = element.price
+           this.order.price = element.price;
+           this.order.weight = element.weight;
            this.createNewOrder();
            this.deleteFromCart(element.cartId);
         });

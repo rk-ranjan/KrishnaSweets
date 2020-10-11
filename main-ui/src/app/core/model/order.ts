@@ -6,6 +6,8 @@ export class Order {
     public itemId: string;
     
     public customerId: string;
+
+    public weight: number;
     
     public orderDate: string;
 

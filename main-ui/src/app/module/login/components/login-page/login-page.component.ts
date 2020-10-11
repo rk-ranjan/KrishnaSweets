@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   public redirectTo: string;
   constructor(
     public router: Router,
-    formBuilder: FormBuilder,
+    public formBuilder: FormBuilder,
     private loginService: LoginService,
     private localStorageService: LocalStorageService,
     private messageService: MessageService,

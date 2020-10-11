@@ -4,6 +4,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { SettingsComponent } from './components/settings/settings.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'orders',
         component: MyOrdersComponent
+      },
+      {
+        path: 'setting',
+        component: UserSettingsComponent
       }
     ]
   }

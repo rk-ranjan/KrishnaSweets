@@ -6,7 +6,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { SettingsComponent } from './components/settings/settings.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
@@ -16,9 +16,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
-  declarations: [UserProfileComponent, SettingsComponent, MyOrdersComponent, UserHomeComponent, UserHeaderComponent],
+  declarations: [UserProfileComponent, SettingsComponent, MyOrdersComponent, UserHomeComponent, UserHeaderComponent, UserSettingsComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -33,7 +36,11 @@ import { UserHeaderComponent } from './components/user-header/user-header.compon
     TabViewModule,
     HttpClientModule,
     TableModule,
-    DropdownModule
+    DropdownModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MessagesModule,
+    MessageModule
   ]
 })
 export class UsersModule { }

@@ -5,10 +5,12 @@
             <h5 class="m-3">Orders</h5>
             <table class="table table-hover table-responsive">
                 <tr>
+                    <th>Product</th>
                     <th>CustomerID</th>
                     <th>Mobile</th>
                     <th>Order Date</th>
                     <th>Price</th>
+                    <th>Unit</th>
                     <th>Delever ON</th>
                     <th>Delevered On</th>
                     <th>Delever to</th>
@@ -18,16 +20,18 @@
                     <th>Status</th>
                 </tr>
                 <tr *ngFor="let product of products1">
-                    <td> {{product.customerId}} </td>
-                    <td> {{product.mobile}} </td>
-                    <td> {{product.orderDate}} </td>
-                    <td> {{product.price}} </td>
-                    <td> {{product.deleverOn | date: 'dd/MM/yyyy'}} </td>
-                    <td> {{product.deleveredOn | date: 'dd/MM/yyyy'}} </td>
-                    <td> {{product.shipName}} </td>
-                    <td> {{product.shipAddressMain}} </td>
-                    <td> {{product.shipAddressOptional}} </td>
-                    <td> {{product.shipPostalCode}} </td>
+                    <td><img [src]="'data:image/jpg;base64,'+product.itemImage" width="60px"/></td>
+                    <td> {{product.order.customerId}} </td>
+                    <td> {{product.order.mobile}} </td>
+                    <td> {{product.order.orderDate}} </td>
+                    <td> {{product.order.price}} </td>
+                    <td> {{product.order.weight}}</td>
+                    <td> {{product.order.deleverOn | date: 'dd/MM/yyyy'}} </td>
+                    <td> {{product.order.deleveredOn | date: 'dd/MM/yyyy'}} </td>
+                    <td> {{product.order.shipName}} </td>
+                    <td> {{product.order.shipAddressMain}} </td>
+                    <td> {{product.order.shipAddressOptional}} </td>
+                    <td> {{product.order.shipPostalCode}} </td>
                     <td>
                         <select (change)="onChangeStatus($event.target.value, product)">
                             <option value="completed" [attr.selected]="product.status === 'completed' ? true : null">Completed</option>

@@ -1,11 +1,10 @@
-<div>
-    <button routerLink="add-product">Add New Product</button>
-</div>
 <div class="row" *ngIf="!loading">
-    <div class="col-sm-12 p-2 text-center">
-        <h6><strong>Products</strong></h6>
-    </div>
-    
+    <div class="col-sm-6 p-2 pl-3 text-left">
+        <h4><strong>Products</strong></h4>
+    </div> 
+    <div class="col-sm-6 p-2  pr-3 text-right">
+        <button routerLink="add-product" class="btn btn-pro btn-success">{{addProduct | uppercase}}</button>
+    </div> 
 </div>
 <div class="row" style="background-color:white;" *ngIf="loading">
     <div class="col-sm-12 text-center m-4 p-4">
@@ -17,18 +16,15 @@
 <p-toast></p-toast>
 
 <div class="card">
-    <p-table [value]="product2" dataKey="_id" editMode="row">
-        <ng-template pTemplate="header">
+    <p-table [columns]="cols" [value]="product2" dataKey="_id" editMode="row" styleClass="p-datatable-responsive-demo">
+        <ng-template pTemplate="header" let-columns>
             <tr>
-                <th>Product Image</th>
-                <th>Item Name</th>
-                <th>Flavour</th>
-                <th>Unit Price</th>
-                <th>Discount</th>
-                <th style="width:8rem"></th>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th>Edit</th>
             </tr>
         </ng-template>
-
         <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
             <tr [pEditableRow]="product">
 

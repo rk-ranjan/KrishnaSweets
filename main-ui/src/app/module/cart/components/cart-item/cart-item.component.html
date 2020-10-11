@@ -2,12 +2,12 @@
     <div class="col-sm-3">
        <img [src]="'data:image/jpg;base64,'+cart.img" class="card-img img-thumbnail" alt="...">
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-8">
         <div class="card-body" style="padding: 0%;">
             <div class="d-flex flex-column">
                  <div class="item-title d-flex">
                     <div class="price mr-auto">{{cart.itemName}}</div>
-                    <div class="quantity pr-1" (click)="deleteCartItem(cart.cartId)"><span class="fa fa-trash" style="color:red;font-size: 18px;"></span></div>
+                    <div class="quantity pr-0 mr-0" (click)="deleteCartItem(cart.cartId)"><span class="fa fa-trash mr-0 pr-0" style="color:red;font-size: 16px;"></span></div>
                  </div>
                  <div class="item-detail d-flex pt-2 p-1">
                       <div class="price mr-auto">Price: {{cart.price | number}}</div>
@@ -25,5 +25,8 @@
                  </div>
             </div>
         </div>
+    </div>
+    <div class="col-sm-1 mt-4 pt-2 p-0 m-0 text-center mobile-view-only">
+        <span class="fa fa-chevron-right"></span>
     </div>
 </div>

@@ -5,7 +5,7 @@
 
   </div>
   <div class="col-sm-8 card p-4">
-          <h4>Login Form</h4>
+          <h4>Login</h4>
           <hr>
           <form [formGroup]="loginForm" (submit)="login()" class="form-flat" autocomplete="off">
               <div class="form-group">
@@ -34,9 +34,9 @@
               </div>
               <div class="row">
                   <div class="col-sm-12">
-                      <div class="btn-group btn-block btn-group-lg">
-                          <button type="button" class="btn btn-warning" (click)="gotoRegister()">Sign Up</button>
-                          <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+                      <div class="d-flex">
+                          <button type="button" class="btn btn-warning btn-pro flex-fill" (click)="gotoRegister()">Sign Up</button>
+                          <button type="submit" class="btn btn-success btn-pro flex-fill" [disabled]="loginForm.invalid">Login</button>
                       </div>
                   </div>
               </div>
