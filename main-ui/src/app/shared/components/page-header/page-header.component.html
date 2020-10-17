@@ -13,10 +13,10 @@
          <button id="clear" (click)="search = !search">&#10005;</button>
     </div>
     <div class="icon-margin right-items" *ngIf="!search" (click)="menu.toggle($event)" >
-        <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="23px"/>
+        <img src="https://w7.pngwing.com/pngs/980/304/png-transparent-computer-icons-user-profile-avatar-heroes-silhouette-avatar.png" width="21px"/>
         <!-- <span>{{name}}</span> -->
     </div>
-    <div class="right-items-cart" *ngIf="!search" routerLink="/cart">
+    <div class="right-items-cart pt-3" *ngIf="!search" routerLink="/cart">
             <div class="notification">
               <img src="https://static.thenounproject.com/png/62821-200.png" width="28px"/>
             </div>
@@ -43,11 +43,12 @@
     </div>
     <hr class="hr-default">
     <div class="m-0 p-0">
-      <h5 class="p-2" routerLink="/cakes" (click)="display = false">Cakes</h5>
+      <!-- <h5 class="p-2" routerLink="/cakes" (click)="display = false">Cakes</h5>
       <hr>
        <div *ngFor="let link of menuLink">
          <a (click)="navigateToLink(link.path)" class="pl-4"><span class="icon"></span> {{link.name}}</a>
          <hr>
-       </div>
+       </div> -->
+       <p-menu [model]="menuItems" [style]="{width:'100%'}"></p-menu>
     </div>
 </p-sidebar>

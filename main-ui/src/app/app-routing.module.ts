@@ -4,6 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { RegistrationComponent } from './module/login/components/registration/registration.component';
 import { RoleGuardService } from './shared/services/role-guard.service';
+import { SweetDetailsComponent } from './module/sweets/components/sweet-details/sweet-details.component';
+import { CakeDetailsComponent } from './module/cakes/components/cake-details/cake-details.component';
 
 const routes: Routes = [
   {
@@ -12,6 +14,19 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent
+      },
+      {
+        path: 'product',
+        children: [
+          {
+            path: 'details',
+            component: CakeDetailsComponent
+          },
+          {
+            path: 'details/:id',
+            component: CakeDetailsComponent
+          }
+        ]
       },
       {
         path: 'cakes',
@@ -50,7 +65,8 @@ const routes: Routes = [
       },
       {
         path: 'profiles',
-        loadChildren: () => import('./module/users/users.module').then((m) => m.UsersModule)
+        loadChildren: () => import('./module/users/users.module').then((m) => m.UsersModule),
+        canActivate: [AuthGuardService]
       }
     ]
   },

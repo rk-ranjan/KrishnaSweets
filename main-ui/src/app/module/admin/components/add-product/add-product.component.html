@@ -8,8 +8,7 @@
             <form [formGroup]="productForm" (ngSubmit)="submitProduct()" class="form-flat" autocomplete="off">
                 <div class="form-group">
                     <label for="productId">Product Type</label>
-                    <select name="productId" id="productId" class="form-control" formControlName="productId">
-                        <option selected value="">Choose Product Type</option>
+                    <select name="productId" id="productId" class="form-control" formControlName="productId" (change)="onChangeProductType($event)">
                         <option value="1">Cake type</option>
                         <option value="2">Sweets Type</option>
                     </select>
@@ -17,14 +16,30 @@
                 <div class="form-group">
                     <label for="cake-name">Product Item Name</label>
                     <input type="text" #cakeName required id="cake-name" formControlName="cakeName"
-                        placeholder="Full cake name" class="form-control">
+                        placeholder="Full product name" class="form-control">
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="unit_price">Unit Price(Indian)</label>
                             <input type="number" #cakePrice required id="unit_price" formControlName="unitPrice"
-                                placeholder="Cake unit price" class="form-control">
+                                placeholder="Product unit price" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="discount">Percentage Discounts</label>
+                            <input type="number" #cakeName required id="discount" formControlName="discount"
+                                placeholder="Discount on product" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="productType === '1'">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="cake-flavour">Cakes Flavour</label>
+                            <input type="text" #cakeFlavour required id="cake-flavour" formControlName="flavour"
+                                placeholder="Cake Flavour" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -35,22 +50,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="cake-flavour">Cakes Flavour</label>
-                            <input type="text" #cakeFlavour required id="cake-flavour" formControlName="flavour"
-                                placeholder="Cake Flavour" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="discount">Percentage Discounts</label>
-                            <input type="number" #cakeName required id="discount" formControlName="discount"
-                                placeholder="Discount on Cake" class="form-control">
+                            <label for="cake-bread">Product Celling Unit</label>
+                            <input type="text" #unit required id="cake-bread" formControlName="unit"
+                                placeholder="Pond, KG, Packet, Piece" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="productType === '1'">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="cake-bread">Bread Used</label>
@@ -67,14 +75,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="cake-desc">Cake Descriptions</label>
+                    <label for="cake-desc">Product Descriptions</label>
                      <textarea row="2" class="form-control" id="cake-desc" formControlName="desc">
 
                      </textarea>
                 </div>
+                <div class="form-group">
+                    <mat-checkbox id="homeItem" formControlName="homeItem">Show on Home Page</mat-checkbox>
+                </div>
                 <div class="d-flex">
                     <button type="reset" class="btn btn-warning mr-auto">&nbsp;Cancel&nbsp;</button>
-                    <button type="submit" class="btn btn-success" [disabled]="productForm.invalid">&nbsp; Next &nbsp;</button>
+                    <button type="submit" class="btn btn-success">&nbsp; Next &nbsp;</button>
                 </div>
             </form>
     </div>

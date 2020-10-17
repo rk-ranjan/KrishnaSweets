@@ -60,6 +60,7 @@ export class ShippingDetailsComponent implements OnInit {
            this.order.itemId = element.itemId;
            this.order.price = element.price;
            this.order.weight = element.weight;
+           this.order.itemName = element.itemName;
            this.createNewOrder();
            this.deleteFromCart(element.cartId);
         });

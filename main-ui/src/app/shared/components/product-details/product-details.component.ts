@@ -43,7 +43,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     if(changes['detail']) {
        const variableChange = changes['detail'];
        this.detailData = variableChange.currentValue;
-       this.FinalPrice = this.detailData.items.unitPrice - (this.detailData.items.unitPrice * this.detailData.items.discountPercent)/100;
+       this.FinalPrice = this.detailData.items.unitPrice - (this.detailData.items.unitPrice * this.detailData.items.discountPercentage)/100;
        this.fixedPrice = this.detailData.items.unitPrice;
        Math.round(this.FinalPrice);
        Math.round(this.fixedPrice);
@@ -58,7 +58,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
   }
 
   public priceCalculator = (event) => {
-    this.FinalPrice = this.detailData.items.unitPrice * event.value -(this.detailData.items.unitPrice * event.value * this.detailData.items.discountPercent)/100; 
+    this.FinalPrice = this.detailData.items.unitPrice * event.value -(this.detailData.items.unitPrice * event.value * this.detailData.items.discountPercentage)/100; 
     this.fixedPrice = this.detailData.items.unitPrice * event.value; 
     Math.round(this.FinalPrice);
     Math.round(this.fixedPrice);   
@@ -69,6 +69,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
   }
 
   public addToCart = () => {
+      console.log(this.detailData.items.productId);
       var cart: Cart = new Cart();
       cart.username = this.localStorageService.getItem('email');
       cart.itemId = this.detailData.items._id;
@@ -77,11 +78,11 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
       cart.weight = this.detailForm.controls.weight.value;
       cart.quantity = 1;
       cart.eggless = this.detailData.items.eggless;
-      cart.discount = this.detailData.items.discountPercent;
+      cart.discount = this.detailData.items.discountPercentage;
       cart.desc = this.detailData.items.descriptions;
       cart.img = this.detailData.image[0].image.data;
       cart.wishMsg = this.detailForm.controls.message.value;
-      if (this.detailForm.controls.message.value === '') {
+      if (this.detailForm.controls.message.value === '' && this.detailData.items.productId === 1) {
           this.confirmationService.confirm({
               message: 'Are you sure that you want to proceed?',
               header: 'Confirmation',

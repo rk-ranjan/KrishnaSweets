@@ -5,16 +5,21 @@ import { ListSweetsComponent } from './components/list-sweets/list-sweets.compon
 import { SweetDetailsComponent } from './components/sweet-details/sweet-details.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   // component: SweetsOverviewComponent
+  //   redirectTo: 'list'
+  // },
   {
     path: '',
-    component: SweetsOverviewComponent
-  },
-  {
-    path: 'list',
     component: ListSweetsComponent
   },
   {
     path: 'details',
+    component: SweetDetailsComponent
+  },
+  {
+    path: 'details/:id',
     component: SweetDetailsComponent
   }
 ];

@@ -23,25 +23,25 @@
         </div>
         <div class="discount d-flex flex-column">
             <p class="mb-0">Original: {{fixedPrice | number}}</p>
-            <p class="pt-0">Discount:  {{detailData.items.discountPercent}} %</p>
+            <p class="pt-0">Discount:  {{detailData.items.discountPercentage}} %</p>
         </div>
     </div>
-    <div class="flavour">
+    <div class="flavour" *ngIf="detailData.items.productId === 1">
         flavour: {{detailData.items.flavour}}
     </div>
     <form [formGroup]="detailForm" (ngSubmit)="addToCart()">
-        <div class="eggless p-1">
+        <div class="eggless p-1" *ngIf="detailData.items.productId === 1">
             <mat-checkbox [checked]="detailData.items.eggless" [disabled]="true">Eggless</mat-checkbox>
         </div>
         <div class="weights">
             <mat-radio-group formControlName="weight" (change)="priceCalculator($event)">
-                <mat-radio-button value="1">1 KG &nbsp;</mat-radio-button>
-                <mat-radio-button value="2">2 KG &nbsp; </mat-radio-button>
-                <mat-radio-button value="3">3 KG &nbsp; </mat-radio-button>
-                <mat-radio-button value="4">4 KG &nbsp; </mat-radio-button>
+                <mat-radio-button value="1">1 {{detailData.items.unit}} &nbsp;</mat-radio-button>
+                <mat-radio-button value="2">2 {{detailData.items.unit}} &nbsp; </mat-radio-button>
+                <mat-radio-button value="3">3 {{detailData.items.unit}} &nbsp; </mat-radio-button>
+                <mat-radio-button value="4">4 {{detailData.items.unit}} &nbsp; </mat-radio-button>
             </mat-radio-group>
         </div>
-        <div class="message">
+        <div class="message" *ngIf="detailData.items.productId === 1">
             <input type="text" formControlName="message" class="form-control" placeholder="Messgae on Cake"/>
         </div>
     </form>

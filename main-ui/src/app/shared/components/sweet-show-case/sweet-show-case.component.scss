@@ -2,6 +2,9 @@
  .card-img-top {
   border-radius: 0px;
 }
+.card-body {
+  padding: 0px;
+}
 
 /********************* Shopping Demo-6 **********************/
 .product-grid6,.product-grid6 .product-image6{overflow:hidden}
@@ -10,7 +13,7 @@
 .product-grid6 .product-image6 a{display:block}
 .product-grid6 .product-image6 img{width:100%;height:auto;transition:all .5s ease 0s}
 .product-grid6:hover .product-image6 img{transform:scale(1.1)}
-.product-grid6 .product-content{padding:12px 12px 15px;transition:all .5s ease 0s}
+.product-grid6 .product-content{padding:5px;transition:all .5s ease 0s}
 .product-grid6:hover .product-content{opacity:0}
 .product-grid6 .title{font-size:18px;font-weight:600;text-transform:capitalize;margin:0 0 10px;transition:all .3s ease 0s}
 .product-grid6 .title a{color:#000}

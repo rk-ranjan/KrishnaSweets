@@ -34,7 +34,14 @@ export class ShowCakesService {
         return res;
     }))
   }
-
+  
+  public getHomeProduct = () : Observable<any> => {
+    return this.https.get<any>(this.getAllCakesUrl + "/home-item").pipe(
+      map((res: any) => {
+        return res;
+      })
+    )
+  }
   public deleteImageById = (id: string): Observable<ListCake> => {
     return this.https.delete<ListCake>(this.getAllCakesUrl+"/deleteImageById?id="+id).pipe(
       map((res: ListCake) => {

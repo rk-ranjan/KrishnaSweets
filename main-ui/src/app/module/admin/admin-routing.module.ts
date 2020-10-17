@@ -6,6 +6,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ManageCakesComponent } from './components/manage-cakes/manage-cakes.component';
 import { AdminOrdersViewComponent } from './components/admin-orders-view/admin-orders-view.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { ManageSweetsComponent } from './components/manage-sweets/manage-sweets.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'cakes',
         component: ManageCakesComponent
+      },
+      {
+        path: 'sweets',
+        component: ManageSweetsComponent
       },
       {
         path: 'manage',

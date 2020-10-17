@@ -86,7 +86,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         }, 1000); 
       },
       (error: any) => {
-        this.messageService.add({severity:'error', summary:'Login Failed', detail:error.message});
+        this.messageService.add({severity:'error', summary:'Login Failed', detail: 'Invalid Login Credentinals'});
         this.stayOnLoginPage();
         this.invalidLoginMessage = true;
       }

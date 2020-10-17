@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cakes-show-case-list',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cakes-show-case-list.component.scss']
 })
 export class CakesShowCaseListComponent implements OnInit {
-  items: any[] = [1,2,3,4,5,6,7,8];
+  @Input() public cakesList;
   constructor() { }
 
   ngOnInit() {

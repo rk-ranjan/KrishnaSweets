@@ -41,6 +41,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   public ngOnInit() {
+    
   }
 
   public gotoLogin = () => {
