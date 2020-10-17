@@ -13,6 +13,9 @@
     -ms-transform: rotate(20deg); /* IE 9 */
     transform: rotate(20deg);
 }
+.card-body {
+    padding: 4px 4px 0 5px !important;
+}
 @media screen and (max-width: 760px) {
     .discount-text {
         font-size: 10px;

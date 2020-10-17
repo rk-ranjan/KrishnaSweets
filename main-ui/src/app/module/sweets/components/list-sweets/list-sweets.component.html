@@ -1,1 +1,13 @@
-<p>list-sweets works!</p>
+<div class="row" *ngIf="!loading">
+    <div class="col-sm-12 p-2 text-left">
+        <h6><strong>Sweets</strong></h6>
+    </div>
+    <div class="col-sm-3 m-0 p-1" *ngFor="let cake of sweetList">      
+        <app-card-item [cake]="cake"></app-card-item>
+    </div>
+</div>
+<div class="row" style="background-color:white;" *ngIf="loading">
+    <div class="col-sm-12 text-center m-4 p-4">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>

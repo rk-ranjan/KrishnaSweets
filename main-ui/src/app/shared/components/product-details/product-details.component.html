@@ -24,8 +24,8 @@
     </div>
   </div>
   <div class="col-sm-7">
-    <div class="row  p-4">
-      <div class="col-sm-8 d-flex flex-column">
+    <div class="row p-4">
+      <div class="col-sm-12 d-flex flex-column">
         <div class="card-title">
           <h4><strong>{{detailData.items.itemName}}</strong></h4>
         </div>
@@ -42,31 +42,34 @@
             <p class="pt-0">Discount: {{detailData.items.discountPercent}} %</p>
           </div>
         </div>
-        <div class="feature pl-2">
+        <div class="feature pl-2" *ngIf="detailData.items.productId === 1">
           <p>Cake Flavour: {{detailData.items.flavour}}</p>
           <p>Type of Cake: {{detailData.items.creamUsed}}</p>
           <p>Type of Bread: {{detailData.items.bread}}</p>
           <p>more details</p>
         </div>
         <form [formGroup]="detailForm" (ngSubmit)="addToCart()">
-          <div class="type p-1">
+          <div class="type p-1" *ngIf="detailData.items.productId === 1">
             <mat-checkbox [checked]="detailData.items.eggless" [disabled]="true">Eggless
             </mat-checkbox>
           </div>
           <div class="p-1">
             <mat-radio-group formControlName="weight" (change)="priceCalculator($event)">
-              <mat-radio-button value="1">1 KG &nbsp;</mat-radio-button>
-              <mat-radio-button value="2">2 KG &nbsp; </mat-radio-button>
-              <mat-radio-button value="3">3 KG &nbsp; </mat-radio-button>
-              <mat-radio-button value="4">4 KG &nbsp; </mat-radio-button>
+              <mat-radio-button value="1">1 {{detailData.items.unit}} &nbsp;</mat-radio-button>
+              <mat-radio-button value="2">2 {{detailData.items.unit}} &nbsp; </mat-radio-button>
+              <mat-radio-button value="3">3 {{detailData.items.unit}} &nbsp; </mat-radio-button>
+              <mat-radio-button value="4">4 {{detailData.items.unit}} &nbsp; </mat-radio-button>
             </mat-radio-group>
           </div>
-          <div class="message-text pt-2 p-1">
+          <div class="message-text pt-2 p-1" *ngIf="detailData.items.productId === 1">
             <input type="text" placeholder="Message on Cake" formControlName="message" class="form-control" />
           </div>
         </form>
       </div>
-      <div class="col-sm-4 p-4" style="background-color: #f1f1f1;">
+      <div class="col-sm-4" style="background-color: white;">
+        <br>
+      </div>
+      <!-- <div class="col-sm-4 p-4" style="background-color: #f1f1f1;">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
@@ -94,7 +97,7 @@
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Sign in</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

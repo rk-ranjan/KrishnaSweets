@@ -4,6 +4,8 @@ export class Order {
     public orderId: string;
 
     public itemId: string;
+
+    public itemName: string;
     
     public customerId: string;
 

@@ -1,55 +1,9 @@
-<!-- <div class="row"   style="background-color: #250f6f;border-radius: 0%;">
-    <app-cake-show-case></app-cake-show-case> -->
-    <!-- <div class="col-sm-3 p-2 product-list"> -->
+<div class="row" style="background-color: #f5f5f5;">
+    <div class="col-sm-12 mobile-view-only m-0 p-0">
+       <img src="../../../../assets/images/Cakes4.jpg" class="img-fluid"/>
+    </div>
+    <div class="col-sm-3 m-0 p-1" *ngFor="let item of cakesList">
         <!-- <app-cake-show-case></app-cake-show-case> -->
-        
-    <!-- </div> -->
-    <!-- <div class="col-sm-3 p-2 product-list"> -->
-        <!-- <app-cake-show-case></app-cake-show-case> -->
-        
-    <!-- </div>
-    <div class="col-sm-3 p-2 product-list"> -->
-        <!-- <app-cake-show-case></app-cake-show-case> -->
-<!--         
-    </div>
-    <div class="col-sm-3 p-2 product-list"> -->
-        <!-- <app-cake-show-case></app-cake-show-case> -->
-        <!-- <h4></h4>
-    </div>
-</div> --> 
-<!-- <div class="row card">
-    <div class="col-sm-12 card-group">
-        <div class="col-sm-3"  *ngFor="let i of item">
-            <app-cake-show-case></app-cake-show-case>
-        </div>
-    </div>
-</div> -->
-<!-- <div class="row">
-    <div class="col-sm-12">
-        <div class="d-flex p-4">
-            <div class="mr-auto">
-                <h4 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-weight: bold;">Order your favourite Cake today</h4>
-            </div>
-            <div class="mr-0">
-                <button type="button" class="btn btn-primary">
-                    View All cakes
-                </button>
-            </div>
-        </div>
-    </div>
-</div> -->
-<div class="row" style="background-color: white;">
-    <div class="mobile-only mr-1 ml-1">
-       <div class="d-flex">
-            <div class="flex-fill mr-auto ml-auto p-3">
-                Lorel Ipsum bhhjebjw jknqkjw kbk  wj de  e  wdjwbjq
-             </div>
-             <div class="p-3">
-                <span class="fa fa-chevron-right" style="font-size: 32px;" ></span> 
-             </div>
-       </div>
-    </div>
-    <div class="col-sm-3 m-0 p-1" *ngFor="let item of items">
-        <app-cake-show-case></app-cake-show-case>
+        <app-card-item [cake]="item"></app-card-item>
      </div>
 </div>

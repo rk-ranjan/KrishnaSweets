@@ -31,6 +31,7 @@ export class MyOrdersComponent implements OnInit {
     this.orderService.getCustomerOrder(this.email).subscribe(
       (response: any[]) => {
         this.products = response;
+        console.log(this.products);
     })
   }
 

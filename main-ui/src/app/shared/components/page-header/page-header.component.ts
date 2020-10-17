@@ -34,6 +34,7 @@ export class PageHeaderComponent implements OnInit {
   items: MenuItem[];
   menuLink: any[] = [];
   items3: MenuItem[];
+  public menuItems: MenuItem[];
   cartCount: number;
   public shoppingCartItems$: Observable<any[]> = of([]);
   public shoppingCartItems: any[] = [];
@@ -83,43 +84,81 @@ export class PageHeaderComponent implements OnInit {
             this.router.navigate(['login'])
         }},
     ];
-    this.menuLink = [
-        {
-           name: 'Vanillah Cakes',
-           path: '/cakes?type=vanillah',
-           icon: 'glyphicons' 
-        },
-        {
-            name: 'Butter Scotch Cakes',
-            path: '/cakes?type=black',
-            icon: 'glyphicons' 
-         },
-         {
-            name: 'Black Forest Cakes',
-            path: '/cakes?type=butter',
-            icon: 'glyphicons' 
-         },
-         {
-            name: 'White Forest Cakes',
-            path: 'cakes?type=vanillah',
-            icon: 'glyphicons' 
-         },
-         {
-            name: 'Vanillah Cakes',
-            path: 'cakes?type=vanillah',
-            icon: 'glyphicons' 
-         },
-         {
-            name: 'Vanillah Cakes',
-            path: 'cakes?type=vanillah',
-            icon: 'glyphicons' 
-         },
-         {
-            name: 'Vanillah Cakes',
-            path: 'cakes?type=vanillah',
-            icon: 'glyphicons' 
-         },
-    ]
+    this.menuItems = [{
+      label: 'Cakes',
+      items: [{
+          label: 'Vanillah Cake',
+          command: () => {
+              this.display = false;
+              this.router.navigate(["cakes"]);
+          }
+      },
+      {
+          label: 'Butter Scothc Cake',
+          command: () => {
+              this.delete();
+          }
+      },
+      {
+          label: 'Black Forest Cake',
+          command: () => {
+              this.delete();
+          }
+      },
+      {
+          label: 'White Forest Cake',
+          command: () => {
+              this.delete();
+          }
+      },
+      {
+          label: 'Chocoloate Cake',
+          command: () => {
+              this.delete();
+          }
+      },
+      {
+          label: ' Pine Apple Cake',
+          command: () => {
+              this.delete();
+          }
+      }
+      ]},
+      {
+          label: 'Sweets',
+          items: [{
+              label: 'Rasmalai',
+              command: () => {
+                this.display = false;
+                this.router.navigate(["sweets"]);
+              },
+          },
+          {
+              label: 'Khurma',
+              routerLink: '/fileupload'
+          },
+          {
+            label: 'Gulab Jamun',
+            routerLink: '/fileupload'
+          },
+          {
+            label: 'Rasgulla',
+            routerLink: '/fileupload'
+          },
+          {
+            label: 'Malai Kesar',
+            routerLink: '/fileupload'
+          },
+          {
+            label: 'Malai Bhog',
+            routerLink: '/fileupload'
+          },
+          {
+            label: 'Malai Pudi',
+            routerLink: '/fileupload'
+          }
+      ]}
+    ];
     
   }
   public navigateToLink = (path: string) => {

@@ -35,7 +35,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     ProgressSpinnerModule
   ],
   exports : [
-    
+    CakeDetailsComponent
   ]
 })
 export class CakesModule { }

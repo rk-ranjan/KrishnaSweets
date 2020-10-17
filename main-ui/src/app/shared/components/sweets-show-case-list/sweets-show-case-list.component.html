@@ -1,20 +1,12 @@
 
-<div class="row">
-    <div class="col-sm-12" style="background-color:#fffbce">
-        <div class="d-flex p-1">
-            <div class="mr-auto pt-1">
-                <p style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;font-weight: bold;">Top rated here</p>
-            </div>
-            <div class="mr-0">
-                <button type="button" class="btn-pro btn-success">
-                    View All
-                </button>
-            </div>
-        </div>
-    </div>
+<div class="row" style="background-color:white">
+    <div class="col-sm-12 m-0 p-0 mobile-view-only">
+        <img src="../../../../assets/images/Sweets.jpg" class="img-fluid"/>
+     </div>
 </div>
-<div class="row"  style="background-color:#fffbce">
-    <div class="col-sm-3 m-0 p-1" *ngFor="let item of items">
-        <app-sweet-show-case></app-sweet-show-case>
+<div class="row"  style="background-color:white">
+    <div class="col-sm-3 m-0 p-1" *ngFor="let item of sweetsList">
+        <!-- <app-sweet-show-case></app-sweet-show-case> -->
+        <app-card-item [cake]="item"></app-card-item>
      </div>
 </div>
