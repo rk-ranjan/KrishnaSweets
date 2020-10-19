@@ -2,7 +2,7 @@
     <app-user-profile></app-user-profile>
 </div> -->
 <div class="row" style="background-color: white;">
-        <div class="col-sm-12">
+        <div class="col-sm-6">
             <form [formGroup]="changePasswordForm" (submit)="changePassword(changePasswordForm.value)">
                 <h5 class="pt-2 pb-2">Change Password</h5>
                     <p-messages [(value)]="msg" [enableService]="false"></p-messages>
@@ -22,5 +22,8 @@
                 <br>
                 <br>
            </form>
+        </div>
+        <div class="col-sm-6 p-3">
+            Change Mobile No.
         </div>
 </div>

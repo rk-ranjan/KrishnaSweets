@@ -1,5 +1,5 @@
 <div class="row mb-0 pb-0">
-    <div class="col-sm-3 mt-2 d-flex">
+    <div class="col-sm-3 mt-2 d-flex" routerLink="profiles">
        <div class="user-img">
          <img class="mr-1" src="../../../../assets/images/user-icon.png" width="55px"/>
        </div>
@@ -7,17 +7,6 @@
          <p class="pb-0 mb-0">Welcome {{username}}</p>
          <p>{{email}}</p>
        </div>
-    </div>
-    <div class="col-sm-1">
-
-    </div>
-    <div class="col-sm-8 mt-3 desktop-view-only">
-        <div class="d-flex">
-            <h5 class="flex-fill" routerLink="/">Home</h5>
-            <h5 class="flex-fill" routerLink="profiles">Profile</h5>
-            <h5 class="flex-fill" routerLink="orders">Orders</h5>
-            <h5 class="flex-fill" routerLink="setting">Settings</h5>
-        </div>
     </div>
 </div>
 <router-outlet></router-outlet>

@@ -10,8 +10,6 @@ import { CustomSideNavComponent } from './components/custom-side-nav/custom-side
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { SecondryHeaderComponent } from './components/secondry-header/secondry-header.component';
 import { CustomCarouselComponent } from './components/custom-carousel/custom-carousel.component';
-import { CakeShowCaseComponent } from './components/cake-show-case/cake-show-case.component';
-import { SweetShowCaseComponent } from './components/sweet-show-case/sweet-show-case.component';
 import { SweetsShowCaseListComponent } from './components/sweets-show-case-list/sweets-show-case-list.component';
 import { CakesShowCaseListComponent } from './components/cakes-show-case-list/cakes-show-case-list.component';
 import { CarouselFooterComponent } from './components/carousel-footer/carousel-footer.component';
@@ -41,6 +39,7 @@ import { ToastModule } from 'primeng/toast';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {RatingModule} from 'primeng/rating';
+import { ShowCaseComponent } from './components/show-case/show-case.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +51,6 @@ import {RatingModule} from 'primeng/rating';
       PageHeaderComponent,
       SecondryHeaderComponent,
       CustomCarouselComponent,
-      CakeShowCaseComponent,
-      SweetShowCaseComponent,
       SweetsShowCaseListComponent,
       CakesShowCaseListComponent,
       CarouselFooterComponent,
@@ -69,7 +66,8 @@ import {RatingModule} from 'primeng/rating';
       ProductDetailsSmallComponent,
       CustomSidePanelComponent,
       CardItemComponent,
-      MenuComponent
+      MenuComponent,
+      ShowCaseComponent
   ],
   imports: [
       CommonModule,
@@ -99,8 +97,6 @@ import {RatingModule} from 'primeng/rating';
         SecondryHeaderComponent,
         PageHeaderComponent,
         CustomCarouselComponent,
-        CakeShowCaseComponent,
-        SweetShowCaseComponent,
         CakesShowCaseListComponent,
         SweetsShowCaseListComponent,
         CarouselFooterComponent,
@@ -114,7 +110,8 @@ import {RatingModule} from 'primeng/rating';
         ProductDetailsComponent,
         ProductDetailsSmallComponent,
         CardItemComponent,
-        MenuComponent     
+        MenuComponent,
+        ShowCaseComponent    
   ]
 
 })

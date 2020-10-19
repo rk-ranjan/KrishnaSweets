@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CakeShowCaseComponent } from './cake-show-case.component';
+import { ShowCaseComponent } from './show-case.component';
 
-describe('CakeShowCaseComponent', () => {
-  let component: CakeShowCaseComponent;
-  let fixture: ComponentFixture<CakeShowCaseComponent>;
+describe('ShowCaseComponent', () => {
+  let component: ShowCaseComponent;
+  let fixture: ComponentFixture<ShowCaseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CakeShowCaseComponent ]
+      declarations: [ ShowCaseComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CakeShowCaseComponent);
+    fixture = TestBed.createComponent(ShowCaseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

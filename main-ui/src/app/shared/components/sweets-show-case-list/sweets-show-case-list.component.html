@@ -1,12 +1,15 @@
 
 <div class="row" style="background-color:white">
-    <div class="col-sm-12 m-0 p-0 mobile-view-only">
-        <img src="../../../../assets/images/Sweets.jpg" class="img-fluid"/>
+     <div class="col-sm-12 m-0 p-0" routerLink="cakes">
+        <img src="../../../../assets/sweets-poster.png" class="img-fluid img-thumbnail img-poster"/>
      </div>
 </div>
 <div class="row"  style="background-color:white">
     <div class="col-sm-3 m-0 p-1" *ngFor="let item of sweetsList">
         <!-- <app-sweet-show-case></app-sweet-show-case> -->
-        <app-card-item [cake]="item"></app-card-item>
+        <app-show-case [cake]="item"></app-show-case>
+     </div>
+     <div class="col-sm-12 text-center-mobile text-right mb-3 pt-2" routerLink="cakes">
+       <button class="btn btn-pro btn-primary">VIEW ALL SWEETS</button>
      </div>
 </div>

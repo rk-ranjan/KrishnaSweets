@@ -19,10 +19,17 @@ import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import { ManageSweetsComponent } from './components/manage-sweets/manage-sweets.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ManageComponent, AdminHeaderComponent, AdminComponent, ManageCakesComponent, AdminOrdersViewComponent, AddProductComponent, ManageSweetsComponent],
+  declarations: [
+    DashboardComponent, 
+    ManageComponent, 
+    AdminHeaderComponent, 
+    AdminComponent, 
+    ManageCakesComponent, 
+    AdminOrdersViewComponent, 
+    AddProductComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
