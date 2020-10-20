@@ -22,7 +22,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   public authenticating = false;
   public logo: string;
   public loginForm: FormGroup;
-  public loading = true;
+  public loading: boolean = true;
   public invalidLoginMessage: boolean = false;
   public loginDetails: LoginUser =  new LoginUser();
   public redirectTo: string;
@@ -70,7 +70,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.loginDetails.password = this.loginForm.controls.password.value;
     this.loginService.checkLogin(this.loginDetails).subscribe(
       (res:User) => {
-        console.log(res);
         this.messageService.add({severity:'success', summary:'Login', detail:'Login Successfull'});
         setTimeout (() => {
           this.localStorageService.setItem("userAccessToken", res.accessToken);

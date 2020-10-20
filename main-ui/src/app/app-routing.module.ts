@@ -4,8 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { RegistrationComponent } from './module/login/components/registration/registration.component';
 import { RoleGuardService } from './shared/services/role-guard.service';
-import { SweetDetailsComponent } from './module/sweets/components/sweet-details/sweet-details.component';
 import { CakeDetailsComponent } from './module/cakes/components/cake-details/cake-details.component';
+import { CommingSoonComponent } from './components/comming-soon/comming-soon.component';
 
 const routes: Routes = [
   {
@@ -43,14 +43,6 @@ const routes: Routes = [
         // canActivate: [RoleGuardService]
       },
       {
-        path: 'gifts',
-        loadChildren : () => import('./module/gifts/gifts.module').then((m) => m.GiftsModule)
-      },
-      {
-        path: 'bakery',
-        component: HomeComponent
-      },
-      {
         path: 'search',
         loadChildren : () => import('./module/search/search.module').then((m) => m.SearchModule)
       },
@@ -77,6 +69,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: RegistrationComponent
+  },
+  {
+    path: '**',
+    component: CommingSoonComponent
   }
 ];
 

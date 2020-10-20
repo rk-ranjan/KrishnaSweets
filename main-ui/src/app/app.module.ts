@@ -17,6 +17,7 @@ import { ButtonModule } from 'primeng/button';
 import { HttpInterceptorService } from './core/services/http-interceptor.service';
 import { LoginModule } from './module/login/login.module';
 import { CakesModule } from './module/cakes/cakes.module';
+import { CommingSoonComponent } from './components/comming-soon/comming-soon.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { CakesModule } from './module/cakes/cakes.module';
     AboutComponent,
     ContactUsComponent,
     PrimeCarouselComponent,
+    CommingSoonComponent,
   ],
   imports: [
     BrowserModule,

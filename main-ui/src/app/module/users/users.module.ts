@@ -21,7 +21,14 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 
 @NgModule({
-  declarations: [UserProfileComponent, SettingsComponent, MyOrdersComponent, UserHomeComponent, UserHeaderComponent, UserSettingsComponent],
+  declarations: [
+    UserProfileComponent, 
+    SettingsComponent, 
+    MyOrdersComponent, 
+    UserHomeComponent, 
+    UserHeaderComponent, 
+    UserSettingsComponent
+  ],
   imports: [
     CommonModule,
     UsersRoutingModule,
