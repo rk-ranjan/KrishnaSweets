@@ -7,6 +7,8 @@ import { CartService } from 'src/app/module/cart/services/cart.service';
 import { Cart } from 'src/app/module/cart/components/models/cart';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Router } from '@angular/router';
+import { UserBehaviorService } from 'src/app/core/services/user-behavior.service';
+import { User } from 'src/app/core/model/user';
 
 @Component({
   selector: 'app-page-header',
@@ -40,10 +42,15 @@ export class PageHeaderComponent implements OnInit {
   public shoppingCartItems: any[] = [];
   public userName: string;
   public name: string;
+  public user: User = new User();
+  public cakesMenu: any[] = [];
+  public sweetsMenu: any[] = [];
   constructor(
     private cartService: CartBehavourService,
     private cartItemService: CartService,
+    private cartBehaviorService: CartBehavourService,
     private localStorageService: LocalStorageService,
+    private userBehaviorService: UserBehaviorService,
     private router: Router
     ) {
     this.shoppingCartItems$ = this.cartService.getItems();
@@ -51,6 +58,10 @@ export class PageHeaderComponent implements OnInit {
       this.shoppingCartItems = _;
       this.cartCount = this.shoppingCartItems.length;
     });
+    this.userBehaviorService.data.subscribe(data => {
+      //do what ever needs doing when data changes
+      this.user = data;
+    })
   }
 
   public ngOnInit(): void {
@@ -72,11 +83,7 @@ export class PageHeaderComponent implements OnInit {
             this.router.navigate(['/profiles/orders']);
         }},
         {label: 'Logout',command: (event) => {
-            this.localStorageService.removeItem("userAccessToken");
-            this.localStorageService.removeItem('userName');
-            this.localStorageService.removeItem('email');
-            this.localStorageService.removeItem('userRole');
-            this.router.navigate(['login']);
+            this.logout();
         }}
     ];
     this.items3 = [
@@ -84,111 +91,111 @@ export class PageHeaderComponent implements OnInit {
             this.router.navigate(['login'])
         }},
     ];
-    this.menuItems = [{
-      label: 'Cakes',
-      items: [{
-          label: 'Vanillah Cake',
-          command: () => {
-              this.display = false;
-              this.router.navigate(["cakes"]);
-          }
+    this.cakesMenu = [
+      {
+        name: 'All Cakes',
+        path: '/cakes'
       },
       {
-          label: 'Butter Scothc Cake',
-          command: () => {
-              this.delete();
-          }
+        name: 'Butter Scotch Cake',
+        path: '/cakes?type=butter scotch'
       },
       {
-          label: 'Black Forest Cake',
-          command: () => {
-              this.delete();
-          }
+        name: 'Black Forest Cake',
+        path: '/cakes?type=black forest'
       },
       {
-          label: 'White Forest Cake',
-          command: () => {
-              this.delete();
-          }
+        name: 'Vanilla Cake',
+        path: '/cakes?type=vanillah'
       },
       {
-          label: 'Chocoloate Cake',
-          command: () => {
-              this.delete();
-          }
+        name: 'Chocolate Cream Cake',
+        path: '/cakes?type=chocolate cream'
       },
       {
-          label: ' Pine Apple Cake',
-          command: () => {
-              this.delete();
-          }
+        name: 'Designer Cake',
+        path: '/cakes?type=designer cake'
+      },
+      {
+        name: 'Strawberry Cake',
+        path: '/cakes?type=strawberry cake'
+      },
+      {
+        name: 'Pine Apple Cake',
+        path: '/cakes?type=pine apple'
+      },
+      {
+        name: 'Photo Cake',
+        path: '/cakes?type=photo cake'
+      },
+      {
+        name: 'Others',
+        path: '/cakes?type=others'
       }
-      ]},
-      {
-          label: 'Sweets',
-          items: [{
-              label: 'Rasmalai',
-              command: () => {
-                this.display = false;
-                this.router.navigate(["sweets"]);
-              },
-          },
-          {
-              label: 'Khurma',
-              routerLink: '/fileupload'
-          },
-          {
-            label: 'Gulab Jamun',
-            routerLink: '/fileupload'
-          },
-          {
-            label: 'Rasgulla',
-            routerLink: '/fileupload'
-          },
-          {
-            label: 'Malai Kesar',
-            routerLink: '/fileupload'
-          },
-          {
-            label: 'Malai Bhog',
-            routerLink: '/fileupload'
-          },
-          {
-            label: 'Malai Pudi',
-            routerLink: '/fileupload'
-          }
-      ]}
     ];
-    
+    this.sweetsMenu = [
+      {
+        name: 'All Sweets',
+        path: '/sweets'
+      },
+      {
+        name: 'Gulab Jamun',
+        path: '/sweets?type=gulab jamun'
+      },
+      {
+        name: 'Dry Sweets',
+        path: '/sweets?type=dry sweets'
+      },
+      {
+        name: 'Cream Sweets',
+        path: '/sweets?type=cream sweets'
+      },
+      {
+        name: 'Rasmalai',
+        path: '/sweets?type=rasmalai'
+      },
+      {
+        name: 'Khowa Barfi',
+        path: '/sweets?type=khowa barfi'
+      },
+      {
+        name: 'Kalakand',
+        path: '/sweets?type=kalakand'
+      },
+      {
+        name: 'Milk Shake',
+        path: '/sweets?type=milk shake'
+      },
+      {
+        name: 'Laddus',
+        path: '/sweets?type=laddu'
+      }
+    ] 
   }
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+
   public navigateToLink = (path: string) => {
       this.display = false;
       this.router.navigateByUrl(path);
   }
-  update() {
-    throw new Error("Method not implemented.");
-  }
-  delete() {
-  }
+
   public logout = () => {
     this.display = false;
     this.localStorageService.removeItem("userAccessToken");
     this.localStorageService.removeItem('userName');
     this.localStorageService.removeItem('email');
     this.localStorageService.removeItem('userRole');
-    window.location.reload();
+    this.cartBehaviorService.emptyCart();
+    this.userBehaviorService.updatedDataSelection(null);
     this.router.navigate(['login']);
   }
-  public navigateTo = (path: string) => {
-      this.router.navigate([path]);
-      this.display = false;
-  }
+
   menuState:string = 'out';
+
   public login = () => {
       this.display = false;
       this.router.navigate(["login"]);
   }
+
   toggleMenu() {
     // 1-line if statement that toggles the value:
     this.menuState = this.menuState === 'out' ? 'in' : 'out';

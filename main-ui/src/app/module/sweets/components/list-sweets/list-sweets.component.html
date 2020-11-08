@@ -11,3 +11,9 @@
         <p-progressSpinner></p-progressSpinner>
     </div>
 </div>
+<div class="row" style="background-color:white;" *ngIf="sweetList.length === 0 && !loading">
+    <div class="col-sm-12 text-center m-4 p-4">
+        <span class="fa fa-exclamation-circle"></span>
+        <p>Sweets Not Found</p>
+    </div>
+</div>

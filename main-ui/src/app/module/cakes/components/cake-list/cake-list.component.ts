@@ -3,6 +3,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShowCakesService } from '../../services/show-cakes.service';
 import { ListCake } from '../../models/list-cake';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cake-list',
@@ -20,6 +21,7 @@ export class CakeListComponent implements OnInit {
   ) {
     this.activatedRout.queryParams.forEach(params => {
       this.filterBy = params['type'];
+      console.log(this.filterBy);
       this.filterCakes();
   });
    }

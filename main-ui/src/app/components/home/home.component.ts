@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { element } from 'protractor';
+import { User } from 'src/app/core/model/user';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { UserBehaviorService } from 'src/app/core/services/user-behavior.service';
 import { ShowCakesService } from 'src/app/module/cakes/services/show-cakes.service';
 
 @Component({
@@ -14,8 +17,11 @@ export class HomeComponent implements OnInit {
   ];
   public cakesList: any[] = [];
   public sweetsList: any[] = [];
+  public user: User = new User();
   constructor(
-    private cakeService: ShowCakesService
+    private cakeService: ShowCakesService,
+    private localStorageService: LocalStorageService,
+    private userBehaviorService: UserBehaviorService
   ) { }
 
   ngOnInit() {

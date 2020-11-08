@@ -1,6 +1,11 @@
 <div class="row" *ngIf="!loading">
-    <div class="col-sm-12 p-2 text-left">
-        <h6><strong>Cakes</strong></h6>
+    <!-- <div class="col-sm-12 p-3 d-flex">
+        <div class="flex-fill">Cakes</div>
+        <div class="mr-0"><button class="btn-pro btn-warning">Filter</button></div>
+    </div> -->
+    <div class="col-sm-12">
+        <!-- <img src="../../../../../assets/images/cakes-poster.jpg" class="img-fluid img-thumbnail img-poster" width="100%"> -->
+        Cakes
     </div>
     <div class="col-sm-3 m-0 p-1" *ngFor="let cake of cakeList">      
         <app-card-item [cake]="cake"></app-card-item>
@@ -9,5 +14,11 @@
 <div class="row" style="background-color:white;" *ngIf="loading">
     <div class="col-sm-12 text-center m-4 p-4">
         <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div class="row" style="background-color:white;" *ngIf="cakeList.length === 0 && !loading">
+    <div class="col-sm-12 text-center m-4 p-4">
+        <span class="fa fa-exclamation-circle"></span>
+        <p>Cakes Not Found</p>
     </div>
 </div>

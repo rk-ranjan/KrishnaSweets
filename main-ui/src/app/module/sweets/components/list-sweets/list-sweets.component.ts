@@ -21,6 +21,7 @@ export class ListSweetsComponent implements OnInit {
   ) {
     this.activatedRout.queryParams.forEach(params => {
       this.filterBy = params['type'];
+      console.log(this.filterBy);
       this.filterSweets();
   });
    }
@@ -37,7 +38,8 @@ export class ListSweetsComponent implements OnInit {
   }
   public filterSweets = () => {
     if (this.filterBy !== undefined) {
-      this.sweetList = this.filterSweetList.filter((cake) => cake.flavour.toLocaleLowerCase().indexOf(this.filterBy.toLocaleLowerCase())  > -1);
+      console.log(this.filterSweetList);
+      this.sweetList = this.filterSweetList.filter((sweet) => sweet.itemName.toLocaleLowerCase().indexOf(this.filterBy.toLocaleLowerCase())  > -1);
     } else {
       this.sweetList = this.filterSweetList;
     }  

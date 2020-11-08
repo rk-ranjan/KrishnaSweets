@@ -25,7 +25,7 @@
             </div>
     </div>
 </div>
-<p-menu #menu [popup]="true" [model]="items" styleClass="p-width-edit"></p-menu>
+<p-menu #menu [popup]="true" [model]="userName ? items : items3" styleClass="p-width-edit"></p-menu>
 <!-- <app-side-panel></app-side-panel> -->
 <!-- <app-menu [@slideInOut]="menuState"></app-menu>
  -->
@@ -35,32 +35,27 @@
         <img class="mr-3" src="../../../../assets/images/user-icon.png" width="55px"/>
       </div>
       <div class="d-flex flex-column">
-        <p class="pb-0 mb-1" *ngIf="userName">Welcome <strong>{{name}}</strong></p>
-        <p class="" *ngIf="userName" (click)="logout()">logout</p>
-        <p class="pb-0 mb-1" *ngIf="!userName">Guest User</p>
-        <p class="" (click)="login()" *ngIf="!userName">login</p>
+        <p class="pb-0 mb-1" *ngIf="user">Welcome <strong>{{user.name}}</strong></p>
+        <p class="" *ngIf="user" (click)="logout()">logout</p>
+        <p class="pb-0 mb-1" *ngIf="!user">Guest User</p>
+        <p class="" (click)="login()" *ngIf="!user">login</p>
       </div>
     </div>
     <hr class="hr-default">
     <div class="m-0 p-0">
-      <!-- <h5 class="p-2" routerLink="/cakes" (click)="display = false">Cakes</h5>
-      <hr>
-       <div *ngFor="let link of menuLink">
-         <a (click)="navigateToLink(link.path)" class="pl-4"><span class="icon"></span> {{link.name}}</a>
-         <hr>
-       </div> -->
-       <!-- <p-menu [model]="menuItems" [style]="{width:'100%'}"></p-menu> -->
-      <mat-selection-list #shoes [multiple]="false">
-        <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
-         <div class="d-flex" style="display: flex">
-          <div class="text-left">
-            {{shoe}} 
-         </div>
-          <div class="text-right" >
-           <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-          </div>
-         </div>
-        </mat-list-option>
-      </mat-selection-list>
+      <span class="menu-heading">Cakes</span>
+      <ul  *ngFor="let cake of cakesMenu">
+        <li class="d-flex" (click)="navigateToLink(cake.path)">
+          <span class="flex-fill">{{cake.name}}</span> 
+          <span class='fa fa-angle-right'></span>
+        </li>
+      </ul>
+      <span class="menu-heading">Sweets</span>
+      <ul  *ngFor="let sweet of sweetsMenu">
+        <li class="d-flex" (click)="navigateToLink(sweet.path)">
+          <span class="flex-fill">{{sweet.name}}</span> 
+          <span class='fa fa-angle-right'></span>
+        </li>
+      </ul>
     </div>
 </p-sidebar>

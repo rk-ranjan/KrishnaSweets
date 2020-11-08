@@ -21,9 +21,13 @@ export class CartBehavourService {
   public addToCart(item: Cart) {
     this.itemsInCartSubject.next([...this.itemsInCart, item]);
   }
- 
+
   public getItems(): Observable<any[]> {
     return this.itemsInCartSubject;
+  }
+
+  public emptyCart() {
+    this.itemsInCartSubject.next([]);
   }
   
 }

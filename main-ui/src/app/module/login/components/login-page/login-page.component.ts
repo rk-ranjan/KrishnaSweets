@@ -10,6 +10,7 @@ import { MessageService } from 'primeng/api';
 import { CartService } from 'src/app/module/cart/services/cart.service';
 import { Cart } from 'src/app/module/cart/components/models/cart';
 import { CartBehavourService } from 'src/app/core/services/cart-behavour.service';
+import { UserBehaviorService } from 'src/app/core/services/user-behavior.service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private route: ActivatedRoute,
     private cartItemService: CartService,
-    private cartService: CartBehavourService
+    private cartService: CartBehavourService,
+    private userBehaviorService: UserBehaviorService
   ) {
     this.loginForm = formBuilder.group({
       password: new FormControl('', Validators.required),
@@ -43,8 +45,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.redirectTo = this.route.snapshot.paramMap.get('redirectUrl');
   }
   public ngOnInit() {
-    console.log(localStorage.getItem("userAccessToken"));
-    this.isLogin();
     this.stayOnLoginPage();
   }
   public ngOnDestroy() {
@@ -58,12 +58,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       this.router.navigate(['/signup']);
     }
   }
-  public isLogin() {
-    let flag = false;
-    if (this.localStorageService.getItem('_temp_9898jdjk_y783h') && this.localStorageService.getItem('_temp_9898jdjk_y783h') === '787_uwdj_646'){
-       flag = true;
-    }
-  }
 
   public login() {
     this.authenticating = true;
@@ -73,15 +67,23 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       (res:User) => {
         this.messageService.add({severity:'success', summary:'Login', detail:'Login Successfull'});
         setTimeout (() => {
-          console.log(localStorage.getItem("userAccessToken"));
+          const currUser: User = new User();
           this.localStorageService.setItem('userName', res.name);
           this.localStorageService.setItem('email', res.email);
           this.localStorageService.setItem('userRole', res.roles[0]);
+          this.localStorageService.setItem('userAccessToken', res.accessToken);
+          currUser.accessToken = res.accessToken;
+          currUser.email = res.email;
+          currUser.id = res.id;
+          currUser.name = res.name;
+          currUser.roles = res.roles;
+          currUser.tokenType = res.tokenType;
+          this.userBehaviorService.updatedDataSelection(currUser);
           this.updateCart(res.email);
           if (this.redirectTo) {
             this.router.navigateByUrl(this.redirectTo);
           } else {
-            window.location.reload();
+            this.router.navigate(['']);
           }
         }, 1000); 
       },
