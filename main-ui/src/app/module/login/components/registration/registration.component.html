@@ -1,5 +1,7 @@
 <p-toast position="top-right"></p-toast>
-<p-progressSpinner *ngIf="loader"></p-progressSpinner>
+<div class="flyer-spinner">
+    <p-progressSpinner *ngIf="loader"></p-progressSpinner>
+</div>
 <div class="row p-4" *ngIf="firstStep">
     <div class="col-sm-2">
 
@@ -17,11 +19,18 @@
                     <label for="email">Email ID</label>
                     <input type="text" #email required id="email" formControlName="email"
                         placeholder="Enter Email ID" class="form-control">
+                    <span *ngIf="regForm.controls['email'].hasError('email')" class="text-danger">Email is not valid</span>
                 </div>
                 <div class="form-group">
                     <label for="mobile">Mobile Number</label>
-                    <input type="text" #mobile required id="mobile" formControlName="mobile"
-                        placeholder="Enter Mobile Number" class="form-control">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">+91</span>
+                        </div>
+                        <input type="text" #mobile required id="mobile" formControlName="mobile"
+                            placeholder="Enter Mobile Number" class="form-control">
+                        <span *ngIf="regForm.controls['mobile'].hasError('minlength') || regForm.controls['mobile'].hasError('maxlength')" class="text-danger">Mobile number is not valid</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="dob">Date of Birth</label>
@@ -32,15 +41,18 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" #password required id="password" formControlName="password"
+                            <input type="password" #password required id="password" formControlName="password"
                                 placeholder="Enter Password" class="form-control">
+                            <span *ngIf="regForm.controls['password'].hasError('minlength')" class="text-danger">Password should contain 6 character</span>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="confirmPassword">Confirm Password</label>
-                            <input type="text" #confirmPassword required id="confirmPassword" formControlName="confirmPassword"
+                            <input type="password" #confirmPassword required id="confirmPassword" formControlName="confirmPassword"
                                 placeholder="Enter Confirm Password" class="form-control">
+                            <span *ngIf ="regForm.controls['confirmPassword'].hasError('minlength')" class="text-danger">Password should contain 6 characters</span>
+
                         </div>
                     </div>
                 </div>

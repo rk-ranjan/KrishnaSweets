@@ -35,7 +35,7 @@
         <img class="mr-3" src="../../../../assets/images/user-icon.png" width="55px"/>
       </div>
       <div class="d-flex flex-column">
-        <p class="pb-0 mb-1" *ngIf="userName">Welcome {{name}}</p>
+        <p class="pb-0 mb-1" *ngIf="userName">Welcome <strong>{{name}}</strong></p>
         <p class="" *ngIf="userName" (click)="logout()">logout</p>
         <p class="pb-0 mb-1" *ngIf="!userName">Guest User</p>
         <p class="" (click)="login()" *ngIf="!userName">login</p>
@@ -49,6 +49,18 @@
          <a (click)="navigateToLink(link.path)" class="pl-4"><span class="icon"></span> {{link.name}}</a>
          <hr>
        </div> -->
-       <p-menu [model]="menuItems" [style]="{width:'100%'}"></p-menu>
+       <!-- <p-menu [model]="menuItems" [style]="{width:'100%'}"></p-menu> -->
+      <mat-selection-list #shoes [multiple]="false">
+        <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+         <div class="d-flex" style="display: flex">
+          <div class="text-left">
+            {{shoe}} 
+         </div>
+          <div class="text-right" >
+           <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+          </div>
+         </div>
+        </mat-list-option>
+      </mat-selection-list>
     </div>
 </p-sidebar>

@@ -1,7 +1,10 @@
 <div class="row mobile-view-only" style="background-color: white;">
-      <div class="col-sm-12 p-0">
+      <div class="col-sm-12 text-center" *ngIf="loading">
+         <p-progressSpinner></p-progressSpinner>
+      </div>
+      <div class="col-sm-12 p-0" *ngIf="!loading">
         <hr class="full-hr pt-0 mt-0">
-        <div class="cart-items" *ngFor="let cart of products" >
+        <div class="cart-items" *ngFor="let cart of products" [routerLink]="['/profiles/orders', cart.order.id]">
             <div class="row d-flex m-0">
                 <div class="col-sm-3">
                    <img [src]="'data:image/jpg;base64,'+cart.itemImage" class="card-img img-thumbnail" alt="...">
@@ -38,6 +41,9 @@
 <hr class="full-hr pt-0 mt-0 pb-0 mb-0">
 <div class="row desktop-view-only pt-0 mt-0" style="background-color: white;">
     <h4 class="desktop-view-only p-2 text-center"><strong>Your orders</strong></h4>
+    <div class="col-sm-12 text-center" *ngIf="loading">
+        <p-progressSpinner></p-progressSpinner>
+     </div>
     <div class="col-sm-8 offset-sm-2"  *ngFor="let cart of products">
         <div class="card mb-2">
             <div class="header-view">
@@ -46,7 +52,7 @@
                         <p class="text-normal">{{cart.order.itemName}}</p>
                     </div>
                     <div class="p-2 flex-fill bg-primary">
-                        <p class="text-normal">ORDER DATE: {{cart.order.orderDate | date:'shortDate'}}</p>
+                        <p class="text-normal">ORDER DATE: {{cart.order.orderDate}}</p>
                     </div>
                     <div class="p-2 flex-fill bg-warning">
                         <p class="text-normal">SHIP TO: {{cart.order.shipName}} </p>
@@ -59,12 +65,12 @@
                         <img [src]="'data:image/jpg;base64,'+cart.itemImage" width="200px" class="img-thumbnail" alt="...">
                     </div>
                     <div class="p-2 ml-auto flex-fill">
-                        <p>Price: {{cart.order.price}} </p>
+                        <p>Price(RS): {{cart.order.price}} </p>
                         <p><mat-checkbox [checked]= "true" [disabled] = "true">Eggless</mat-checkbox></p>
                         <p>Weight: {{cart.order.weight}} KG </p>
                         <p>Status: {{cart.order.status}}</p>
                     </div>
-                    <div class="p-2 ml-auto flex-fill">
+                    <div class="p-2 ml-auto flex-fill text-center">
                         <p>Address </p>
                         <p>{{cart.order.shipAddressMain}}</p>
                         <p>{{cart.order.shipAddressOptional}} </p>

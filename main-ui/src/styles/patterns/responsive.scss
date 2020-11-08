@@ -2,9 +2,38 @@
     width: 100%;
     height: 250px;
 }
-@media screen and (max-width: 570px) {
+.lh-condensed { line-height: 1.25; }
+.mobile-fixed {
+    display: none;
+}
+.desktop-only {
+    margin-bottom: 10px;
+}
+.flyer-spinner {
+    position: absolute;
+    z-index: 1000;
+    left: 48%;
+    top: 50%;
+  }
+@media screen and (max-width: 560px) {
+    .desktop-only {
+        display: none;
+    }
     .img-poster {
         width: 100%;
         height: 130px;
     }
+    .mobile-fixed {
+        position: fixed;
+        bottom: 0px;
+        z-index: 1000;
+        width: 100%;
+        display: block;
+    }
+    .flyer-spinner {
+        position: absolute;
+        z-index: 1000;
+        left: 36%;
+        top: 50%;
+      }
 }

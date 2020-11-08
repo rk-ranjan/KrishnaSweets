@@ -11,12 +11,15 @@ import {CalendarModule} from 'primeng/calendar';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { MatCheckboxModule } from '@angular/material';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { BuyNowComponent } from './components/buy-now/buy-now.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
     OrderComponent, 
     ShippingDetailsComponent,
-    OrderListComponent
+    OrderListComponent,
+    BuyNowComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     SharedModule,
     CalendarModule,
     MatCheckboxModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToastModule
   ]
 })
 export class OrderModule { }

@@ -161,6 +161,7 @@ export class PageHeaderComponent implements OnInit {
     ];
     
   }
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   public navigateToLink = (path: string) => {
       this.display = false;
       this.router.navigateByUrl(path);

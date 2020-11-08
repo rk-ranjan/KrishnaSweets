@@ -43,6 +43,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.redirectTo = this.route.snapshot.paramMap.get('redirectUrl');
   }
   public ngOnInit() {
+    console.log(localStorage.getItem("userAccessToken"));
     this.isLogin();
     this.stayOnLoginPage();
   }
@@ -52,7 +53,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   public gotoRegister = () => {
     if (this.redirectTo !== undefined) {
-      this.router.navigate(['/signup', {returnUrl: this.redirectTo}]);
+      this.router.navigate(['/signup', {redirectUrl: this.redirectTo}]);
     } else {
       this.router.navigate(['/signup']);
     }
@@ -72,7 +73,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       (res:User) => {
         this.messageService.add({severity:'success', summary:'Login', detail:'Login Successfull'});
         setTimeout (() => {
-          this.localStorageService.setItem("userAccessToken", res.accessToken);
+          console.log(localStorage.getItem("userAccessToken"));
           this.localStorageService.setItem('userName', res.name);
           this.localStorageService.setItem('email', res.email);
           this.localStorageService.setItem('userRole', res.roles[0]);

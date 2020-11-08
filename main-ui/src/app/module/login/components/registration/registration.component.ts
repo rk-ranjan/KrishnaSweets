@@ -22,6 +22,7 @@ export class RegistrationComponent implements OnInit {
   public data: any;
   public loader: boolean = false;
   public redirectTo: string;
+  public passwordLengthError: string;
   constructor(
     public router: Router,
     public formBuilder: FormBuilder,
@@ -30,12 +31,13 @@ export class RegistrationComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.redirectTo = this.route.snapshot.paramMap.get('redirectUrl');
+    console.log(this.redirectTo);
     this.regForm = formBuilder.group({
       fullname: new FormControl('', Validators.required),
-      mobile: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required,),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required),
+      mobile: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
       dob: new FormControl('', Validators.required),
     })
   }
@@ -56,35 +58,35 @@ export class RegistrationComponent implements OnInit {
         this.register.email = this.regForm.controls.email.value;
         this.register.mobile = this.regForm.controls.mobile.value;
         this.register.dob = this.regForm.controls.dob.value;
-        // this.register.roles.push('ROLE_USER');
-        this.register.roles.push('ROLE_ADMIN');
+        this.register.roles.push('ROLE_USER');
+        // this.register.roles.push('ROLE_ADMIN');
         this.register.password = trim(this.regForm.controls.password.value);
         this.loginService.registerUser(this.register).subscribe(
           (response: any) => {
+            console.log(response);
             this.messageService.add({severity:'success', summary:'Registrations', detail:'Registered Successfully'});
             setTimeout (() => {
               this.loader = false;
-              if (this.redirectTo !== undefined) {
-                this.router.navigateByUrl(this.redirectTo);
+              if (this.redirectTo !== null) {
+                this.router.navigate(['login', {redirectUrl: this.redirectTo}]);
               } else {
-                this.router.navigate(["/"]);
+                this.router.navigate(["login"]);
               }
             }, 1000); 
         }, (error:any) => {
-           this.messageService.add({severity:'error', summary:'Registrations Failed', detail:error});
+           this.loader = false;
+           console.log(error);
+           this.messageService.add({severity:'error', summary:'Registrations Failed', detail:error.error.message});
         });
     } else {
-        this.messageService.add({severity:'error', summary:'Registrations Failed', detail:'Two password are not same'});
+        this.messageService.add({severity:'error', summary:'Invalid Passwords', detail:'The two passwords are not same'});
         this.stayOnLoginPage();
     }
   }
 
   public stayOnLoginPage = () => {
-     this.regForm.controls.fullname.setValue('');
-     this.regForm.controls.email.setValue('');
-     this.regForm.controls.mobile.setValue('');
      this.regForm.controls.password.setValue('');
-     this.regForm.controls.dob.setValue('');
      this.regForm.controls.confirmPassword.setValue('');
   }
+
 }

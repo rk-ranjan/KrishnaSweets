@@ -19,6 +19,8 @@ import { UserHeaderComponent } from './components/user-header/user-header.compon
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import {MessageModule} from 'primeng/message';
     MyOrdersComponent, 
     UserHomeComponent, 
     UserHeaderComponent, 
-    UserSettingsComponent
+    UserSettingsComponent, OrderDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import {MessageModule} from 'primeng/message';
     MatCheckboxModule,
     MatButtonModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ProgressSpinnerModule
   ]
 })
 export class UsersModule { }

@@ -5,6 +5,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'orders',
         component: MyOrdersComponent
+      },
+      {
+        path: 'orders/:id',
+        component: OrderDetailsComponent
       },
       {
         path: 'setting',

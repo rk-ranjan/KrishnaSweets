@@ -15,7 +15,8 @@ const routes: Routes = [
     children: [
       {
        path: '',
-       component: DashboardComponent
+       redirectTo: 'cakes'
+      //  component: DashboardComponent
       },
       {
         path: 'cakes',

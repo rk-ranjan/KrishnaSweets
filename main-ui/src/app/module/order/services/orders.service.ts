@@ -36,9 +36,9 @@ export class OrdersService {
    * To get the List of all Orders.
    * @memberof OrdersService
   */
-  public getCustomerOrder = (body: string): Observable<Order[]> => {
-    return this.http.get<Order[]>(this.listOrderUrl+'/users?email='+body).pipe(
-      map((response: Order[]) => {
+  public getCustomerOrder = (body: string): Observable<any[]> => {
+    return this.http.get<any[]>(this.listOrderUrl+'/users?email='+body).pipe(
+      map((response: any[]) => {
         return response;
       }));
   }

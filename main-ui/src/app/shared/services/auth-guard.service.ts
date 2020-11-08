@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { stat } from 'fs';
 import { LocalStorageService } from '../../core/services/local-storage.service';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class AuthGuardService implements CanActivate{
     if(this.localStorageService.getItem('email')) {
       return true;
     } else {
-      this.router.navigate(["/login"]);
+      this.router.navigate(["/login", { redirectUrl: route.routeConfig.path }]);
       return false;
     }
   }

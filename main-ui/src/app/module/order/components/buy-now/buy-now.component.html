@@ -1,0 +1,160 @@
+<p-toast></p-toast>
+<form [formGroup]="orderForm" (ngSubmit)="submitOrder()">
+    <div class="row pt-4">
+        <div class="col-sm-4 order-md-1 mb-4" *ngIf="cakeDetail">
+            <div class="card m-0 product-grid6" style="border-radius: 0%;">
+                <div class="product-image">
+                    <img id="overImg" [src]="'data:image/jpg;base64,'+cakeDetail.image[0].image.data" alt="..." class="card-img">
+                </div>
+                <div class="card-body">
+                    <div class="product-content">
+                        <div class="card-title">{{cakeDetail.items.itemName}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 order-md-2 pl-4">
+            <h4 class="mb-3">Shipping Address</h4>
+                <div class="row">
+                    <div class="col-sm-12 mb-3">
+                        <label for="firstName">Full Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter Full Name"
+                            formControlName="fname">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="lastName">Delever Order On </label><br>
+                        <p-calendar formControlName="date" [showTime]="true" [showIcon]="true" dateFormat="dd.mm.yy"
+                            [style]="{width: '100%'}"></p-calendar>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="username">Mobile Number</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="username" placeholder="Enter contact number here"
+                                formControlName="mobile">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                        formControlName="addressMain">
+                </div>
+                <div class="mb-3">
+                    <label for="address2">Locality</label>
+                    <select formControlName="addressOptional" class="form-control">
+                        <option selected>Mehshaul Chowk</option>
+                        <option>Rajopatti</option>
+                        <option>Sahu Chowk / Nahar Chowk</option>
+                        <option>Shanti Nagar</option>
+                        <option>Dumra</option>
+                        <option>Basbariya / Railway Station</option>
+                        <option>Pratap Nagar</option>
+                        <option>Raghunath Puri</option>
+                        <option>Sonavati Colony</option>
+                        <option>Chakmahila Road</option>
+                        <option>Koat Bazar</option>
+                        <option>Sonarpatti</option>
+                        <option>Mahavir Sthan</option>
+                        <option>Jankisthan</option>
+                        <option>Gaushala</option>
+                        <option>Riga Road</option>
+                        <option>Deepak Store</option>
+                        <option>Mathura Singh High School</option>
+                        <option>Mohanth Sah Chowk</option>
+                        <option>Gudri Road</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" formControlName="city" disabled />
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="country">State</label>
+                        <input type="text" class="form-control" id="country" formControlName="country" disabled />
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="zip">Zip</label>
+                        <select formControlName="zip" class="form-control">
+                            <option value="843301" selected>843301</option>
+                            <option value="843302">843302</option>
+                            <option value="843303">843303</option>
+                            <option value="843304">843304</option>
+                            <option value="843305">843305</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <hr class="mb-4">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="same-address">
+                        <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="save-info">
+                        <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                    </div> -->
+                <hr class="mb-4">
+                <h4 class="mb-3">Payment Modes</h4>
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="upi" name="paymentMethod" type="radio" class="custom-control-input" required="" disabled>
+                        <label class="custom-control-label" for="upi">BHIM UPI</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" required=""
+                            disabled>
+                        <label class="custom-control-label" for="credit">Credit card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required=""
+                            disabled>
+                        <label class="custom-control-label" for="debit">Debit card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required=""
+                            disabled>
+                        <label class="custom-control-label" for="paypal">PayPal</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="cod" name="paymentMethod" type="radio" class="custom-control-input" checked=""
+                            required="">
+                        <label class="custom-control-label" for="cod">Cash on delevery</label>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cc-name">Name on card</label>
+                            <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                            <small class="text-muted">Full name as displayed on card</small>
+                            <div class="invalid-feedback"> Name on card is required </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cc-number">Credit card number</label>
+                            <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+                            <div class="invalid-feedback"> Credit card number is required </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="cc-expiration">Expiration</label>
+                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                            <div class="invalid-feedback"> Expiration date required </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="cc-cvv">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                            <div class="invalid-feedback"> Security code required </div>
+                        </div>
+                    </div> -->
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block desktop-only" type="submit"
+                    [disabled]="orderForm.invalid">Submit order</button>
+        </div>
+    </div>
+    <div class="row mobile-fixed p-1 pl-2 pr-2" type="submit" style="background-color: white;">
+        <button type="submit" class="btn btn-success btn-lg btn-block" 
+                [disabled]="orderForm.invalid">Submit the order</button>
+    </div>
+    </form>

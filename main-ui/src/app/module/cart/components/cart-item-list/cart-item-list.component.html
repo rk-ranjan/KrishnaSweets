@@ -20,25 +20,29 @@
             My Cart({{cartItems.length}} items)
         </div>
         <div class="">
-            Subtotal: {{totalCost | number}}
+            Subtotal: RS {{totalCost | number}}
         </div>
     </div>
     <hr>
     <!-- <hr> -->
   </div>
-  <div class="col-sm-9 p-0">
+  <div class="col-sm-12 jumbotron text-center" *ngIf="cartItems.length === 0">
+     <h1 class="primary-heading">Your cart is empty</h1>
+     <a routerLink="/cakes">Start shopping</a>
+  </div>
+  <div class="col-sm-9 p-0" *ngIf="cartItems.length !== 0">
     <div class="cart-items"  *ngFor="let cart of cartItems">
       <app-cart-item [cart]="cart" (deleteItem)="deleteItem($event)"></app-cart-item>
       <hr class="full-hr">
     </div>
   </div>
-  <div class="col-sm-3 m-0" style="background-color: #f1f1f1;">
+  <div class="col-sm-3 m-0" style="background-color: #f1f1f1;" *ngIf="cartItems.length !== 0">
     <app-sub-total [cartList]="cartItems"  [totalCost]="totalCost" class="m-2" (checkout)="checkOutOrderDesktop($event)"></app-sub-total>
   </div>
   <div class="mobile-only-footer bg-warning">
-      <div class="btn-group btn-block" role="group" aria-label="Basic example">
-        <button class="flex-fill p-2 btn-warning" mat-raised-button>{{totalCost | number}}</button>
-        <button class="flex-fill p-2" mat-raised-button color="accent" (click)="checkOutOrder()" [disabled]="cartItems.length === 0">CHECKOUT</button>
+      <div class="btn-group btn-block d-flex" role="group" aria-label="Basic example">
+        <button class="flex-fill p-2 btn-warning" mat-raised-button><img src="../../../../assets/images/img-rs.png" width="20px" /> {{totalCost | number}}.0</button>
+        <button class="flex-fill p-2" mat-raised-button color="accent" (click)="checkOutOrder()" [disabled]="cartItems.length === 0">CHECKOUT NOW</button>
       </div>
   </div> 
 </div>

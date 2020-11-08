@@ -6,7 +6,7 @@ import { Order } from 'src/app/core/model/order';
 import { OrdersService } from '../../services/orders.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipping-details',
@@ -27,8 +27,11 @@ export class ShippingDetailsComponent implements OnInit {
     private orderService: OrdersService,
     private localStorageService: LocalStorageService,
     private messageService: MessageService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute
+  ) { 
+    var param = this.route.snapshot.paramMap.get('productId');
+  }
 
   ngOnInit() {
     this.userName = localStorage.getItem('email');
@@ -41,14 +44,13 @@ export class ShippingDetailsComponent implements OnInit {
     });  
     this.orderForm = this.formBuilder.group({
        fname: new FormControl('', Validators.required),
-       lname: new FormControl('', Validators.required),
        date: new FormControl('', Validators.required),
        mobile: new FormControl('', Validators.required),
        addressMain: new FormControl('', Validators.required),
-       addressOptional: new FormControl('', Validators.required),
-       country: new FormControl('INDIA', Validators.required),
+       addressOptional: new FormControl('Mehshaul Chowk', Validators.required),
+       country: new FormControl('BIHAR', Validators.required),
        city: new FormControl('SITAMARHI', Validators.required),
-       zip: new FormControl('', Validators.required)
+       zip: new FormControl('843301', Validators.required)
     });
   }
 
@@ -71,8 +73,8 @@ export class ShippingDetailsComponent implements OnInit {
 
   public getShipDetails = () => {
     const username = this.localStorageService.getItem('email');
-    this.order.customerId = username,
-    this.order.shipName =  this.orderForm.controls.fname.value + this.orderForm.controls.lname.value;
+    this.order.customerId = username;
+    this.order.shipName =  this.orderForm.controls.fname.value;
     this.order.shipCountry = this.orderForm.controls.country.value;
     this.order.shipCity = this.orderForm.controls.city.value;
     this.order.mobile = this.orderForm.controls.mobile.value;
@@ -82,6 +84,7 @@ export class ShippingDetailsComponent implements OnInit {
     this.order.shipPostalCode = this.orderForm.controls.zip.value;
     this.order.shipAddressOptional = this.orderForm.controls.addressOptional.value;
     this.order.deleverOn = this.orderForm.controls.date.value;
+    this.order.status = 'Pending';
     const orderDate = new Date().toLocaleDateString();
     this.order.orderDate = orderDate;
   }
@@ -100,6 +103,5 @@ export class ShippingDetailsComponent implements OnInit {
        (response: any) => {
      });
   }
-  
 
 }

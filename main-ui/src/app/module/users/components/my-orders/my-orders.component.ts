@@ -12,10 +12,10 @@ import { DomSanitizer } from '@angular/platform-browser';
   providers: [MessageService]
 })
 export class MyOrdersComponent implements OnInit {
-  products: Order[];
-
-  statuses: SelectItem[];
-  public email: string;
+ public products: Order[]; 
+ public statuses: SelectItem[];
+ public email: string;
+ public loading: boolean = true;
 
   clonedProducts: { [s: string]: Order; } = {};
   constructor(
@@ -30,6 +30,8 @@ export class MyOrdersComponent implements OnInit {
   ngOnInit() {
     this.orderService.getCustomerOrder(this.email).subscribe(
       (response: any[]) => {
+        this.loading = false;
+        response.sort((a, b) => b.order['id'].localeCompare(a.order['id'])); 
         this.products = response;
         console.log(this.products);
     })

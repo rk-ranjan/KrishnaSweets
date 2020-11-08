@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <form [formGroup]="orderForm" (ngSubmit)="submitOrder()">
 <div class="row pt-4">
     <div class="col-sm-4 order-md-2 mb-4">
@@ -41,16 +42,12 @@
         </form>
     </div>
     <div class="col-md-8 order-md-1 pl-4">
-        <h4 class="mb-3">Shipping Address(Receiver Details)</h4>
+        <h4 class="mb-3">Shipping Address</h4>
             <div class="row">
-                <div class="col-sm-6 mb-3">
-                    <label for="firstName">First name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="First Name"
+                <div class="col-sm-12 mb-3">
+                    <label for="firstName">Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter Full Name"
                         formControlName="fname">
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <label for="lastName">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" formControlName="lname">
                 </div>
             </div>
             <div class="row">
@@ -73,22 +70,48 @@
                     formControlName="addressMain">
             </div>
             <div class="mb-3">
-                <label for="address2">Address 2 <span class="text-muted">(Locality)</span></label>
-                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite"
-                    formControlName="addressOptional">
+                <label for="address2">Locality</label>
+                <select formControlName="addressOptional" class="form-control">
+                    <option selected>Mehshaul Chowk</option>
+                    <option>Rajopatti</option>
+                    <option>Sahu Chowk / Nahar Chowk</option>
+                    <option>Shanti Nagar</option>
+                    <option>Dumra</option>
+                    <option>Basbariya / Railway Station</option>
+                    <option>Pratap Nagar</option>
+                    <option>Raghunath Puri</option>
+                    <option>Sonavati Colony</option>
+                    <option>Chakmahila Road</option>
+                    <option>Koat Bazar</option>
+                    <option>Sonarpatti</option>
+                    <option>Mahavir Sthan</option>
+                    <option>Jankisthan</option>
+                    <option>Gaushala</option>
+                    <option>Riga Road</option>
+                    <option>Deepak Store</option>
+                    <option>Mathura Singh High School</option>
+                    <option>Mohanth Sah Chowk</option>
+                    <option>Gudri Road</option>
+                </select>
             </div>
             <div class="row">
-                <div class="col-sm-5">
-                    <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" formControlName="country" disabled />
-                </div>
                 <div class="col-sm-4">
                     <label for="city">City</label>
                     <input type="text" class="form-control" id="city" formControlName="city" disabled />
                 </div>
+                <div class="col-sm-5">
+                    <label for="country">State</label>
+                    <input type="text" class="form-control" id="country" formControlName="country" disabled />
+                </div>
                 <div class="col-sm-3">
                     <label for="zip">Zip</label>
-                    <input type="text" class="form-control" id="zip" placeholder="824301" formControlName="zip" />
+                    <select formControlName="zip" class="form-control">
+                        <option value="843301" selected>843301</option>
+                        <option value="843302">843302</option>
+                        <option value="843303">843303</option>
+                        <option value="843304">843304</option>
+                        <option value="843305">843305</option>
+                    </select>
                 </div>
             </div>
             <!-- <hr class="mb-4">

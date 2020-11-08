@@ -48,7 +48,8 @@ const routes: Routes = [
       },
       {
         path: 'cart',
-        loadChildren: () => import('./module/cart/cart.module').then((m) => m.CartModule)
+        loadChildren: () => import('./module/cart/cart.module').then((m) => m.CartModule),
+        canActivate: [AuthGuardService]
       },
       {
         path: 'admin',

@@ -24,7 +24,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductDescriptionComponent } from './components/product-description/product-description.component';
 import { ProductDetailsSmallComponent } from './components/product-details-small/product-details-small.component';
 import { MatOptionModule, MatCommonModule, MatRippleModule } from '@angular/material/core';
-import { MatRadioModule, MatCheckboxModule } from '@angular/material';
+import { MatRadioModule, MatCheckboxModule, MatSelectModule, MatIconModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { CustomSidePanelComponent } from './components/custom-side-panel/custom-side-panel.component';
 import { CardItemComponent } from './components/card-item/card-item.component';
@@ -40,6 +40,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {RatingModule} from 'primeng/rating';
 import { ShowCaseComponent } from './components/show-case/show-case.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,10 @@ import { ShowCaseComponent } from './components/show-case/show-case.component';
       ReactiveFormsModule,
       FormsModule,
       ConfirmDialogModule,
-      RatingModule
+      RatingModule,
+      MatListModule,
+      MatSelectModule,
+      MatIconModule
   ],
   exports: [
         TopNotificationBarComponent,

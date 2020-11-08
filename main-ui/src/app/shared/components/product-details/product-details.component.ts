@@ -64,8 +64,22 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     Math.round(this.fixedPrice);   
   }
   
-  public buyProduct = () => {   
-      this.addToCart();  
+  public buyProduct = (id: any) => {   
+    if (this.detailForm.controls.message.value === '' && this.detailData.items.productId === 1) {
+      this.confirmationService.confirm({
+          message: 'Are you sure that you want to proceed?',
+          header: 'Confirmation',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.router.navigate(['order/buy-now', { productId: id } ]);
+          },
+          reject: () => {
+
+          }
+      });
+    } else {
+      this.router.navigate(['order/buy-now', { productId: id }]);
+    }
   }
 
   public addToCart = () => {
