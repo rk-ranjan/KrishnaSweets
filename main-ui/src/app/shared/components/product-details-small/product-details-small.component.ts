@@ -40,6 +40,7 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
        this.detailData = variableChange.currentValue;
        this.FinalPrice = this.detailData.items.unitPrice - (this.detailData.items.unitPrice * this.detailData.items.discountPercentage)/100;
        this.fixedPrice = this.detailData.items.unitPrice;
+       console.log(this.detailData.image.length);
        Math.round(this.FinalPrice);
        Math.round(this.fixedPrice);
     }
@@ -58,7 +59,14 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
     Math.round(this.FinalPrice);
     Math.round(this.fixedPrice);   
   }
-  
+  onSwipe(event) { 
+    const x = Math.abs(event.deltaX) > 40 ? (event.deltaX > 0 ? "Right" : "Left") : ""; 
+      const tempSlider = x === 'Left' ? this.currentSlide - 1 : this.currentSlide + 1;
+      console.log(this.detailData.image.length);
+      if (tempSlider > -1 && tempSlider < this.detailData.image.length) {
+        this.currentSlide = tempSlider;
+      }
+  }
   public buyProduct = (id: any) => {   
     if (this.detailForm.controls.message.value === '' && this.detailData.items.productId === 1) {
       this.confirmationService.confirm({

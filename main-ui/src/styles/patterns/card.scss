@@ -37,3 +37,38 @@
    .product-grid6 .card-title{font-size:14px;font-weight:600;text-transform:capitalize;margin:0 0 5px;transition:all .3s ease 0s}
    // .product-grid6 .social li a{color:#e91e63;font-size:14px;line-height:40px;text-align:center;height:40px;width:40px;margin:0 5px;border:1px solid #e91e63;border-radius:50px;display:block;position:relative;transition:all .3s ease-in-out}
 }
+.flex {
+   display: flex;
+   flex-wrap: nowrap; 
+   overflow: auto;
+ }
+ .flex-item {
+   flex: 0 0 auto;
+ }
+ .container-scroll {
+   width: 100%;
+   height: auto;
+   white-space: nowrap;
+   padding: 0px;
+   margin: 0px;
+ }
+ .container-scroll > .item {
+   width: 23%;
+   margin: 0 2px 0 2px;
+ }
+ @media screen and (max-width: 760px) {
+  .container-scroll > .item {
+       width: 40%;
+       margin: 0 2px 0 2px;
+     }
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.container-scroll::-webkit-scrollbar {
+   display: none;
+ }
+ 
+ /* Hide scrollbar for IE, Edge and Firefox */
+ .container-scroll {
+   -ms-overflow-style: none;  /* IE and Edge */
+   scrollbar-width: none;  /* Firefox */
+ }

@@ -2,12 +2,12 @@
 <div class="flyer-spinner">
     <p-progressSpinner *ngIf="loader"></p-progressSpinner>
 </div>
-<div class="row p-4" *ngIf="firstStep">
-    <div class="col-sm-2">
+<div class="row p-2" *ngIf="firstStep">
+    <div class="col-sm-3">
 
     </div>
-    <div class="col-sm-8 card p-4">
-            <h4>Registrations</h4>
+    <div class="col-sm-6 card p-2">
+        <h5 class="pb-3 pt-2"><strong>REGISTRATIONS</strong></h5>
             <hr>
             <form [formGroup]="regForm" (ngSubmit)="onSubmitRegistration(regForm.value)" class="form-flat" autocomplete="off">
                 <div class="form-group">
@@ -29,8 +29,8 @@
                         </div>
                         <input type="text" #mobile required id="mobile" formControlName="mobile"
                             placeholder="Enter Mobile Number" class="form-control">
-                        <span *ngIf="regForm.controls['mobile'].hasError('minlength') || regForm.controls['mobile'].hasError('maxlength')" class="text-danger">Mobile number is not valid</span>
                     </div>
+                    <span *ngIf="regForm.controls['mobile'].hasError('minlength') || regForm.controls['mobile'].hasError('maxlength')" class="text-danger">Mobile number is not valid</span>
                 </div>
                 <div class="form-group">
                     <label for="dob">Date of Birth</label>
@@ -59,8 +59,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="d-flex">
-                            <button type="button" class="btn btn-warning btn-pro flex-fill" (click)="gotoLogin()">Sign In</button>
-                            <button type="submit" class="btn btn-success btn-pro flex-fill" [disabled]="regForm.invalid">Sign Up</button>
+                            <button type="button" class="btn-card btn-lg btn-outline-success flex-fill m-1 p-2" (click)="gotoLogin()">Sign In</button>
+                            <button type="submit" class="btn-card btn-lg btn-outline-primary flex-fill m-1 p-2" [disabled]="regForm.invalid">Sign Up</button>
                         </div>
                     </div>
                 </div>

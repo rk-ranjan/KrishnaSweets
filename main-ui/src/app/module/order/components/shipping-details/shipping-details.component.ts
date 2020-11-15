@@ -7,6 +7,7 @@ import { OrdersService } from '../../services/orders.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartBehavourService } from 'src/app/core/services/cart-behavour.service';
 
 @Component({
   selector: 'app-shipping-details',
@@ -23,6 +24,7 @@ export class ShippingDetailsComponent implements OnInit {
   public userName: string;
   constructor(
     private cartService: CartService,
+    private cartBehaviorService: CartBehavourService,
     public formBuilder: FormBuilder,
     private orderService: OrdersService,
     private localStorageService: LocalStorageService,
@@ -66,8 +68,11 @@ export class ShippingDetailsComponent implements OnInit {
            this.createNewOrder();
            this.deleteFromCart(element.cartId);
         });
-        window.location.reload();
-        this.router.navigate(['profiles/orders']);
+        this.messageService.add({severity:'success', summary:'Order', detail: 'Order submitted successfully'});
+        setTimeout (() => {
+            this.cartBehaviorService.emptyCart();
+            this.router.navigate(['profiles/orders']);
+        }, 1000);
      });
   }
 
@@ -92,9 +97,7 @@ export class ShippingDetailsComponent implements OnInit {
   public createNewOrder = () => {
     this.orderService.saveOrder(this.order).subscribe(
       (response: any) => {
-        this.messageService.add({severity:'success', summary:'Order', detail: response});
-          setTimeout (() => { 
-          }, 1000);      
+              
     });
   }
  

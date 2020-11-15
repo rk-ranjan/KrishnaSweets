@@ -1,10 +1,10 @@
 <div class="card m-0 product-grid6" style="border-radius: 0%;">
     <div class="product-image6" routerLink="/product/details" [queryParams]="{ cakeId: cake._id }">
         <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUrl" alt="..." class="card-img">
-    </div>
-    <div class="card-body">
-        <div class="product-content">
-            <div class="card-title">{{cake.itemName | lowercase}}</div>
+        <div class="overlay">
+           <div class="overlay-body">
+              <p>{{cake.itemName}}</p>
+           </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,11 @@
 <div class="row" *ngIf="!loading">
-    <div class="col-sm-12 p-2 text-left">
-        <h6><strong>Sweets</strong></h6>
+    <div class="col-sm-12 d-flex">
+        <div class="flex-fill p-1">
+            <strong>All Sweets</strong>
+        </div>
+        <div class="mr-0 p-1">
+            <button class="btn-card btn btn-outline-primary">SORT <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></button>
+        </div>
     </div>
     <div class="col-sm-3 m-0 p-1" *ngFor="let cake of sweetList">      
         <app-card-item [cake]="cake"></app-card-item>

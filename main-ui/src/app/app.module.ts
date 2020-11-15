@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { Injectable, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -18,7 +18,14 @@ import { HttpInterceptorService } from './core/services/http-interceptor.service
 import { LoginModule } from './module/login/login.module';
 import { CakesModule } from './module/cakes/cakes.module';
 import { CommingSoonComponent } from './components/comming-soon/comming-soon.component';
+import * as Hammer from 'hammerjs';
 
+@Injectable() 
+export class MyHammerConfig extends HammerGestureConfig { 
+  overrides = <any> { 
+    swipe: { direction: Hammer.DIRECTION_ALL }, 
+  }; 
+}
 
 @NgModule({
   declarations: [
@@ -47,11 +54,17 @@ import { CommingSoonComponent } from './components/comming-soon/comming-soon.com
   exports: [
     PrimeCarouselComponent
   ],
-  providers: [{
+  providers: [
+  {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpInterceptorService,
     multi: true,
-  }],
+  },
+  { 
+    provide: HAMMER_GESTURE_CONFIG, 
+    useClass: MyHammerConfig, 
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

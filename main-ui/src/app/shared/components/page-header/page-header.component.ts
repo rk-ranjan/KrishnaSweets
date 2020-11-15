@@ -185,7 +185,7 @@ export class PageHeaderComponent implements OnInit {
     this.localStorageService.removeItem('email');
     this.localStorageService.removeItem('userRole');
     this.cartBehaviorService.emptyCart();
-    this.userBehaviorService.updatedDataSelection(null);
+    this.userBehaviorService.updatedDataSelection(undefined);
     this.router.navigate(['login']);
   }
 

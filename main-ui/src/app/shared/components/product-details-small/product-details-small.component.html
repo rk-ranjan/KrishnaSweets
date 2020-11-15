@@ -1,6 +1,7 @@
 <p-toast position="bottom-center"></p-toast>
 <p-confirmDialog [style]="{width: '95vw'}" [baseZIndex]="10000"></p-confirmDialog>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" *ngIf="detailData">
+<div id="carouselExampleIndicators" class="carousel slide"
+    data-ride="carousel" *ngIf="detailData" (swipe)="onSwipe($event)">
     <ol class="carousel-indicators" >
         <li data-slide-to="0" class="active" *ngFor="let slide of detailData.image; let i = index" (click)="currentSlide = i"></li>
     </ol>

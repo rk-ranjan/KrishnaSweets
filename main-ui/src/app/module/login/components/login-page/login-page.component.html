@@ -1,12 +1,11 @@
 
 <p-toast position="top-right"></p-toast>
-<div class="row p-4">
-  <div class="col-sm-2">
+<div class="row p-2">
+  <div class="col-sm-3">
 
   </div>
-  <div class="col-sm-8 card p-4">
-          <h4>Login</h4>
-          <hr>
+  <div class="col-sm-6 card p-2">
+          <h5 class="pb-3 pt-2"><strong>LOGIN</strong></h5>
           <form [formGroup]="loginForm" (submit)="login()" class="form-flat" autocomplete="off">
               <div class="form-group">
                 <label for="email">
@@ -35,8 +34,8 @@
               <div class="row">
                   <div class="col-sm-12">
                       <div class="d-flex">
-                          <button type="button" class="btn btn-warning btn-pro flex-fill" (click)="gotoRegister()">Sign Up</button>
-                          <button type="submit" class="btn btn-success btn-pro flex-fill" [disabled]="loginForm.invalid">Login</button>
+                          <button type="button" class="btn-card btn-lg btn-outline-primary flex-fill m-1 p-2" (click)="gotoRegister()">Sign Up</button>
+                          <button type="submit" class="btn-card btn-lg btn-outline-success flex-fill m-1 p-2" [disabled]="loginForm.invalid">Login</button>
                       </div>
                   </div>
               </div>
