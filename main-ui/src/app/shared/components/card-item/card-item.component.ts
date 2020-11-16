@@ -8,7 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardItemComponent implements OnInit {
   @Input() public cake: any;
   constructor() { }
-  val3 = 3.5;
+  public val3 = 3.5;
+  public addToCart = (data: any) => {
+     console.log(data);
+  }
   ngOnInit() {
   }
 
