@@ -6,7 +6,7 @@
     <div class="col-sm-12 m-0 p-0" routerLink="cakes">
        <img src="../../../../assets/images/cakes-poster.jpg" class="img-fluid img-thumbnail img-poster"/>
     </div>
-    <div class="container-scroll flex">
+    <div class="container-scroll flex mt-2">
         <div class="item flex-item" *ngFor="let item of cakesList">
             <app-show-case [cake]="item"></app-show-case>
         </div>

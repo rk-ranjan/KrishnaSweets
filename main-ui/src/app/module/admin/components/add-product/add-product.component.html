@@ -1,9 +1,9 @@
 <p-toast></p-toast>
-<div class="row p-4" *ngIf="firstStep">
-    <div class="col-sm-2">
+<div class="row" *ngIf="firstStep">
+    <div class="col-sm-2 desktop-view-only">
 
     </div>
-    <div class="col-sm-8 card p-4">
+    <div class="col-sm-8 card p-2 m-0">
             <h4>Step: 1(Enter product items details)</h4>
             <form [formGroup]="productForm" (ngSubmit)="submitProduct()" class="form-flat" autocomplete="off">
                 <div class="form-group">
@@ -38,8 +38,25 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="cake-flavour">Cakes Flavour</label>
-                            <input type="text" #cakeFlavour required id="cake-flavour" formControlName="flavour"
-                                placeholder="Cake Flavour" class="form-control">
+                            <select formControlName="flavour" class="form-control" #cakeFlavour required id="cake-flavour">
+                                <option value="none" selected>Select Cake Flavour</option>
+                                <option value="Pineapple Cake">Pineapple Cake</option>
+                                <option value="Premium Vanilla Cake">Premium Vanilla Cake</option>
+                                <option value="Strawberry Cake">Strawberry Cake</option>
+                                <option value="Chocolate Cake">Chocolate Cake</option>
+                                <option value=" Truffle Cake"> Truffle Cake</option>
+                                <option value="Black Forest Cake">Black Forest Cake</option>
+                                <option value="White Forest Cake">White Forest Cake</option>
+                                <option value="Mango Cake">Mango Cake</option>
+                                <option value="Blueberry Cake">Blueberry Cake</option>
+                                <option value="Kiwi Cake">Kiwi Cake</option>
+                                <option value="Fruit Cake">Fruit Cake</option>
+                                <option value="Butter Spotch">Butter Spotch</option>
+                                <option value="Pineapple Chocolate">Pineapple Chocolate</option>
+                                <option value="Dry Fruits Cake">Dry Fruits Cake</option>
+                                <option value="Special Cake">Special Cake</option>
+                                <option value="Designer Cake">Designer Cake</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -62,15 +79,24 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="cake-bread">Bread Used</label>
-                            <input type="text" #cakeName required id="cake-bread" formControlName="breadUsed"
-                                placeholder="Bread used for cake" class="form-control">
+                            <select formControlName="breadUsed" class="form-control" required id="cake-bread">
+                                <option value="none" selected>Select Bread Type</option>
+                                <option value="Pineapple Cake">Vanilla Eggless</option>
+                                <option value="Pineapple Cake">Chocolate Eggless</option>
+                                <option value="Pineapple Cake">Chocochips Eggless</option>
+                                <option value="Pineapple Cake">Redvelvet Eggless</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="cake-creame">Creame Used</label>
-                            <input type="text" #cakeName required id="cake-creame" formControlName="breadCreame"
-                                placeholder="Creame used for cake" class="form-control">
+                            <label for="cake-creame">Cream Used</label>
+                            <select formControlName="breadCreame" class="form-control" required id="cake-creame">
+                                    <option value="none" selected>Select Cream Type</option>
+                                    <option value="Pineapple Cake">Fresh Cream</option>
+                                    <option value="Premium Vanilla Cake">Premium Fresh Cream</option>
+                                    <option value="Strawberry Cake">Truffle Cream</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -84,12 +110,12 @@
                     <mat-checkbox id="homeItem" formControlName="homeItem">Show on Home Page</mat-checkbox>
                 </div>
                 <div class="d-flex">
-                    <button type="reset" class="btn btn-warning mr-auto">&nbsp;Cancel&nbsp;</button>
-                    <button type="submit" class="btn btn-success">&nbsp; Next &nbsp;</button>
+                    <button type="reset" class="btn-card btn-lg btn-outline-danger flex-fill m-1 p-2">&nbsp;Cancel&nbsp;</button>
+                    <button type="submit" class="btn-card btn-lg btn-outline-success flex-fill m-1 p-2">&nbsp; Next &nbsp;</button>
                 </div>
             </form>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-2 desktop-view-only">
 
     </div>
 </div>

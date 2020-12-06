@@ -1,25 +1,22 @@
-.overlay {
-   position: absolute;
-   background-color: black;
-   opacity: 0.4;
-   color: white;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
+.show-case-title {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 700;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    overflow-x: visible;
 }
-.overlay-body > p{
-    color: white;
-    font-size: 16px;
-    padding-top: 80%;
- }
 @media only screen and (max-width:760px){
     .card-img {
         height: 110px !important;
     }
-    .overlay-body > p{
-        color: white;
+    .show-case-title {
         font-size: 12px;
-        padding-top: 60%;
-     }
+        text-transform: capitalize;
+        letter-spacing: 0.6px;
+        text-align: center;
+    }
 }

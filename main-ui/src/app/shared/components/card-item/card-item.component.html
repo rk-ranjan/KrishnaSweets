@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="card m-0 product-grid6" style="border-radius: 0%;">
     <div class="product-image6" routerLink="/product/details" [queryParams]="{ cakeId: cake._id }">
         <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUrl" alt="..." class="card-img">
@@ -12,7 +13,7 @@
                     {{cake.itemName | lowercase}}
                 </div>
                 <div class="share">
-                    <span class="fa fa-whatsapp text-success" style="font-size: 18px;"></span>
+                    <a href="whatsapp://send?text=Cake for you from Krishna Sweets http://onlinekrishnasweets.com/product/details?cakeId='{{cake._id}}'"><span class="fa fa-whatsapp text-success" style="font-size: 18px;"></span></a>
                 </div>
             </div>
             <!-- <p-rating [ngModel]="val3" [cancel]="false"></p-rating> -->

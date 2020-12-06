@@ -31,10 +31,10 @@ export class AddProductComponent implements OnInit {
       cakeName: new FormControl('', Validators.required),
       unitPrice: new FormControl('', Validators.required),
       eggless: new FormControl(true),
-      flavour: new FormControl(''),
+      flavour: new FormControl('none'),
       discount: new FormControl('', Validators.required),
-      breadUsed: new FormControl(''),
-      breadCreame: new FormControl(''),
+      breadUsed: new FormControl('none'),
+      breadCreame: new FormControl('none'),
       desc: new FormControl('', Validators.required),
       homeItem: new FormControl(false, Validators.required)
     })
