@@ -1,5 +1,5 @@
 <div class="card m-0 product-grid6" style="border-radius: 0%;">
-    <div class="product-image6" routerLink="/product/details" [queryParams]="{ cakeId: cake._id }">
+    <div class="product-image6" (click)="createFilterLink()">
         <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUrl" alt="..." class="card-img">
         <p class="show-case-title">{{cake.itemName | titlecase}}</p>
     </div>

@@ -53,12 +53,12 @@ export class ShowCakesService {
     return this.https.put<ListCake>(this.getAllCakesUrl+"/updateProduct",product).pipe(
       map((res: ListCake) => {
         return res;
-    }))
+    }));
   }
 
-  public deleteProductById = (id: string): Observable<ListCake> => {
-    return this.https.delete<ListCake>(this.getAllCakesUrl+"/deleteProductById?id="+id).pipe(
-      map((res: ListCake) => {
+  public deleteProductById = (id: string): Observable<any> => {
+    return this.https.delete<any>(this.getAllCakesUrl+"/deleteProductById?id="+id).pipe(
+      map((res: any) => {
         return res;
     }))
   }

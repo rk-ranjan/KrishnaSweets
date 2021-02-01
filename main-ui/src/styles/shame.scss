@@ -62,3 +62,6 @@
       margin: 0px;
       width: 100%;
   }
+  *:focus {
+    outline: none !important;
+  }

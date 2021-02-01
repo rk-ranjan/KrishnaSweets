@@ -54,7 +54,8 @@ export class ManageCakesComponent implements OnInit {
         (response: ListCake[]) => {
             this.loading = false;
             this.filterCakeList = response;
-            this.filterCakes(); 
+            this.product2 = response;
+            // this.filterCakes(); 
         });
     }
     public filterCakes = () => {
@@ -65,8 +66,15 @@ export class ManageCakesComponent implements OnInit {
         }  
     }
 
-    onRowEditInit(product: ListCake) {
+    public onRowEditInit = (product: ListCake) => {
         this.clonedProducts[product['_id']] = {...product};
+    }
+
+    public onRowDelete = (event: ListCake) => {
+        this.product2 = this.product2.filter((product) => product._id !== event._id);
+        this.showCakesService.deleteProductById(event._id).subscribe((data) => {
+            this.messageService.add({severity:'success', summary: 'Success', detail: data});  
+        });
     }
 
     onRowEditSave(product: ListCake) {

@@ -45,13 +45,14 @@
                                 <option value="Strawberry Cake">Strawberry Cake</option>
                                 <option value="Chocolate Cake">Chocolate Cake</option>
                                 <option value=" Truffle Cake"> Truffle Cake</option>
+                                <option value="Red Velvet Heart Cake">Red Velvet Cake</option>
                                 <option value="Black Forest Cake">Black Forest Cake</option>
                                 <option value="White Forest Cake">White Forest Cake</option>
                                 <option value="Mango Cake">Mango Cake</option>
                                 <option value="Blueberry Cake">Blueberry Cake</option>
                                 <option value="Kiwi Cake">Kiwi Cake</option>
                                 <option value="Fruit Cake">Fruit Cake</option>
-                                <option value="Butter Spotch">Butter Spotch</option>
+                                <option value="Butter Spotch">Butter Scotch</option>
                                 <option value="Pineapple Chocolate">Pineapple Chocolate</option>
                                 <option value="Dry Fruits Cake">Dry Fruits Cake</option>
                                 <option value="Special Cake">Special Cake</option>
@@ -69,9 +70,13 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="cake-bread">Product Celling Unit</label>
-                            <input type="text" #unit required id="cake-bread" formControlName="unit"
-                                placeholder="Pond, KG, Packet, Piece" class="form-control">
+                            <label for="cake-bread">Product Selling Unit</label>
+                            <select #unit id="unit" class="form-control" formControlName="unit">
+                                <option value="none" selected>Select Product Unit</option>
+                                <option value="KG">KG</option>
+                                <option value="Pond">Piece</option>
+                                <option value="Pond">Pound</option>
+                            </select>
                         </div>
                     </div>
                 </div>

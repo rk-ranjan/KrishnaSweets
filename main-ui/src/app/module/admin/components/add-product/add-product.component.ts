@@ -27,7 +27,7 @@ export class AddProductComponent implements OnInit {
   ) {
     this.productForm = formBuilder.group({
       productId: new FormControl('1', Validators.required),
-      unit: new FormControl('', Validators.required),
+      unit: new FormControl('none', Validators.required),
       cakeName: new FormControl('', Validators.required),
       unitPrice: new FormControl('', Validators.required),
       eggless: new FormControl(true),
