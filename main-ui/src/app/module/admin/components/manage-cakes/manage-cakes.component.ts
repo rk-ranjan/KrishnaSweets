@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService, SelectItem } from 'primeng/api';
 import { ListCake } from 'src/app/module/cakes/models/list-cake';
-import { ShowCakesService } from 'src/app/module/cakes/services/show-cakes.service';
+import { AddCake } from '../../models/add-cake';
 import { CakesService } from '../../services/cakes.service';
 
 @Component({
@@ -19,18 +19,17 @@ import { CakesService } from '../../services/cakes.service';
 })
 export class ManageCakesComponent implements OnInit {
  
-    public product2: ListCake[] = [] ;
-    public filterCakeList: ListCake[] = [];
+    public product2: AddCake[] = [] ;
+    public filterCakeList: AddCake[] = [];
     public loading: boolean = true;
     public filterBy: string;
     public cols: any[];
-    clonedProducts: { [s: string]: ListCake; } = {};
+    clonedProducts: { [s: string]: AddCake; } = {};
     public uploadedFiles: any[] = [];
     imageUpload = false;
     public addProduct: string = 'ADD PRODUCT';
     constructor(
         private activatedRout: ActivatedRoute,
-        private showCakesService: ShowCakesService,
         private messageService: MessageService,
         private cakeService: CakesService,
     ) {
@@ -44,14 +43,15 @@ export class ManageCakesComponent implements OnInit {
         this.cols = [
             { field: 'imageUrl', header: 'Product' },
             { field: 'itemName', header: 'Name' },
-            { field: 'flavour', header: 'Flavour' },
+            { field: 'qty', header: 'Quantity' },
             { field: 'unitPrice', header: 'Unit Price' },
             { field: 'discountPercentage', header: 'Discount'}
         ];
     }
     public initCakeData = () => {
-        this.showCakesService.getAllCakes().subscribe(
-        (response: ListCake[]) => {
+        this.cakeService.getAllProduct().subscribe(
+        (response: AddCake[]) => {
+            console.log(response);
             this.loading = false;
             this.filterCakeList = response;
             this.product2 = response;
@@ -66,18 +66,19 @@ export class ManageCakesComponent implements OnInit {
         }  
     }
 
-    public onRowEditInit = (product: ListCake) => {
+    public onRowEditInit = (product: AddCake) => {
         this.clonedProducts[product['_id']] = {...product};
     }
 
-    public onRowDelete = (event: ListCake) => {
+    public onRowDelete = (event: AddCake) => {
         this.product2 = this.product2.filter((product) => product._id !== event._id);
-        this.showCakesService.deleteProductById(event._id).subscribe((data) => {
-            this.messageService.add({severity:'success', summary: 'Success', detail: data});  
+        this.cakeService.deleteProduct(event._id).subscribe((data) => {
+            this.messageService.add({severity:'success', summary: 'Success'});  
         });
+        this.initCakeData();
     }
 
-    onRowEditSave(product: ListCake) {
+    public onRowEditSave(product: AddCake) {
         if (product['_id'] != undefined) {
             this.updateProduct(product);
             delete this.clonedProducts[product['_id']];
@@ -88,57 +89,17 @@ export class ManageCakesComponent implements OnInit {
         }
     }
 
-    updateProduct(product : ListCake){
-        console.log(product);
-        this.showCakesService.updateProduct(product).subscribe(
-        (response: ListCake) => {
+    public updateProduct(product : AddCake){
+        this.cakeService.updateProduct(product).subscribe(
+        (response: AddCake) => {
             this.loading = false;
-            this.filterCakes(); 
+            this.initCakeData(); 
         });
     }
 
-    onRowEditCancel(product: ListCake, index: number) {
+    onRowEditCancel(product: AddCake, index: number) {
         this.product2[index] = this.clonedProducts[product['_id']];
         delete this.product2[product['_id']];
-    }
-
-    public onUpload = (event: any, product : ListCake) => {
-        this.imageUpload = false;
-        this.messageService.add({severity:'info', summary: 'Start', detail: 'Upload started'});
-        for(let file of event.files) {
-            this.uploadedFiles.push(file); 
-        }  
-        let formData: any = new FormData();
-        for(var i =0; i< this.uploadedFiles.length; i++) {       
-           formData.append("image", this.uploadedFiles[i], this.uploadedFiles[i]['name']);
-        }
-        formData.append("productItemId", product['_id']);
-        this.cakeService.addProductImage(formData).subscribe(
-          (response: any) => {
-            if(response) {                
-              this.messageService.add({severity:'success', summary: 'Success', detail: 'Uploaded'});
-            }
-        })   
-    }
-
-    addImage(){
-        this.imageUpload = true;
-    }
-
-    deleteImage(product : ListCake){
-        this.showCakesService.deleteImageById(product['_id']).subscribe(
-        (response: ListCake) => {
-            this.loading = false;
-            this.filterCakes(); 
-        });
-    }
-
-    deleteProduct(product : ListCake){
-        this.showCakesService.deleteProductById(product['_id']).subscribe(
-        (response: ListCake) => {
-            this.loading = false;
-            this.filterCakes(); 
-        });
     }
 
 }

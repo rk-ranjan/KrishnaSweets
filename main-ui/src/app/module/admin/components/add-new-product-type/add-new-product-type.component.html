@@ -1,0 +1,47 @@
+<form [formGroup]="productTypes" (ngSubmit)="submitProduct(productTypes.value)" class="form-flat card pl-1 pr-1" autocomplete="off">
+    <div class="row card pl-1 pr-1">
+        <div class="col-sm-12 text-left">
+            <p class="heading pt-1"><b> Product cover images </b></p>
+        </div>
+        <div class="col-sm-12 mb-1" *ngFor="let image of uploadedImageArray">
+            <img [src]="image" class="card-img-top loop-image-size img-thumbnail" alt="...">
+        </div>
+        <div class="col-sm-12" *ngIf="uploadedImageArray.length === 0">
+            <label for="file-input">
+                <img src="../../../../../assets/images/add-product-logo.webp"
+                    class="img-thumbnail card-img-top loop-image-size" alt="...">
+            </label>
+            <input type="file" id="file-input" formControlName="imgUrl" class="hidden-field" (change)="updateFile($event);" />
+        </div>
+    </div>
+    <div class="row card pl-1 pr-1">
+        <div class="col-sm-12 text-left">
+            <p class="heading pt-1"><b> Product informations </b></p>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="cake-name">Product name</label>
+                <input type="text" #name required id="name" formControlName="name"
+                    placeholder="Product name" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="cake-name">Show this product in APP</label>
+                <mat-checkbox class="form-control" id="egglessStatus" formControlName="status">Status
+                </mat-checkbox>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="cake-name">Product descriptions</label>
+                <input type="text" #cakeName required id="cake-name"
+                    placeholder="Descriptions" formControlName="desc" class="form-control">
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-6 form-group">
+            <button class="btn btn-outline-primary btn-block" [disabled]="productTypes.invalid" type="submit">Submit</button>
+        </div>
+    </div>
+</form>

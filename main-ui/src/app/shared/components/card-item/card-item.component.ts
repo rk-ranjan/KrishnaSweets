@@ -26,9 +26,9 @@ export class CardItemComponent implements OnInit {
   ) { }
   public val3 = 3.5;
   public ngOnInit() {
+    console.log(this.cake);
   }
   public addToCart = (data: any) => {
-    console.log(data);
     var cart: Cart = new Cart();
     cart.username = this.localStorageService.getItem('email');
     cart.itemId = data._id;

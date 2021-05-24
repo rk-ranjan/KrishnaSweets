@@ -11,4 +11,7 @@ export class AddCake {
     public discountPercentage: number;
     public homeItem: boolean;
     public descriptions: string;
+    public imageUrls: string[];
+    public categoryId?: string;
+    public qty: string;
 }

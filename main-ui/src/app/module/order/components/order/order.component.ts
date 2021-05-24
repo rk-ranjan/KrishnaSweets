@@ -20,7 +20,7 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
   }
   public cancelOrder = (order: Order) => {
-     this.orderService.deleteOrder(order).subscribe(
+     this.orderService.deleteOrder(order._id).subscribe(
        (response: any) => {
         this.router.routeReuseStrategy.shouldReuseRoute = ()  => false;
         this.router.onSameUrlNavigation = 'reload';

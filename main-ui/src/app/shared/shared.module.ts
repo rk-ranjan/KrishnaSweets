@@ -41,6 +41,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {RatingModule} from 'primeng/rating';
 import { ShowCaseComponent } from './components/show-case/show-case.component';
 import {MatListModule} from '@angular/material/list';
+import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {MatListModule} from '@angular/material/list';
       CustomSidePanelComponent,
       CardItemComponent,
       MenuComponent,
-      ShowCaseComponent
+      ShowCaseComponent,
+      ProductFilterComponent
   ],
   imports: [
       CommonModule,

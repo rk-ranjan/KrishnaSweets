@@ -24,7 +24,7 @@
                                        Weight: {{cart.order.weight}} KG
                                    </div>
                                    <div class="mobile-eggless mobile-only">
-                                      <mat-checkbox [checked]= "true" [disabled] = "true">Eggless</mat-checkbox>
+                                       <button class="btn btn-sm btn-warning" (click)="cancelOrder(cart.order)">Cancel</button>
                                    </div>
                              </div>
                         </div>
@@ -40,11 +40,12 @@
 </div>
 <hr class="full-hr pt-0 mt-0 pb-0 mb-0">
 <div class="row desktop-view-only pt-0 mt-0" style="background-color: white;">
-    <h4 class="desktop-view-only p-2 text-center"><strong>Your orders</strong></h4>
+    <h4 class="desktop-view-only p-2 text-left"><strong>All Orders</strong></h4>
+    <hr>
     <div class="col-sm-12 text-center" *ngIf="loading">
         <p-progressSpinner></p-progressSpinner>
      </div>
-    <div class="col-sm-8 offset-sm-2"  *ngFor="let cart of products">
+    <div class="col-sm-12"  *ngFor="let cart of products">
         <div class="card mb-2">
             <div class="header-view">
                 <div class="d-flex bg-secondary">
@@ -76,12 +77,18 @@
                         <p>{{cart.order.shipAddressOptional}} </p>
                         <p>Contact Mobole No. {{cart.order.mobile}}</p>
                         <div class="mr-0 text-right">
-                            <button class="btn btn-warning" (click)="cancelOrder(order)">Cancel Order</button>
+                            <button class="btn btn-warning" (click)="cancelOrder(cart.order)">Cancel Order</button>
                         </div>
                     </div>
                 </div>
             </div>
             <hr class="mb-0 pb-0">
         </div>
+    </div>
+    <div class="row" style="background-color:white;" *ngIf="products.length === 0">
+            <div class="col-sm-12 text-center m-4 p-4">
+                <span class="fa fa-exclamation-circle"></span>
+                <p>Data Not Found</p>
+            </div>
     </div>
 </div>

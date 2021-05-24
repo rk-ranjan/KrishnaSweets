@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="desktop-view-only">
+    <div class="desktop-view-only" *ngIf="cakeDetail">
         <app-product-details [detail]="cakeDetail" *ngIf="cakeDetail"></app-product-details>
     </div>
     <div class="mobile-view-only" style="background-color: white;">

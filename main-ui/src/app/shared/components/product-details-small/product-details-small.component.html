@@ -3,17 +3,17 @@
 <div id="carouselExampleIndicators" class="carousel slide"
     data-ride="carousel" *ngIf="detailData" (swipe)="onSwipe($event)">
     <ol class="carousel-indicators" >
-        <li data-slide-to="0" class="active" *ngFor="let slide of detailData.image; let i = index" (click)="currentSlide = i"></li>
+        <li data-slide-to="0" class="active" *ngFor="let slide of detailData.imageUrls; let i = index" (click)="currentSlide = i"></li>
     </ol>
-    <div class="carousel-inner" *ngFor="let img of detailData.image; let i = index">
+    <div class="carousel-inner" *ngFor="let img of detailData.imageUrls; let i = index">
         <div class="carousel-item active" *ngIf="i === currentSlide">
-            <img [src]="'data:image/jpg;base64,'+img.image.data" class="slide">
+            <img [src]="img" class="slide">
         </div>
     </div>
 </div>
 <div class="details d-flex flex-column p-3" *ngIf="detailData">
     <div class="title p-0">
-        <h5><strong>{{detailData.items.itemName}}</strong></h5>
+        <h5><strong>{{detailData.itemName}}</strong></h5>
     </div>
     <div class="cake-price d-flex">
         <div class="rs-icon pt-1">
@@ -24,26 +24,17 @@
         </div>
         <div class="discount d-flex flex-column">
             <p class="mb-0">Original: {{fixedPrice | number}}</p>
-            <p class="pt-0">Discount:  {{detailData.items.discountPercentage}} %</p>
+            <p class="pt-0">Discount:  {{detailData.discountPercentage}} %</p>
         </div>
-    </div>
-    <div class="flavour" *ngIf="detailData.items.productId === 1">
-        flavour: {{detailData.items.flavour}}
     </div>
     <form [formGroup]="detailForm" (ngSubmit)="addToCart()">
-        <div class="eggless p-1" *ngIf="detailData.items.productId === 1">
-            <mat-checkbox [checked]="detailData.items.eggless" [disabled]="true">Eggless</mat-checkbox>
-        </div>
         <div class="weights">
             <mat-radio-group formControlName="weight" (change)="priceCalculator($event)">
-                <mat-radio-button value="1">1 {{detailData.items.unit}} &nbsp;</mat-radio-button>
-                <mat-radio-button value="2">2 {{detailData.items.unit}} &nbsp; </mat-radio-button>
-                <mat-radio-button value="3">3 {{detailData.items.unit}} &nbsp; </mat-radio-button>
-                <mat-radio-button value="4">4 {{detailData.items.unit}} &nbsp; </mat-radio-button>
+                <mat-radio-button value="1">1 {{detailData.qty}} &nbsp;</mat-radio-button>
+                <mat-radio-button value="2">2 {{detailData.qty}} &nbsp; </mat-radio-button>
+                <mat-radio-button value="3">3 {{detailData.qty}} &nbsp; </mat-radio-button>
+                <mat-radio-button value="4">4 {{detailData.qty}} &nbsp; </mat-radio-button>
             </mat-radio-group>
-        </div>
-        <div class="message" *ngIf="detailData.items.productId === 1">
-            <input type="text" formControlName="message" class="form-control" placeholder="Messgae on Cake"/>
         </div>
     </form>
 </div>
@@ -51,6 +42,6 @@
 <div class="mobile-only-footer bg-warning">
     <div class="btn-group btn-block">
         <button class="flex-fill p-2" mat-raised-button (click)="addToCart()">ADD TO CART</button>
-        <button class="flex-fill p-2" mat-raised-button color="accent" (click)="buyProduct(detailData.items._id)">BUY NOW</button>
+        <button class="flex-fill p-2" mat-raised-button color="accent" (click)="buyProduct(detailData._id)">BUY NOW</button>
     </div>
 </div> 

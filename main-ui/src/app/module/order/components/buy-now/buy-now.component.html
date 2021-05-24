@@ -1,10 +1,10 @@
 <p-toast></p-toast>
-<form [formGroup]="orderForm" (ngSubmit)="submitOrder()">
+<form [formGroup]="orderForm" (ngSubmit)="submitOrder()" *ngIf="!isOrderSubmitted">
     <div class="row pt-4">
         <div class="col-sm-4 order-md-1 mb-4" *ngIf="cakeDetail">
             <div class="card m-0 product-grid6" style="border-radius: 0%;">
                 <div class="product-image">
-                    <img id="overImg" [src]="'data:image/jpg;base64,'+cakeDetail.image[0].image.data" alt="..." class="card-img">
+                    <img id="overImg" [src]="cakeDetail.items.imageUrls[0]" alt="..." class="card-img">
                 </div>
                 <div class="card-body">
                     <div class="product-content">
@@ -158,3 +158,42 @@
                 [disabled]="orderForm.invalid">Submit the order</button>
     </div>
     </form>
+    <div class="row" *ngIf="isOrderSubmitted">
+        <div class="col-sm-12 jumbotron text-left mt-1 mb-0">
+            <h1 class="primary-heading">Your order has been placed successfully.</h1>
+        </div>
+    </div>
+    <div class="row p-2 pt-3" *ngIf="isOrderSubmitted">
+       <div class="col-sm-12 d-flex">
+          <a class="flex-fill" routerLink="/cakes">Back to shopping...</a>
+          <a routerLink="/profiles/orders"> View All </a>
+          <hr class="full-hr">
+       </div>
+    </div>
+    <div class="m-0 mb-2" *ngIf="isOrderSubmitted">
+        <div class="row d-flex" *ngFor="let product of products">
+            <div class="col-sm-3">
+                <img [src]="'data:image/jpg;base64,'+product.itemImage" class="card-img-2 img-thumbnail" alt="...">
+            </div> 
+            <div class="col-sm-8">
+                <div class="card-body" style="padding: 0%;">
+                    <div class="d-flex flex-column">
+                        <div class="item-title d-flex">
+                            <div class="price mr-auto">{{product.order.itemName}}</div>
+                        </div>
+                        <div class="item-detail d-flex pt-2 p-1">
+                            <div class="price mr-auto">Price: {{product.order.price | number}}</div>
+                        </div>
+                        <div class="item-edit d-flex pt-1 p-1">
+                                <div class="weight mr-auto">
+                                    Weight: {{product.order.weight}} Pond
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+            <hr class="full-hr">
+            </div>
+        </div>
+    </div>

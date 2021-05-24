@@ -55,12 +55,10 @@ export class CartItemListComponent implements OnInit {
       accept: () => {
           this.cartService.removeItemFromCart(event).subscribe(
             (res: any) => {
-              console.log(res);
               if (res) {
-                 window.location.reload();
+                this.updateCartItems();
               }             
           }, (err:Error) => {
-            console.log(err);
           });
       }
     });    

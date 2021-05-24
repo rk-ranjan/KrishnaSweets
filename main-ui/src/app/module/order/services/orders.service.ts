@@ -51,8 +51,8 @@ export class OrdersService {
     )
   }
 
-  public deleteOrder = (order: Order): Observable<any> => {
-    return this.http.delete<any>(this.deleteOderUrl+"?id="+order._id).pipe(
+  public deleteOrder = (id: string): Observable<any> => {
+    return this.http.delete<any>(this.deleteOderUrl+"?id="+id).pipe(
       map((res: any) => {
         return res;
       })

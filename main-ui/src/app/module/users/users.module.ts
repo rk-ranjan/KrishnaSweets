@@ -15,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { UserHomeComponent } from './components/user-home/user-home.component';
-import { UserHeaderComponent } from './components/user-header/user-header.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
@@ -27,8 +26,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     UserProfileComponent, 
     SettingsComponent, 
     MyOrdersComponent, 
-    UserHomeComponent, 
-    UserHeaderComponent, 
+    UserHomeComponent,
     UserSettingsComponent, OrderDetailsComponent
   ],
   imports: [

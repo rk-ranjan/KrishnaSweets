@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Order } from 'src/app/core/model/order';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { CakeDetails } from 'src/app/module/cakes/services/cake-details';
-import { ShowCakesService } from 'src/app/module/cakes/services/show-cakes.service';
+import { AddCake } from 'src/app/module/admin/models/add-cake';
+import { CakesService } from 'src/app/module/admin/services/cakes.service';
 import { OrdersService } from '../../services/orders.service';
 
 @Component({
@@ -18,11 +18,14 @@ export class BuyNowComponent implements OnInit {
   public order: Order = new Order();
   public orderForm: FormGroup;
   public cakesId: string;
-  public cakeDetail: CakeDetails;
-  public userName: string;
+  public cakeDetail: AddCake;
+  public userName: string; 
+  public products: any;
+  public userId: string;
+  public isOrderSubmitted: boolean = false;
   constructor(
     private route: ActivatedRoute,
-    private cakeService: ShowCakesService,
+    private cakeService: CakesService,
     public formBuilder: FormBuilder,
     private localStorageService: LocalStorageService,
     private orderService: OrdersService,
@@ -44,19 +47,18 @@ export class BuyNowComponent implements OnInit {
         city: new FormControl('SITAMARHI', Validators.required),
         zip: new FormControl('843301', Validators.required)
      });
-     this.cakeService.getCakesById(this.cakesId).subscribe(
-       (res:CakeDetails) => {
-          this.cakeDetail = res;  
-          console.log(this.cakeDetail);              
+     this.cakeService.getProductDetails(this.cakesId).subscribe(
+       (res:AddCake) => {
+          this.cakeDetail = res;            
      });
    }
 
   public submitOrder = () => {
     this.getShipDetails();
-    this.order.itemId = this.cakeDetail.items._id;
-    this.order.price = this.cakeDetail.items.unitPrice;
+    this.order.itemId = this.cakeDetail._id;
+    this.order.price = this.cakeDetail.unitPrice;
     this.order.weight = 1;
-    this.order.itemName = this.cakeDetail.items.itemName;
+    this.order.itemName = this.cakeDetail.itemName;
     this.createNewOrder();
   }
 
@@ -81,9 +83,18 @@ export class BuyNowComponent implements OnInit {
   public createNewOrder = () => {
     this.orderService.saveOrder(this.order).subscribe(
       (response: any) => {
-        this.messageService.add({severity:'success', summary:'Order', detail: 'Oder submitted succssfully'});
-          setTimeout (() => { 
-          }, 1000);      
+        this.loadCurrentOrders();    
+    });
+  }
+
+  public loadCurrentOrders = () => {
+    this.userId = this.localStorageService.getItem("email");
+    const orderDate = new Date().toLocaleDateString();
+    this.orderService.getAllOrders().subscribe(
+      (response: Order[]) => {
+        this.isOrderSubmitted = true;
+        this.products = response;
+        this.products = this.products.filter((prod) => prod.order.orderDate === orderDate && prod.order.customerId === this.userId);
     });
   }
 

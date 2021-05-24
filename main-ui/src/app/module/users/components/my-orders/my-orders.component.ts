@@ -4,6 +4,7 @@ import { SelectItem, MessageService } from 'primeng/api';
 import { OrdersService } from 'src/app/module/order/services/orders.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-orders',
@@ -22,7 +23,8 @@ export class MyOrdersComponent implements OnInit {
     private messageService: MessageService,
     private orderService: OrdersService,
     private localStorageService: LocalStorageService,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private router: Router
   ) {
     this.email = localStorage.getItem("email");
   }
@@ -33,8 +35,16 @@ export class MyOrdersComponent implements OnInit {
         this.loading = false;
         response.sort((a, b) => b.order['id'].localeCompare(a.order['id'])); 
         this.products = response;
-        console.log(this.products);
     })
+  }
+
+  public cancelOrder = (order: any) => {
+    this.orderService.deleteOrder(order.id).subscribe(
+      (response: any) => {
+       this.router.routeReuseStrategy.shouldReuseRoute = ()  => false;
+       this.router.onSameUrlNavigation = 'reload';
+       this.router.navigate(["/profiles/orders"]);
+    });
   }
 
 }

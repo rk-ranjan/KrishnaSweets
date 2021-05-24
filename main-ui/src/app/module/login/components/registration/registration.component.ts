@@ -63,7 +63,6 @@ export class RegistrationComponent implements OnInit {
         this.register.password = trim(this.regForm.controls.password.value);
         this.loginService.registerUser(this.register).subscribe(
           (response: any) => {
-            console.log(response);
             this.messageService.add({severity:'success', summary:'Registrations', detail:'Registered Successfully'});
             setTimeout (() => {
               this.loader = false;
@@ -75,7 +74,6 @@ export class RegistrationComponent implements OnInit {
             }, 1000); 
         }, (error:any) => {
            this.loader = false;
-           console.log(error);
            this.messageService.add({severity:'error', summary:'Registrations Failed', detail:error.error.message});
         });
     } else {

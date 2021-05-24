@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
-import { CakeDetails } from 'src/app/module/cakes/services/cake-details';
 import { CartBehavourService } from 'src/app/core/services/cart-behavour.service';
 import { Router } from '@angular/router';
 import { Cart } from 'src/app/module/cart/components/models/cart';
@@ -19,8 +18,8 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
   ]
 })
 export class ProductDetailsSmallComponent implements OnInit, OnChanges {
-  @Input() public detail: CakeDetails;
-  public detailData: CakeDetails;
+  @Input() public detail: any;
+  public detailData: any;
   public FinalPrice: number = 0;
   public fixedPrice: number = 0;
   public detailForm: FormGroup;
@@ -38,9 +37,8 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
     if(changes['detail']) {
        const variableChange = changes['detail'];
        this.detailData = variableChange.currentValue;
-       this.FinalPrice = this.detailData.items.unitPrice - (this.detailData.items.unitPrice * this.detailData.items.discountPercentage)/100;
-       this.fixedPrice = this.detailData.items.unitPrice;
-       console.log(this.detailData.image.length);
+       this.FinalPrice = this.detailData.unitPrice - (this.detailData.unitPrice * this.detailData.discountPercentage)/100;
+       this.fixedPrice = this.detailData.unitPrice;
        Math.round(this.FinalPrice);
        Math.round(this.fixedPrice);
     }
@@ -50,20 +48,20 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
     this.detailForm = this.formBuilder.group({
       message: new FormControl('', Validators.required),
       weight: new FormControl('1',Validators.required)
-    });   
+    });  
+    console.log(this.detail); 
   }
 
   public priceCalculator = (event) => {
-    this.FinalPrice = this.detailData.items.unitPrice * event.value -(this.detailData.items.unitPrice * event.value * this.detailData.items.discountPercentage)/100; 
-    this.fixedPrice = this.detailData.items.unitPrice * event.value; 
+    this.FinalPrice = this.detailData.unitPrice * event.value -(this.detailData.unitPrice * event.value * this.detailData.items.discountPercentage)/100; 
+    this.fixedPrice = this.detailData.unitPrice * event.value; 
     Math.round(this.FinalPrice);
     Math.round(this.fixedPrice);   
   }
   onSwipe(event) { 
     const x = Math.abs(event.deltaX) > 40 ? (event.deltaX > 0 ? "Right" : "Left") : ""; 
       const tempSlider = x === 'Left' ? this.currentSlide - 1 : this.currentSlide + 1;
-      console.log(this.detailData.image.length);
-      if (tempSlider > -1 && tempSlider < this.detailData.image.length) {
+      if (tempSlider > -1 && tempSlider < this.detailData.imageUrls.length) {
         this.currentSlide = tempSlider;
       }
   }
@@ -74,10 +72,13 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
           header: 'Confirmation',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
-            this.router.navigate(['order/buy-now', { productId: id } ]);
+            setTimeout(() => {
+              this.router.navigate(['order/buy-now', { productId: id } ]);
+            }, 200)
           },
           reject: () => {
-
+            setTimeout(() => {
+            }, 200)
           }
       });
     } else {
@@ -88,15 +89,14 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
   public addToCart = () => {
       var cart: Cart = new Cart();
       cart.username = this.localStorageService.getItem('email');
-      cart.itemId = this.detailData.items._id;
-      cart.itemName = this.detailData.items.itemName;
+      cart.itemId = this.detailData._id;
+      cart.itemName = this.detailData.itemName;
       cart.price = this.FinalPrice;
       cart.weight = this.detailForm.controls.weight.value;
-      cart.quantity = 1;
-      cart.eggless = this.detailData.items.eggless;
-      cart.discount = this.detailData.items.discountPercentage;
-      cart.desc = this.detailData.items.descriptions;
-      cart.img = this.detailData.image[0].image.data;
+      cart.quantity = this.detailData.qty;
+      cart.discount = this.detailData.discountPercentage;
+      cart.desc = this.detailData.descriptions;
+      cart.img = this.detailData.imageUrls[0];
       cart.wishMsg = this.detailForm.controls.message.value;
       if (this.detailForm.controls.message.value === '' && this.detailData.items.productId === 1) {
           this.confirmationService.confirm({
@@ -107,7 +107,8 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
                 this.sendToCart(cart);
               },
               reject: () => {
-   
+                setTimeout(() => {
+                }, 200);
               }
           });
       } else {
@@ -123,7 +124,7 @@ export class ProductDetailsSmallComponent implements OnInit, OnChanges {
           setTimeout (() => {
             this.cartBehaviorService.addToCart(cart);
             this.router.navigate(["/cart"]);  
-          }, 1000);          
+          }, 200);          
       });
     } else {
        this.router.navigate(['/login', {redirectUrl: this.router.url}]);

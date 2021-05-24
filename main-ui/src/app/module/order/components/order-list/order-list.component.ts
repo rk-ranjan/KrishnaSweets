@@ -30,8 +30,7 @@ export class OrderListComponent implements OnInit {
 
   }
   public ngOnInit() {
-     this.orderService.getAllOrders().subscribe((res: Order[]) => {
-       console.log(res);       
+     this.orderService.getAllOrders().subscribe((res: Order[]) => {     
        this.orderList = res;
        this.totalOrder = res.length;
        this.returnedArray = this.orderList.slice(0, 10);

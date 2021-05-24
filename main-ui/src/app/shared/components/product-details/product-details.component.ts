@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
-import { CakeDetails } from 'src/app/module/cakes/services/cake-details';
 import { CartBehavourService } from 'src/app/core/services/cart-behavour.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Cart } from 'src/app/module/cart/components/models/cart';
@@ -19,8 +18,8 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
   ]
 })
 export class ProductDetailsComponent implements OnInit, OnChanges {
-  @Input() public detail: CakeDetails;
-  public detailData: CakeDetails;
+  @Input() public detail: any;
+  public detailData: any;
   public FinalPrice: number = 0;
   public fixedPrice: number = 0;
   public detailForm: FormGroup;
@@ -43,8 +42,8 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     if(changes['detail']) {
        const variableChange = changes['detail'];
        this.detailData = variableChange.currentValue;
-       this.FinalPrice = this.detailData.items.unitPrice - (this.detailData.items.unitPrice * this.detailData.items.discountPercentage)/100;
-       this.fixedPrice = this.detailData.items.unitPrice;
+       this.FinalPrice = this.detailData.unitPrice - (this.detailData.unitPrice * this.detailData.discountPercentage)/100;
+       this.fixedPrice = this.detailData.unitPrice;
        Math.round(this.FinalPrice);
        Math.round(this.fixedPrice);
     }
@@ -58,23 +57,27 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
   }
 
   public priceCalculator = (event) => {
-    this.FinalPrice = this.detailData.items.unitPrice * event.value -(this.detailData.items.unitPrice * event.value * this.detailData.items.discountPercentage)/100; 
-    this.fixedPrice = this.detailData.items.unitPrice * event.value; 
+    this.FinalPrice = this.detailData.unitPrice * event.value -(this.detailData.items.unitPrice * event.value * this.detailData.discountPercentage)/100; 
+    this.fixedPrice = this.detailData.unitPrice * event.value; 
     Math.round(this.FinalPrice);
     Math.round(this.fixedPrice);   
   }
   
   public buyProduct = (id: any) => {   
-    if (this.detailForm.controls.message.value === '' && this.detailData.items.productId === 1) {
+    if (this.detailForm.controls.message.value === '' && this.detailData.productId === 1) {
       this.confirmationService.confirm({
           message: 'Are you sure that you want to proceed?',
           header: 'Confirmation',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
-            this.router.navigate(['order/buy-now', { productId: id } ]);
+            setTimeout(() => {
+              this.router.navigate(['order/buy-now', { productId: id } ]);
+            }, 200);
           },
           reject: () => {
-
+            setTimeout(() => {
+              
+            }, 200);
           }
       });
     } else {
@@ -83,20 +86,18 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
   }
 
   public addToCart = () => {
-      console.log(this.detailData.items.productId);
       var cart: Cart = new Cart();
       cart.username = this.localStorageService.getItem('email');
-      cart.itemId = this.detailData.items._id;
-      cart.itemName = this.detailData.items.itemName;
+      cart.itemId = this.detailData._id;
+      cart.itemName = this.detailData.itemName;
       cart.price = this.FinalPrice;
       cart.weight = this.detailForm.controls.weight.value;
-      cart.quantity = 1;
-      cart.eggless = this.detailData.items.eggless;
-      cart.discount = this.detailData.items.discountPercentage;
-      cart.desc = this.detailData.items.descriptions;
-      cart.img = this.detailData.image[0].image.data;
+      cart.quantity = this.detailData.qty;
+      cart.discount = this.detailData.discountPercentage;
+      cart.desc = this.detailData.descriptions;
+      cart.img = this.detailData.imageUrls[0];
       cart.wishMsg = this.detailForm.controls.message.value;
-      if (this.detailForm.controls.message.value === '' && this.detailData.items.productId === 1) {
+      if (this.detailForm.controls.message.value === '') {
           this.confirmationService.confirm({
               message: 'Are you sure that you want to proceed?',
               header: 'Confirmation',
@@ -105,7 +106,9 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
                 this.sendToCart(cart);
               },
               reject: () => {
-   
+                setTimeout(() => {
+                  
+                }, 200);
               }
           });
       } else {

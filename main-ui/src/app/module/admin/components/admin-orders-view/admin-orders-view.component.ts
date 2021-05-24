@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem, MessageService } from 'primeng/api';
 import { OrdersService } from 'src/app/module/order/services/orders.service';
 import { Order } from 'src/app/core/model/order';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-orders-view',
@@ -19,7 +20,8 @@ export class AdminOrdersViewComponent implements OnInit {
   clonedProducts: { [s: string]: Order; } = {};
   constructor(
     private messageService: MessageService,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class AdminOrdersViewComponent implements OnInit {
       (response: Order[]) => {
         this.products1 = response;
         this.products2 = response;
-        console.log(response);
+        this.products1 = this.products1.filter((prod) => prod.status === 'Pending');
     })
     this.statuses = [{label: 'In Stock', value: 'INSTOCK'},{label: 'Low Stock', value: 'LOWSTOCK'},{label: 'Out of Stock', value: 'OUTOFSTOCK'}]
   }
@@ -36,7 +38,14 @@ export class AdminOrdersViewComponent implements OnInit {
     order.status = event;
     this.orderService.updateOrder(order).subscribe(
       (res: any) => {
-       console.log(res);
+    });
+  }
+
+  public deleteProduct = (data: any) => {
+    this.orderService.deleteOrder(data.order.id).subscribe(
+      (response: any) => {
+        this.products1 = this.products1.filter(prod => prod === data);
+        this.products2 = this.products2.filter(prod => prod == data);
     });
   }
 

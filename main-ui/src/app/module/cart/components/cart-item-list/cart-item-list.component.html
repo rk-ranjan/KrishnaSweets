@@ -10,25 +10,14 @@
   </div>
 </div>
 <div class="row"  style="background-color: white;" *ngIf="!loading">
-  <div class="col-sm-12">
-    <hr>
-    <div class="d-flex">
-        <div class="mr-auto">
-            <a href="#">Back to shopping</a>
-        </div>
-        <div class="mr-auto" *ngIf="cartItems">
-            My Cart({{cartItems.length}} items)
-        </div>
-        <div class="">
-            Subtotal: RS {{totalCost | number}}
-        </div>
-    </div>
-    <hr>
-    <!-- <hr> -->
+  <div class="col-sm-12 text-center">
+    <p class="heading pt-3"> YOUR SHOPPPING CART </p>
   </div>
   <div class="col-sm-12 jumbotron text-center" *ngIf="cartItems.length === 0">
-     <h1 class="primary-heading">Your cart is empty</h1>
-     <a routerLink="/cakes">Start shopping</a>
+    <img src="../../../../../assets/images/cart-icon.png"/>
+     <p class="primary-heading">Your cart is empty.</p>
+     <br>
+     <a routerLink="/cakes" class="btn btn-card btn-outline-primary">Start shopping</a>
   </div>
   <div class="col-sm-9 p-0" *ngIf="cartItems.length !== 0">
     <div class="cart-items"  *ngFor="let cart of cartItems">

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListCake } from 'src/app/module/cakes/models/list-cake';
-import { ShowCakesService } from 'src/app/module/cakes/services/show-cakes.service';
 import { SweetsService } from '../../services/sweets.service';
 
 @Component({

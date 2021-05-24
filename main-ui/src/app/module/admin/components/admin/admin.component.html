@@ -1,2 +1,23 @@
-<app-admin-header></app-admin-header>
 <router-outlet></router-outlet>
+<div class="row">
+    <div class="mobile-only-footer p-2" style="background-color: white;">
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column text-center flex-fill" routerLink="/admin">
+                <a class="fa fa-home" style="color: blue;"></a>
+                <span style="color: blue;">Dashboard</span>
+            </div>
+            <div class="d-flex flex-column text-center flex-fill" routerLink="/admin/cakes">
+                <a class="fa fa-history" style="color: blue;"></a>
+                <span>Cakes</span>
+            </div>
+            <div class="d-flex flex-column text-center flex-fill" routerLink="/admin/orders">
+                <a class="fa fa-history" style="color: blue;"></a>
+                <span>Orders</span>
+            </div>
+            <div class="d-flex flex-column text-center flex-fill" routerLink="/admin/orders">
+                <a class="fa fa-user" style="color: blue;"></a>
+                <span>Users</span>
+            </div>
+        </div>
+    </div>
+</div>

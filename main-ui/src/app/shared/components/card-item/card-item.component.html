@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <div class="card m-0 product-grid6" style="border-radius: 0%;">
     <div class="product-image6" routerLink="/product/details" [queryParams]="{ cakeId: cake._id }">
-        <img id="overImg" [src]="'data:image/jpg;base64,'+cake.imageUrl" alt="..." class="card-img">
+        <img id="overImg" [src]="cake.imageUrls[0]" alt="" class="card-img">
         <div class="overlay-img">
             <p class="discount-text">{{cake.discountPercentage}} % Off</p>
         </div>

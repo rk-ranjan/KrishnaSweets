@@ -1,142 +1,181 @@
 <p-toast></p-toast>
-<div class="row" *ngIf="firstStep">
-    <div class="col-sm-2 desktop-view-only">
-
+<div class="row">
+    <div class="col-sm-12 text-center">
+        <p class="heading pt-1"> ADD PRODUCTS </p>
     </div>
-    <div class="col-sm-8 card p-2 m-0">
-            <h4>Step: 1(Enter product items details)</h4>
-            <form [formGroup]="productForm" (ngSubmit)="submitProduct()" class="form-flat" autocomplete="off">
-                <div class="form-group">
-                    <label for="productId">Product Type</label>
-                    <select name="productId" id="productId" class="form-control" formControlName="productId" (change)="onChangeProductType($event)">
-                        <option value="1">Cake type</option>
-                        <option value="2">Sweets Type</option>
-                    </select>
-                </div>
+</div>
+<div class="row card pl-1 pr-1">
+    <div class="col-sm-12 text-left">
+        <p class="heading pt-1"><b> Product images </b></p>
+    </div>
+    <div class="col-sm-3 mb-1" *ngFor="let image of uploadedImageArray">
+        <img [src]="image" class="card-img-top loop-image-size img-thumbnail" alt="...">
+    </div>
+    <div class="col-sm-3">
+        <label for="file-input">
+            <img src="../../../../../assets/images/add-product-logo.webp"
+                class="img-thumbnail card-img-top loop-image-size" alt="...">
+        </label>
+        <input type="file" id="file-input" class="hidden-field" (change)="updateFile($event);" />
+    </div>
+</div>
+<br>
+<form [formGroup]="productForm" (ngSubmit)="submitProduct(productForm.value)" class="form-flat card pl-1 pr-1" autocomplete="off">
+        <div class="row">
+            <div class="col-sm-12 text-left">
+                <p class="heading pt-1"><b> Product informations </b></p>
+            </div>
+            <div class="col-sm-12">
                 <div class="form-group">
                     <label for="cake-name">Product Item Name</label>
-                    <input type="text" #cakeName required id="cake-name" formControlName="cakeName"
-                        placeholder="Full product name" class="form-control">
+                    <input type="text" #name required id="name" formControlName="name"
+                        placeholder="Product name" class="form-control">
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="unit_price">Unit Price(Indian)</label>
-                            <input type="number" #cakePrice required id="unit_price" formControlName="unitPrice"
-                                placeholder="Product unit price" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="discount">Percentage Discounts</label>
-                            <input type="number" #cakeName required id="discount" formControlName="discount"
-                                placeholder="Discount on product" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="productId">Choose Product Type</label>
+                    <select name="productId" id="productId" class="form-control" formControlName="pid"
+                        (change)="onChangeProductType(this.productForm.controls.pid.value)">
+                        <option value="null">Select product type</option>
+                        <option [value]="type.id" *ngFor="let type of productTypes">{{type.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4 add-product-type text-center">
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-outline-primary btn-sm form-control" formnovalidate routerLink="/admin/cakes/new-product">Add new product</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" id="category" class="form-control" formControlName="category">
+                        <option value="null">Select category</option>
+                        <option [value]="cat.id" *ngFor="let cat of filteredCategory">{{cat.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4 add-product-type text-center">
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-outline-primary btn-sm form-control" formnovalidate [routerLink]="['/admin/cakes/new-catogory', this.productForm.controls.pid.value]">Add new category</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group flex-fill pr-2">
+                    <label for="unit_price">Unit Price(RS)</label>
+                    <input type="number" #cakePrice required id="unit_price" formControlName="unitPrice"
+                        placeholder="Product unit price" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6 d-flex">
+                <div class="form-group flex-fill pr-2">
+                    <label for="discount">Percentage Discounts</label>
+                    <input type="number" #discount required id="discount" formControlName="discount"
+                        placeholder="Discount on product" class="form-control" (keyup)="onKey($event)">
+                </div>
+                <div class="form-group flex-fill">
+                    <label for="unit_price">Selling price</label>
+                    <input type="number" [value]="sellingPrice" disabled class="form-control">
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row" *ngIf="productType === '1'">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="cake-flavour">Cakes Flavour</label>
+                    <select formControlName="flavour" class="form-control" #cakeFlavour required id="cake-flavour">
+                        <option value="none" selected>Select Cake Flavour</option>
+                        <option value="Pineapple Cake">Pineapple Cake</option>
+                        <option value="Premium Vanilla Cake">Premium Vanilla Cake</option>
+                        <option value="Strawberry Cake">Strawberry Cake</option>
+                        <option value="Chocolate Cake">Chocolate Cake</option>
+                        <option value=" Truffle Cake"> Truffle Cake</option>
+                        <option value="Red Velvet Heart Cake">Red Velvet Cake</option>
+                        <option value="Black Forest Cake">Black Forest Cake</option>
+                        <option value="White Forest Cake">White Forest Cake</option>
+                        <option value="Mango Cake">Mango Cake</option>
+                        <option value="Blueberry Cake">Blueberry Cake</option>
+                        <option value="Kiwi Cake">Kiwi Cake</option>
+                        <option value="Fruit Cake">Fruit Cake</option>
+                        <option value="Butter Spotch">Butter Scotch</option>
+                        <option value="Pineapple Chocolate">Pineapple Chocolate</option>
+                        <option value="Dry Fruits Cake">Dry Fruits Cake</option>
+                        <option value="Special Cake">Special Cake</option>
+                        <option value="Designer Cake">Designer Cake</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="egglessStatus">Eggless ?</label>
+                    <mat-checkbox class="form-control" id="egglessStatus" formControlName="eggless">Eggless
+                    </mat-checkbox>
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <label for="cake-bread">Quantity</label>
+                    <div class="input-group">
+                        <input type="text" aria-label="First name" class="form-control" formControlName="qty">
+                        <mat-select [(value)]="selected" class="form-control">
+                            <mat-option [value]="q" *ngFor="let q of qtyArray">{{q}}</mat-option>
+                        </mat-select>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">per {{selected}}</span>
                         </div>
                     </div>
                 </div>
-                <div class="row" *ngIf="productType === '1'">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="cake-flavour">Cakes Flavour</label>
-                            <select formControlName="flavour" class="form-control" #cakeFlavour required id="cake-flavour">
-                                <option value="none" selected>Select Cake Flavour</option>
-                                <option value="Pineapple Cake">Pineapple Cake</option>
-                                <option value="Premium Vanilla Cake">Premium Vanilla Cake</option>
-                                <option value="Strawberry Cake">Strawberry Cake</option>
-                                <option value="Chocolate Cake">Chocolate Cake</option>
-                                <option value=" Truffle Cake"> Truffle Cake</option>
-                                <option value="Red Velvet Heart Cake">Red Velvet Cake</option>
-                                <option value="Black Forest Cake">Black Forest Cake</option>
-                                <option value="White Forest Cake">White Forest Cake</option>
-                                <option value="Mango Cake">Mango Cake</option>
-                                <option value="Blueberry Cake">Blueberry Cake</option>
-                                <option value="Kiwi Cake">Kiwi Cake</option>
-                                <option value="Fruit Cake">Fruit Cake</option>
-                                <option value="Butter Spotch">Butter Scotch</option>
-                                <option value="Pineapple Chocolate">Pineapple Chocolate</option>
-                                <option value="Dry Fruits Cake">Dry Fruits Cake</option>
-                                <option value="Special Cake">Special Cake</option>
-                                <option value="Designer Cake">Designer Cake</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="egglessStatus">Eggless ?</label>
-                            <mat-checkbox class="form-control" id="egglessStatus" formControlName="eggless">Eggless</mat-checkbox>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <!-- <div class="row" *ngIf="productType === '1'">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="cake-bread">Bread Used</label>
+                    <select formControlName="breadUsed" class="form-control" required id="cake-bread">
+                        <option value="none" selected>Select Bread Type</option>
+                        <option value="Pineapple Cake">Vanilla Eggless</option>
+                        <option value="Pineapple Cake">Chocolate Eggless</option>
+                        <option value="Pineapple Cake">Chocochips Eggless</option>
+                        <option value="Pineapple Cake">Redvelvet Eggless</option>
+                    </select>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="cake-bread">Product Selling Unit</label>
-                            <select #unit id="unit" class="form-control" formControlName="unit">
-                                <option value="none" selected>Select Product Unit</option>
-                                <option value="KG">KG</option>
-                                <option value="Pond">Piece</option>
-                                <option value="Pond">Pound</option>
-                            </select>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="cake-creame">Cream Used</label>
+                    <select formControlName="breadCreame" class="form-control" required id="cake-creame">
+                        <option value="none" selected>Select Cream Type</option>
+                        <option value="Pineapple Cake">Fresh Cream</option>
+                        <option value="Premium Vanilla Cake">Premium Fresh Cream</option>
+                        <option value="Strawberry Cake">Truffle Cream</option>
+                    </select>
                 </div>
-                <div class="row" *ngIf="productType === '1'">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="cake-bread">Bread Used</label>
-                            <select formControlName="breadUsed" class="form-control" required id="cake-bread">
-                                <option value="none" selected>Select Bread Type</option>
-                                <option value="Pineapple Cake">Vanilla Eggless</option>
-                                <option value="Pineapple Cake">Chocolate Eggless</option>
-                                <option value="Pineapple Cake">Chocochips Eggless</option>
-                                <option value="Pineapple Cake">Redvelvet Eggless</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="cake-creame">Cream Used</label>
-                            <select formControlName="breadCreame" class="form-control" required id="cake-creame">
-                                    <option value="none" selected>Select Cream Type</option>
-                                    <option value="Pineapple Cake">Fresh Cream</option>
-                                    <option value="Premium Vanilla Cake">Premium Fresh Cream</option>
-                                    <option value="Strawberry Cake">Truffle Cream</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-sm-12">
                 <div class="form-group">
                     <label for="cake-desc">Product Descriptions</label>
-                     <textarea row="2" class="form-control" id="cake-desc" formControlName="desc">
-
-                     </textarea>
+                    <textarea row="2" class="form-control" id="cake-desc" formControlName="desc">    
+                    </textarea>
                 </div>
-                <div class="form-group">
-                    <mat-checkbox id="homeItem" formControlName="homeItem">Show on Home Page</mat-checkbox>
-                </div>
-                <div class="d-flex">
-                    <button type="reset" class="btn-card btn-lg btn-outline-danger flex-fill m-1 p-2">&nbsp;Cancel&nbsp;</button>
-                    <button type="submit" class="btn-card btn-lg btn-outline-success flex-fill m-1 p-2">&nbsp; Next &nbsp;</button>
-                </div>
-            </form>
-    </div>
-    <div class="col-sm-2 desktop-view-only">
-
-    </div>
-</div>
-<div class="row p-4" *ngIf="!firstStep">
-    <div class="col-sm-2">
-
-    </div>
-    <div class="col-sm-8 card p-4">
-        <h5>Step: 2(Upload Images for this productItem)</h5>
-        <p-fileUpload  customUpload="true" (uploadHandler)="onUpload($event)"
-            multiple="multiple" accept="image/*" maxFileSize="1000000">
-            <ng-template pTemplate="content">
-                <ul *ngIf="uploadedFiles.length">
-                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                </ul>
-            </ng-template>
-        </p-fileUpload>
-    </div>
-</div>
+            </div>
+        </div>
+        <div class="d-flex">
+            <button type="reset"
+                class="btn-card btn-lg btn-outline-danger flex-fill m-1 p-2">&nbsp;Cancel&nbsp;</button>
+            <button type="submit" class="btn-card btn-lg btn-outline-success flex-fill m-1 p-2">&nbsp; Next
+                &nbsp;</button>
+        </div>
+</form>

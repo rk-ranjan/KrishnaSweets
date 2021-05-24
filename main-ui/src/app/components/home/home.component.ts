@@ -3,7 +3,7 @@ import { element } from 'protractor';
 import { User } from 'src/app/core/model/user';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { UserBehaviorService } from 'src/app/core/services/user-behavior.service';
-import { ShowCakesService } from 'src/app/module/cakes/services/show-cakes.service';
+import { CakesService } from 'src/app/module/admin/services/cakes.service';
 
 @Component({
   selector: 'app-home',
@@ -19,13 +19,13 @@ export class HomeComponent implements OnInit {
   public sweetsList: any[] = [];
   public user: User = new User();
   constructor(
-    private cakeService: ShowCakesService,
+    private cakeService: CakesService,
     private localStorageService: LocalStorageService,
     private userBehaviorService: UserBehaviorService
   ) { }
 
   ngOnInit() {
-    this.cakeService.getHomeProduct().subscribe(
+    this.cakeService.getAllProduct().subscribe(
       (res: any[]) => {
          this.cakesList = res.filter((element) => element.productId === 1);
          this.sweetsList = res.filter((element) => element.productId === 2);

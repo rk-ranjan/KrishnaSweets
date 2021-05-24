@@ -6,6 +6,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ManageCakesComponent } from './components/manage-cakes/manage-cakes.component';
 import { AdminOrdersViewComponent } from './components/admin-orders-view/admin-orders-view.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { AddNewProductTypeComponent } from './components/add-new-product-type/add-new-product-type.component';
+import { AddNewCategoryComponent } from './components/add-new-category/add-new-category.component';
 
 const routes: Routes = [
   {
@@ -15,8 +17,12 @@ const routes: Routes = [
     children: [
       {
        path: '',
-       redirectTo: 'cakes'
+       redirectTo: 'dashboard'
       //  component: DashboardComponent
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
       },
       {
         path: 'cakes',
@@ -33,7 +39,15 @@ const routes: Routes = [
       {
         path: 'cakes/add-product',
         component: AddProductComponent
-      }
+      },
+      {
+        path: 'cakes/new-product',
+        component: AddNewProductTypeComponent
+      },
+      {
+        path: 'cakes/new-catogory/:id',
+        component: AddNewCategoryComponent
+      },
     ]
   }
 ];

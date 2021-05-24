@@ -37,3 +37,18 @@
         top: 50%;
       }
 }
+
+// for card 
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.center-content > .fa {
+    font-size: 50px;
+}
+@media screen and (max-width: 760px) {
+    .row {
+       margin: 0px !important;
+    }
+}

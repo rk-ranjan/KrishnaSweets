@@ -4,12 +4,17 @@
     z-index: 1000;
 }
 
+.secondary-offset {
+    padding-top: 110px !important;
+    width: 100vw !important;
+}
+
 .container-fluid {
     padding-top: 108px;
     width: 100%;
 }
 @media screen and (max-width: 760px) {
     .secondary-offset {
-       padding-top: 55px;
+       padding-top: 55px !important;
     }
 }

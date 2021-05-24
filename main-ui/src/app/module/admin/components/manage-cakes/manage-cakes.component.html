@@ -1,9 +1,9 @@
-<div class="row" *ngIf="!loading">
-    <div class="col-sm-6 p-2 pl-3 text-left">
-        <h4><strong>Products</strong></h4>
-    </div> 
-    <div class="col-sm-6 p-2  pr-3 text-right">
-        <button routerLink="add-product" class="btn btn-pro btn-success">{{addProduct | uppercase}}</button>
+<div class="row m-0 p-0" *ngIf="!loading">
+    <div class="col-sm-12 text-center">
+        <p class="heading pt-3"> ALL PRODUCTS </p>
+    </div>
+    <div class="col-sm-12 pb-2 p-0 text-right">
+        <button routerLink="add-product" class="btn btn-outline-primary btn-sm"><span class="fa fa-plus"></span> &nbsp;&nbsp;Add New Product&nbsp;</button>
     </div> 
 </div>
 <div class="row" style="background-color:white;" *ngIf="loading">
@@ -15,7 +15,7 @@
 
 <p-toast></p-toast>
 
-<div class="card">
+<div class="row p-0 m-0">
     <p-table [columns]="cols" [value]="product2" dataKey="_id" editMode="row" styleClass="p-datatable-responsive-demo">
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -28,22 +28,10 @@
         <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
             <tr [pEditableRow]="product">
 
-                <td pEditableColumn>
+                <td>
                     <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <button (click)="deleteImage(product)">Delete</button>
-                            <button (click)="addImage(product)">Add</button>
-                            <p-fileUpload *ngIf="imageUpload" customUpload="true" (uploadHandler)="onUpload($event,product)"
-                                multiple="multiple" accept="image/*" maxFileSize="1000000">
-                                <ng-template pTemplate="content">
-                                    <ul *ngIf="uploadedFiles.length">
-                                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                                    </ul>
-                                </ng-template>
-                            </p-fileUpload>
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            <img [src]="'data:image/jpg;base64,'+product.imageUrl" [alt]="product.itemName" width="100" class="p-shadow-4" />
+                        <ng-template pTemplate="output" *ngIf="product.imageUrls !== '[]'">
+                            <img [src]="product.imageUrls[0]" [alt]="product.itemName" width="100" class="p-shadow-4" />
                         </ng-template>
                     </p-cellEditor>
                 </td>
@@ -62,10 +50,10 @@
                 <td pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.flavour">
+                            <input pInputText type="text" [(ngModel)]="product.qty">
                         </ng-template>
                         <ng-template pTemplate="output">
-                            {{product.flavour}}
+                            {{product.qty}}
                         </ng-template>
                     </p-cellEditor>
                 </td>

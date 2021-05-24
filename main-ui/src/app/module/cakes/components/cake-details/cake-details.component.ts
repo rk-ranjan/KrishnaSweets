@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ShowCakesService } from '../../services/show-cakes.service';
-import { CakeDetails } from '../../services/cake-details';
+import { AddCake } from 'src/app/module/admin/models/add-cake';
+import { CakesService } from 'src/app/module/admin/services/cakes.service';
 
 @Component({
   selector: 'app-cake-details',
@@ -10,16 +10,16 @@ import { CakeDetails } from '../../services/cake-details';
 })
 export class CakeDetailsComponent implements OnInit {
   public cakesId: string;
-  public cakeDetail: CakeDetails;
+  public cakeDetail: AddCake;
   constructor(
     private route: ActivatedRoute,
-    private cakeService: ShowCakesService
+    private cakeService: CakesService
   ) { }
 
   ngOnInit() {
     this.cakesId = this.route.snapshot.queryParams["cakeId"];
-    this.cakeService.getCakesById(this.cakesId).subscribe(
-      (res:CakeDetails) => {
+    this.cakeService.getProductDetails(this.cakesId).subscribe(
+      (res:AddCake) => {
          this.cakeDetail = res;                
     });
   }

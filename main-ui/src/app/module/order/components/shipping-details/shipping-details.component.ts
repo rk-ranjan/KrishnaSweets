@@ -22,6 +22,9 @@ export class ShippingDetailsComponent implements OnInit {
   public orderForm: FormGroup;
   public date7: Date;
   public userName: string;
+  public products: any;
+  public userId: string;
+  public isOrderSubmitted: boolean = false;
   constructor(
     private cartService: CartService,
     private cartBehaviorService: CartBehavourService,
@@ -30,7 +33,7 @@ export class ShippingDetailsComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private messageService: MessageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { 
     var param = this.route.snapshot.paramMap.get('productId');
   }
@@ -68,11 +71,7 @@ export class ShippingDetailsComponent implements OnInit {
            this.createNewOrder();
            this.deleteFromCart(element.cartId);
         });
-        this.messageService.add({severity:'success', summary:'Order', detail: 'Order submitted successfully'});
-        setTimeout (() => {
-            this.cartBehaviorService.emptyCart();
-            this.router.navigate(['profiles/orders']);
-        }, 1000);
+      this.loadCurrentOrders();
      });
   }
 
@@ -106,5 +105,17 @@ export class ShippingDetailsComponent implements OnInit {
        (response: any) => {
      });
   }
-
+ 
+  public loadCurrentOrders = () => {
+    this.messageService.add({severity:'success', summary:'Order', detail: 'Order submitted successfully'});
+    this.cartBehaviorService.emptyCart();
+    this.userId = this.localStorageService.getItem("email");
+    const orderDate = new Date().toLocaleDateString();
+    this.orderService.getAllOrders().subscribe(
+      (response: Order[]) => {
+        this.isOrderSubmitted = true;
+        this.products = response;
+        this.products = this.products.filter((prod) => prod.order.orderDate === orderDate && prod.order.customerId === this.userId);
+    });
+  }
 }

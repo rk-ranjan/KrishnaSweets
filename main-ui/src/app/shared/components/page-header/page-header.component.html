@@ -1,6 +1,6 @@
 <div class="d-flex-row primary-header">
     <div class="icon-margin right-items-mobile pl-3 pr-3 pb-0" *ngIf="!search"  (click)="display = true">
-        <img src="https://cdn3.iconfinder.com/data/icons/outline-style-1/512/hamburger-512.png" width="27px" class="img-fluid"/>
+        <img src="../../../../assets/images/hamburger-512.png" width="27px" class="img-fluid"/>
     </div>
     <div class="p-0 mr-auto" *ngIf="!search">
         <img src="assets/images/logo.png" routerLink="/" class="main-logo" alt="NoImg" />
@@ -18,7 +18,7 @@
     </div>
     <div class="right-items-cart pt-3" *ngIf="!search" routerLink="/cart">
             <div class="notification">
-              <img src="https://static.thenounproject.com/png/62821-200.png" width="28px"/>
+              <img src="../../../../assets/images/cart-icon.png" width="28px"/>
             </div>
             <div class="badge">
               {{cartCount}}
@@ -35,7 +35,7 @@
         <img class="mr-3" src="../../../../assets/images/user-icon.png" width="55px"/>
       </div>
       <div class="d-flex flex-column">
-        <p class="pb-0 mb-1" *ngIf="user">Welcome <strong>{{user.name}}</strong></p>
+        <p class="pb-0 mb-1" *ngIf="user"><strong>{{user.name}}</strong></p>
         <p class="" *ngIf="user" (click)="logout()">logout</p>
         <p class="pb-0 mb-1" *ngIf="!user">Guest User</p>
         <p class="" (click)="login()" *ngIf="!user">login</p>

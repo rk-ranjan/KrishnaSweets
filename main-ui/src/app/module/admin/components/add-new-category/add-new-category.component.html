@@ -1,0 +1,43 @@
+<form [formGroup]="categoryForm" (ngSubmit)="submitProduct(categoryForm.value)" class="form-flat card pl-1 pr-1" autocomplete="off">
+    <div class="row card pl-1 pr-1">
+        <div class="col-sm-12 text-left">
+            <p class="heading pt-1"><b> Category images </b></p>
+        </div>
+        <div class="col-sm-12 mb-1" *ngFor="let image of uploadedImageArray">
+            <img [src]="image" class="card-img-top loop-image-size img-thumbnail" alt="...">
+        </div>
+        <div class="col-sm-12" *ngIf="uploadedImageArray.length === 0">
+            <label for="file-input">
+                <img src="../../../../../assets/images/add-product-logo.webp"
+                    class="img-thumbnail card-img-top loop-image-size" alt="...">
+            </label>
+            <input type="file" id="file-input" formControlName="imgUrl" class="hidden-field" (change)="updateFile($event);" />
+        </div>
+    </div>
+    <div class="row card pl-1 pr-1">
+        <div class="col-sm-12 text-left">
+            <p class="heading pt-1"><b> Category informations </b></p>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="cake-name">Category name</label>
+                <input type="text" #name required id="name"formControlName="name"
+                    placeholder="Category name" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="cake-name">Category descriptions</label>
+                <input type="text" #desc required id="desc" formControlName="desc"
+                    placeholder="Descriptions" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+               <button type="submit" class="btn btn-block btn-outline-warning" [disabled]="categoryForm.invalid">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
